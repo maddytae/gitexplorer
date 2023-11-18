@@ -1,48 +1,48 @@
-from flask import Flask, request, render_template,session
+from flask import Flask, request, render_template, session
 import utilities
 import subprocess
+import os
 
 app = Flask(__name__)
+app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 
 @app.route("/", methods=["GET", "POST"])
 def home():
     sshAddress = ""
     selected_branch = ""
     branches = []
-    depth=""
-    tree_output=''
-    folder_depth=''
+    depth = ""
+    tree_output = ''
+    folder_depth = ''
 
     if request.method == "POST":
         sshAddress = request.form.get("sshAddress")
         selected_branch = request.form.get("selectedBranch")
-        depth= request.form.get("depthValue")
-        folder_depth= request.form.get("folderdepthValue")
+        depth = request.form.get("depthValue")
+        folder_depth = request.form.get("folderdepthValue")
 
-        # If SSH address is provided, get branches
         if sshAddress:
             message = utilities.get_repo(sshAddress)
-            branches = message.splitlines()  # Split the message into a list of branches
+            branches = message.splitlines()
 
-
-        # Check if repo name or branch has changed
         repo_changed = sshAddress != session.get('last_sshAddress')
         branch_changed = selected_branch != session.get('last_selected_branch')
 
-        if selected_branch is not None:
-            utilities.clone_repo(sshAddress,selected_branch,'/Users/maddy/my_repos/repo_store')
+        clone_directory = '/Users/maddy/my_repos/repo_store'
+        repo_name = sshAddress.split('/')[-1].replace('.git', '')
+        repo_path = os.path.join(clone_directory, repo_name)
+
+        if selected_branch and (repo_changed or branch_changed):
+            utilities.clone_repo(sshAddress, selected_branch, clone_directory)
             session['last_sshAddress'] = sshAddress
             session['last_selected_branch'] = selected_branch
 
-        if int(folder_depth)>0:
-            raw_tree_output = subprocess.check_output(['tree','-L',str(folder_depth),
-                                                        '/Users/maddy/my_repos/repo_store/pandas'], text=True)
-                # Split the output into lines and remove the first line
-            lines = raw_tree_output.split('\n')
-            tree_output = '\n'.join(lines[1:])
-
-
-
+        if folder_depth and os.path.exists(repo_path):
+            folder_depth = int(folder_depth)
+            if folder_depth > 0:
+                raw_tree_output = subprocess.check_output(['tree', '-L', str(folder_depth), repo_path], text=True)
+                lines = raw_tree_output.split('\n')
+                tree_output = '\n'.join(lines[1:])  
 
     return render_template('index.html', branches=branches, 
                            sshAddress=sshAddress,
