@@ -19,3 +19,22 @@ def get_repo(sshAddress):
         # Handle errors in command execution
         return str(e)
 
+def clone_repo(ssh_address, branch, clone_directory, depth=1):
+
+    repo_name = ssh_address.split('/')[-1].replace('.git', '')
+    full_clone_path = os.path.join(clone_directory, repo_name)
+
+    try:
+        os.system('rm -rf '+full_clone_path)
+    except subprocess.CalledProcessError as e:
+        # Handle error
+        print(f"An error occurred: {e}")
+
+
+    try:
+        # Clone the specified branch with the given depth into the full clone path
+        subprocess.run(["git", "clone", "-b", branch, "--depth", str(depth), ssh_address, full_clone_path], check=True)
+        print(f"Repository cloned successfully into {full_clone_path}")
+    except subprocess.CalledProcessError as e:
+        # Handle error
+        print(f"An error occurred: {e}")

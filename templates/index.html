@@ -30,12 +30,24 @@
                             </select>
                         </div>
                     
-                        <!-- Depth Input -->
+                        <!-- Depth Input 
                         <div class="col">
                             <label for="integerInput" class="form-label">Depth</label>
                             <input type="number" class="form-control" id="integerInput" name="depthValue" value="{{ depth }}" required>
                         </div>
+                    </div>  -->
+
+                    <div class="col">
+                        <label for="integerInput" class="form-label">Folder Depth</label>
+                        <input type="number" class="form-control" id="integerInput" name="folderdepthValue" value="{{ folder_depth }}" required>
+                    </div>                  
+
+                    <div class="mt-4">
+                        <h5>Directory Structure:</h5>
+                        <pre>{{ tree_output }}</pre>
                     </div>
+               
+
                     {% endif %}
                     
 
