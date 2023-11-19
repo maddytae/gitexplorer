@@ -4,22 +4,25 @@ import subprocess
 import os
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('FLASK_SECRET_KEY')
+app.secret_key = '329392bcjidjndsf'
+print(app.secret_key)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    sshAddress = ""
-    selected_branch = ""
+    sshAddress = ''
+    selected_branch = ''
     branches = []
-    depth = ""
+    depth = ''
     tree_output = ''
     folder_depth = ''
+    show_directory_structure = False
 
     if request.method == "POST":
         sshAddress = request.form.get("sshAddress")
         selected_branch = request.form.get("selectedBranch")
         depth = request.form.get("depthValue")
         folder_depth = request.form.get("folderdepthValue")
+        show_directory_structure = 'showDirectoryStructure' in request.form
 
         if sshAddress:
             message = utilities.get_repo(sshAddress)
@@ -49,7 +52,8 @@ def home():
                            selected_branch=selected_branch,
                            depth=depth,
                            tree_output=tree_output,
-                           folder_depth=folder_depth)
+                           folder_depth=folder_depth,
+                           show_directory_structure=show_directory_structure)
 
 if __name__ == "__main__":
     app.run(debug=True)

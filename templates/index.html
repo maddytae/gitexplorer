@@ -10,7 +10,8 @@
 <body>
     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-4">
+            <!-- Left Column for Form -->
+            <div class="col-md-6">
                 <form action="/" method="post">
                     <div class="mb-4">
                         <label for="sshAddressInput" class="form-label">SSH Address</label>
@@ -29,30 +30,34 @@
                                 {% endfor %}
                             </select>
                         </div>
+
+                        
                     
-                        <!-- Depth Input 
+                        <!-- Folder Depth Input -->
                         <div class="col">
-                            <label for="integerInput" class="form-label">Depth</label>
-                            <input type="number" class="form-control" id="integerInput" name="depthValue" value="{{ depth }}" required>
+                            <label for="folderDepthInput" class="form-label">Folder Depth</label>
+                            <input type="number" class="form-control" id="folderDepthInput" name="folderdepthValue" value="{{ folder_depth }}" required>
                         </div>
-                    </div>  -->
+                    </div>
 
-                    <div class="col">
-                        <label for="integerInput" class="form-label">Folder Depth</label>
-                        <input type="number" class="form-control" id="integerInput" name="folderdepthValue" value="{{ folder_depth }}" required>
-                    </div>                  
+                    <div class="mb-4">
+                        <input type="checkbox" class="form-check-input" id="showDirectoryStructure" name="showDirectoryStructure" value="yes" {% if show_directory_structure %}checked{% endif %}>
+                        <label class="form-check-label" for="showDirectoryStructure">Show Directory Structure</label>
+                    </div>
 
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    {% endif %}
+                </form>
+            </div>
+
+            <!-- Right Column for Directory Structure -->
+            <div class="col-md-6">
+                {% if show_directory_structure %}
                     <div class="mt-4">
                         <h5>Directory Structure:</h5>
                         <pre>{{ tree_output }}</pre>
                     </div>
-               
-
-                    {% endif %}
-                    
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                {% endif %}
             </div>
         </div>
     </div>
