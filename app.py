@@ -30,20 +30,24 @@ def home():
 
         repo_changed = sshAddress != session.get('last_sshAddress')
         branch_changed = selected_branch != session.get('last_selected_branch')
+        depth_changed = depth !=session.get('last_depth')
 
         clone_directory = '/Users/maddy/my_repos/repo_store'
         repo_name = sshAddress.split('/')[-1].replace('.git', '')
         repo_path = os.path.join(clone_directory, repo_name)
 
-        if selected_branch and (repo_changed or branch_changed):
+        if selected_branch and (repo_changed or branch_changed or depth_changed):
             utilities.clone_repo(sshAddress, selected_branch, clone_directory)
             session['last_sshAddress'] = sshAddress
             session['last_selected_branch'] = selected_branch
+            session['last_depth']=depth
+
+
 
         if folder_depth and os.path.exists(repo_path):
             folder_depth = int(folder_depth)
             if folder_depth > 0:
-                raw_tree_output = subprocess.check_output(['tree', '-L', str(folder_depth), repo_path], text=True)
+                raw_tree_output = subprocess.check_output(['tree', '-L', str(folder_depth),'-d', repo_path], text=True)
                 lines = raw_tree_output.split('\n')
                 tree_output = '\n'.join(lines[1:])  
 

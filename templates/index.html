@@ -31,19 +31,29 @@
                             </select>
                         </div>
 
-                        
-                    
-                        <!-- Folder Depth Input -->
                         <div class="col">
-                            <label for="folderDepthInput" class="form-label">Folder Depth</label>
-                            <input type="number" class="form-control" id="folderDepthInput" name="folderdepthValue" value="{{ folder_depth }}" required>
+                            <label for="integerInput" class="form-label">Depth</label>
+                            <input type="number" class="form-control" id="integerInput" name="depthValue" value="{{ depth }}" required>
                         </div>
                     </div>
 
-                    <div class="mb-4">
+            <!-- Folder Depth and Checkbox Row -->
+            <div class="row mb-4">
+                <!-- Folder Depth Input -->
+                <div class="col-md-6">
+                    <label for="folderDepthInput" class="form-label">Folder Depth</label>
+                    <input type="number" class="form-control" id="folderDepthInput" name="folderdepthValue" value="{{ folder_depth }}" required>
+                </div>
+
+                <!-- Show Directory Structure Checkbox -->
+                <div class="col-md-6">
+                    <div class="form-check mt-4">
                         <input type="checkbox" class="form-check-input" id="showDirectoryStructure" name="showDirectoryStructure" value="yes" {% if show_directory_structure %}checked{% endif %}>
                         <label class="form-check-label" for="showDirectoryStructure">Show Directory Structure</label>
                     </div>
+                </div>
+            </div>
+
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                     {% endif %}
