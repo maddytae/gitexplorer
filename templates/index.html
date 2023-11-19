@@ -48,8 +48,8 @@
                 <!-- Show Directory Structure Checkbox -->
                 <div class="col-md-6">
                     <div class="form-check mt-4">
-                        <input type="checkbox" class="form-check-input" id="showDirectoryStructure" name="showDirectoryStructure" value="yes" {% if show_directory_structure %}checked{% endif %}>
-                        <label class="form-check-label" for="showDirectoryStructure">Show Directory Structure</label>
+                        <input type="checkbox" class="form-check-input" id="show_files" name="show_files" value="yes" {% if show_files %}checked{% endif %}>
+                        <label class="form-check-label" for="show_files">Show Files too</label>
                     </div>
                 </div>
             </div>
@@ -62,12 +62,12 @@
 
             <!-- Right Column for Directory Structure -->
             <div class="col-md-6">
-                {% if show_directory_structure %}
+                
                     <div class="mt-4">
-                        <h5>Directory Structure:</h5>
+                        <h5>Repo contents:</h5>
                         <pre>{{ tree_output }}</pre>
                     </div>
-                {% endif %}
+              
             </div>
         </div>
     </div>

@@ -15,14 +15,14 @@ def home():
     depth = ''
     tree_output = ''
     folder_depth = ''
-    show_directory_structure = False
+    show_files = False
 
     if request.method == "POST":
         sshAddress = request.form.get("sshAddress")
         selected_branch = request.form.get("selectedBranch")
         depth = request.form.get("depthValue")
         folder_depth = request.form.get("folderdepthValue")
-        show_directory_structure = 'showDirectoryStructure' in request.form
+        show_files = 'show_files' in request.form
 
         if sshAddress:
             message = utilities.get_repo(sshAddress)
@@ -47,7 +47,10 @@ def home():
         if folder_depth and os.path.exists(repo_path):
             folder_depth = int(folder_depth)
             if folder_depth > 0:
-                raw_tree_output = subprocess.check_output(['tree', '-L', str(folder_depth),'-d', repo_path], text=True)
+                if show_files:
+                    raw_tree_output = subprocess.check_output(['tree', '-L', str(folder_depth), repo_path], text=True)
+                else:
+                    raw_tree_output = subprocess.check_output(['tree', '-L', str(folder_depth),'-d', repo_path], text=True)
                 lines = raw_tree_output.split('\n')
                 tree_output = '\n'.join(lines[1:])  
 
@@ -57,7 +60,7 @@ def home():
                            depth=depth,
                            tree_output=tree_output,
                            folder_depth=folder_depth,
-                           show_directory_structure=show_directory_structure)
+                           show_files=show_files)
 
 if __name__ == "__main__":
     app.run(debug=True)
