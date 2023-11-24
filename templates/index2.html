@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %}
+Index Page
+{% endblock %}
+
+{% block body %}
+
+<style>
+    .custom-bg {
+        background-color: #f8f9fa; /* Light grey background */
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
+    }
+</style>
+
+<div class="container mt-5 custom-bg"> <!-- Container with top margin and custom background -->
+
+    <form method="post" action="{{ url_for('generate_diff') }}">
+        <!-- First Row: Input Box -->
+        <div class="row mb-3">
+            <div class="col-md-8 offset-md-2"> <!-- Adjusted column size -->
+                <input type="text" class="form-control" placeholder="Enter SSH Address" style="width: 100%;">
+            </div>
+        </div>
+
+        <!-- Second Row: Two Dropdown Boxes with Labels -->
+        <div class="row mb-3">
+            <!-- Branch 1 Dropdown -->
+            <div class="col-md-4 offset-md-2">
+                <label for="branch1Dropdown">Branch 1</label>
+                <select class="form-select" name="branch1Dropdown" id="branch1Dropdown">
+                    <option value="a" {% if branch1 == 'a' %} selected {% endif %}>a</option>
+                    <option value="b" {% if branch1 == 'b' %} selected {% endif %}>b</option>
+                    <option value="c" {% if branch1 == 'c' %} selected {% endif %}>c</option>
+                </select>
+            </div>
+            <!-- Branch 2 Dropdown -->
+            <div class="col-md-4">
+                <label for="branch2Dropdown">Branch 2</label>
+                <select class="form-select" name="branch2Dropdown" id="branch2Dropdown">
+                    <option value="a" {% if branch2 == 'a' %} selected {% endif %}>a</option>
+                    <option value="b" {% if branch2 == 'b' %} selected {% endif %}>b</option>
+                    <option value="c" {% if branch2 == 'c' %} selected {% endif %}>c</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Third Row: Two More Dropdown Boxes with Labels -->
+        <div class="row mb-3">
+            <div class="col-md-4 offset-md-2">
+                <label for="dropdown1">Dropdown 1</label>
+                <select class="form-select" name="dropdown1" id="dropdown1">
+                    <option value="x" {% if dropdown1 == 'x' %} selected {% endif %}>x</option>
+                    <option value="y" {% if dropdown1 == 'y' %} selected {% endif %}>y</option>
+                    <option value="z" {% if dropdown1 == 'z' %} selected {% endif %}>z</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="dropdown2">Dropdown 2</label>
+                <select class="form-select" name="dropdown2" id="dropdown2">
+                    <option value="x" {% if dropdown2 == 'x' %} selected {% endif %}>x</option>
+                    <option value="y" {% if dropdown2 == 'y' %} selected {% endif %}>y</option>
+                    <option value="z" {% if dropdown2 == 'z' %} selected {% endif %}>z</option>
+                </select>
+            </div>
+        </div>
+
+
+        <!-- Submit Button -->
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <button type="submit" class="btn btn-primary">Generate</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<!-- Checkboxes for JavaScript functionality -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 offset-md-2 mb-3">
+            <input class="form-check-input" type="checkbox" id="noLineCheckbox" onchange="updateContent()">
+            <label class="form-check-label" for="noLineCheckbox">No Line</label>
+        </div>
+        <div class="col-md-4">
+            <input class="form-check-input" type="checkbox" id="sideBySideCheckbox" onchange="updateContent()">
+            <label class="form-check-label" for="sideBySideCheckbox">Side-by-Side</label>
+        </div>
+    </div>
+</div>
+
+<!-- Content Area -->
+<div class="container mt-4" id="contentArea">
+    {{ line_html | safe }}
+</div>
+<script>
+    let lineContent, noLineContent, sideBySideContent;
+
+    function loadContent() {
+        // Fetch and store the contents of each HTML file
+        fetch('/static/diff/line.html').then(response => response.text()).then(html => lineContent = html);
+        fetch('/static/diff/no_line.html').then(response => response.text()).then(html => noLineContent = html);
+        fetch('/static/diff/side_by_side.html').then(response => response.text()).then(html => sideBySideContent = html);
+    }
+
+    function updateContent() {
+        const noLineCheckbox = document.getElementById('noLineCheckbox');
+        const sideBySideCheckbox = document.getElementById('sideBySideCheckbox');
+
+        // Update the content area based on the checkbox selection
+        if (noLineCheckbox.checked) {
+            document.getElementById('contentArea').innerHTML = noLineContent;
+        } else if (sideBySideCheckbox.checked) {
+            document.getElementById('contentArea').innerHTML = sideBySideContent;
+        } else {
+            document.getElementById('contentArea').innerHTML = lineContent;
+        }
+    }
+
+    function setupCheckboxInteractions() {
+        const noLineCheckbox = document.getElementById('noLineCheckbox');
+        const sideBySideCheckbox = document.getElementById('sideBySideCheckbox');
+
+        noLineCheckbox.addEventListener('change', function() {
+            sideBySideCheckbox.disabled = this.checked;
+            updateContent();
+        });
+
+        sideBySideCheckbox.addEventListener('change', function() {
+            noLineCheckbox.disabled = this.checked;
+            updateContent();
+        });
+    }
+
+    window.onload = function() {
+        loadContent();
+        setupCheckboxInteractions();
+    };
+</script>
+
+
+{% endblock %}

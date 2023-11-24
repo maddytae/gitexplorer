@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+pre {
+  font-family:Courier New;
+  font-size:10pt;
+}
+
+.af_line {
+  color: gray;
+  text-decoration: none;
+}
+
+</style>
+<title>Source file</title>
+</head>
+<body>
+<pre>
+<span style="color:#a71d5d;">from</span><span style="color:#333333;"> flask </span><span style="color:#a71d5d;">import</span><span style="color:#333333;"> Flask, request, render_template, session</span>
+<span style="color:#a71d5d;">import</span><span style="color:#333333;"> utilities</span>
+<span style="color:#a71d5d;">import</span><span style="color:#333333;"> subprocess</span>
+<span style="color:#a71d5d;">import</span><span style="color:#333333;"> os</span>
+
+<span style="color:#333333;">app </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> </span><span style="color:#0086b3;">Flask</span><span style="color:#333333;">(__name__)</span>
+<span style="color:#333333;">app.secret_key </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> </span><span style="color:#183691;">&apos;329392bcjidjndsf&apos;</span>
+<span style="color:#0086b3;">print</span><span style="color:#333333;">(app.secret_key)</span>
+
+<span style="color:#333333;">&#64;app.</span><span style="color:#0086b3;">route</span><span style="color:#333333;">(</span><span style="color:#183691;">&quot;/&quot;</span><span style="color:#333333;">, </span><span style="color:#0086b3;">methods</span><span style="color:#a71d5d;">=</span><span style="color:#333333;">[</span><span style="color:#183691;">&quot;GET&quot;</span><span style="color:#333333;">, </span><span style="color:#183691;">&quot;POST&quot;</span><span style="color:#333333;">])</span>
+<span style="color:#a71d5d;">def</span><span style="color:#333333;"> </span><span style="color:#795da3;">home</span><span style="color:#333333;">():</span>
+<span style="color:#333333;">    sshAddress </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> </span><span style="color:#183691;">&apos;&apos;</span>
+<span style="color:#333333;">    selected_branch </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> </span><span style="color:#183691;">&apos;&apos;</span>
+<span style="color:#333333;">    branches </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> []</span>
+<span style="color:#333333;">    depth </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> </span><span style="color:#183691;">&apos;&apos;</span>
+<span style="color:#333333;">    tree_output </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> </span><span style="color:#183691;">&apos;&apos;</span>
+<span style="color:#333333;">    folder_depth </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> </span><span style="color:#183691;">&apos;&apos;</span>
+<span style="background-color:#ffe0e0;">    show_files = False</span><span style="background-color:#ffe0e0;"></span>
+<span style="color:#333333;background-color:#d0ffd0;">    show_directory_structure </span><span style="color:#a71d5d;background-color:#d0ffd0;">=</span><span style="color:#333333;background-color:#d0ffd0;"> </span><span style="color:#0086b3;background-color:#d0ffd0;">False</span><span style="background-color:#d0ffd0;"></span>
+
+<span style="color:#333333;">    </span><span style="color:#a71d5d;">if</span><span style="color:#333333;"> request.method </span><span style="color:#a71d5d;">==</span><span style="color:#333333;"> </span><span style="color:#183691;">&quot;POST&quot;</span><span style="color:#333333;">:</span>
+<span style="color:#333333;">        sshAddress </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> request.form.</span><span style="color:#0086b3;">get</span><span style="color:#333333;">(</span><span style="color:#183691;">&quot;sshAddress&quot;</span><span style="color:#333333;">)</span>
+<span style="color:#333333;">        selected_branch </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> request.form.</span><span style="color:#0086b3;">get</span><span style="color:#333333;">(</span><span style="color:#183691;">&quot;selectedBranch&quot;</span><span style="color:#333333;">)</span>
+<span style="color:#333333;">        depth </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> request.form.</span><span style="color:#0086b3;">get</span><span style="color:#333333;">(</span><span style="color:#183691;">&quot;depthValue&quot;</span><span style="color:#333333;">)</span>
+<span style="color:#333333;">        folder_depth </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> request.form.</span><span style="color:#0086b3;">get</span><span style="color:#333333;">(</span><span style="color:#183691;">&quot;folderdepthValue&quot;</span><span style="color:#333333;">)</span>
+<span style="background-color:#ffe0e0;">        show_files = &apos;show_files&apos; in request.form</span><span style="background-color:#ffe0e0;"></span>
+<span style="color:#333333;background-color:#d0ffd0;">        show_directory_structure </span><span style="color:#a71d5d;background-color:#d0ffd0;">=</span><span style="color:#333333;background-color:#d0ffd0;"> </span><span style="color:#183691;background-color:#d0ffd0;">&apos;showDirectoryStructure&apos;</span><span style="color:#333333;background-color:#d0ffd0;"> </span><span style="color:#a71d5d;background-color:#d0ffd0;">in</span><span style="color:#333333;background-color:#d0ffd0;"> request.form</span><span style="background-color:#d0ffd0;"></span>
+
+<span style="color:#333333;">        </span><span style="color:#a71d5d;">if</span><span style="color:#333333;"> sshAddress:</span>
+<span style="color:#333333;">            message </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> utilities.</span><span style="color:#0086b3;">get_repo</span><span style="color:#333333;">(sshAddress)</span>
+<span style="color:#333333;">            branches </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> message.</span><span style="color:#0086b3;">splitlines</span><span style="color:#333333;">()</span>
+
+<span style="color:#333333;">        repo_changed </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> sshAddress </span><span style="color:#a71d5d;">!=</span><span style="color:#333333;"> session.</span><span style="color:#0086b3;">get</span><span style="color:#333333;">(</span><span style="color:#183691;">&apos;last_sshAddress&apos;</span><span style="color:#333333;">)</span>
+<span style="color:#333333;">        branch_changed </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> selected_branch </span><span style="color:#a71d5d;">!=</span><span style="color:#333333;"> session.</span><span style="color:#0086b3;">get</span><span style="color:#333333;">(</span><span style="color:#183691;">&apos;last_selected_branch&apos;</span><span style="color:#333333;">)</span>
+<span style="background-color:#ffe0e0;">        depth_changed = depth !=session.get(&apos;last_depth&apos;)</span><span style="background-color:#ffe0e0;"></span>
+
+<span style="color:#333333;">        clone_directory </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> </span><span style="color:#183691;">&apos;/Users/maddy/my_repos/repo_store&apos;</span>
+<span style="color:#333333;">        repo_name </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> sshAddress.</span><span style="color:#0086b3;">split</span><span style="color:#333333;">(</span><span style="color:#183691;">&apos;/&apos;</span><span style="color:#333333;">)[</span><span style="color:#a71d5d;">-</span><span style="color:#0086b3;">1</span><span style="color:#333333;">].</span><span style="color:#0086b3;">replace</span><span style="color:#333333;">(</span><span style="color:#183691;">&apos;.git&apos;</span><span style="color:#333333;">, </span><span style="color:#183691;">&apos;&apos;</span><span style="color:#333333;">)</span>
+<span style="color:#333333;">        repo_path </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> os.path.</span><span style="color:#0086b3;">join</span><span style="color:#333333;">(clone_directory, repo_name)</span>
+
+<span style="background-color:#ffe0e0;">        if selected_branch and (repo_changed or branch_changed</span><span style="background-color:#ffc0c0;"> or depth_changed</span><span style="background-color:#ffe0e0;">):</span><span style="background-color:#ffe0e0;"></span>
+<span style="color:#333333;background-color:#d0ffd0;">        </span><span style="color:#a71d5d;background-color:#d0ffd0;">if</span><span style="color:#333333;background-color:#d0ffd0;"> selected_branch </span><span style="color:#a71d5d;background-color:#d0ffd0;">and</span><span style="color:#333333;background-color:#d0ffd0;"> (repo_changed </span><span style="color:#a71d5d;background-color:#d0ffd0;">or</span><span style="color:#333333;background-color:#d0ffd0;"> branch_changed):</span><span style="background-color:#d0ffd0;"></span>
+<span style="color:#333333;">            utilities.</span><span style="color:#0086b3;">clone_repo</span><span style="color:#333333;">(sshAddress, selected_branch, clone_directory)</span>
+<span style="color:#333333;">            session[</span><span style="color:#183691;">&apos;last_sshAddress&apos;</span><span style="color:#333333;">] </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> sshAddress</span>
+<span style="color:#333333;">            session[</span><span style="color:#183691;">&apos;last_selected_branch&apos;</span><span style="color:#333333;">] </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> selected_branch</span>
+<span style="background-color:#ffe0e0;">            session[&apos;last_depth&apos;]=depth</span><span style="background-color:#ffe0e0;"></span>
+<span style="background-color:#ffe0e0;"></span>
+<span style="background-color:#ffe0e0;"></span>
+
+<span style="color:#333333;">        </span><span style="color:#a71d5d;">if</span><span style="color:#333333;"> folder_depth </span><span style="color:#a71d5d;">and</span><span style="color:#333333;"> os.path.</span><span style="color:#0086b3;">exists</span><span style="color:#333333;">(repo_path):</span>
+<span style="color:#333333;">            folder_depth </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> </span><span style="color:#0086b3;">int</span><span style="color:#333333;">(folder_depth)</span>
+<span style="color:#333333;">            </span><span style="color:#a71d5d;">if</span><span style="color:#333333;"> folder_depth </span><span style="color:#a71d5d;">&gt;</span><span style="color:#333333;"> </span><span style="color:#0086b3;">0</span><span style="color:#333333;">:</span>
+<span style="background-color:#ffe0e0;">                if show_files:</span><span style="background-color:#ffe0e0;"></span>
+<span style="background-color:#ffe0e0;">                </span><span style="background-color:#ffc0c0;">    </span><span style="background-color:#ffe0e0;">raw_tree_output = subprocess.check_output([&apos;tree&apos;, &apos;-L&apos;, str(folder_depth), repo_path], text=True)</span><span style="background-color:#ffe0e0;"></span>
+<span style="background-color:#ffe0e0;">                else:</span><span style="background-color:#ffe0e0;"></span>
+<span style="background-color:#ffe0e0;">                    raw_tree_output = subprocess.check_output([&apos;tree&apos;, &apos;-L&apos;, str(folder_depth),&apos;-d&apos;, repo_path], text=True)</span><span style="background-color:#ffe0e0;"></span>
+<span style="color:#333333;background-color:#d0ffd0;">                raw_tree_output </span><span style="color:#a71d5d;background-color:#d0ffd0;">=</span><span style="color:#333333;background-color:#d0ffd0;"> subprocess.</span><span style="color:#0086b3;background-color:#d0ffd0;">check_output</span><span style="color:#333333;background-color:#d0ffd0;">([</span><span style="color:#183691;background-color:#d0ffd0;">&apos;tree&apos;</span><span style="color:#333333;background-color:#d0ffd0;">, </span><span style="color:#183691;background-color:#d0ffd0;">&apos;-L&apos;</span><span style="color:#333333;background-color:#d0ffd0;">, </span><span style="color:#0086b3;background-color:#d0ffd0;">str</span><span style="color:#333333;background-color:#d0ffd0;">(folder_depth), repo_path], </span><span style="color:#0086b3;background-color:#d0ffd0;">text</span><span style="color:#a71d5d;background-color:#d0ffd0;">=</span><span style="color:#0086b3;background-color:#d0ffd0;">True</span><span style="color:#333333;background-color:#d0ffd0;">)</span><span style="background-color:#d0ffd0;"></span>
+<span style="color:#333333;">                lines </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> raw_tree_output.</span><span style="color:#0086b3;">split</span><span style="color:#333333;">(</span><span style="color:#183691;">&apos;\n&apos;</span><span style="color:#333333;">)</span>
+<span style="color:#333333;">                tree_output </span><span style="color:#a71d5d;">=</span><span style="color:#333333;"> </span><span style="color:#183691;">&apos;\n&apos;</span><span style="color:#333333;">.</span><span style="color:#0086b3;">join</span><span style="color:#333333;">(lines[</span><span style="color:#0086b3;">1</span><span style="color:#333333;">:])  </span>
+
+<span style="color:#333333;">    </span><span style="color:#a71d5d;">return</span><span style="color:#333333;"> </span><span style="color:#0086b3;">render_template</span><span style="color:#333333;">(</span><span style="color:#183691;">&apos;index.html&apos;</span><span style="color:#333333;">, </span><span style="color:#0086b3;">branches</span><span style="color:#a71d5d;">=</span><span style="color:#333333;">branches, </span>
+<span style="color:#333333;">                           </span><span style="color:#0086b3;">sshAddress</span><span style="color:#a71d5d;">=</span><span style="color:#333333;">sshAddress,</span>
+<span style="color:#333333;">                           </span><span style="color:#0086b3;">selected_branch</span><span style="color:#a71d5d;">=</span><span style="color:#333333;">selected_branch,</span>
+<span style="color:#333333;">                           </span><span style="color:#0086b3;">depth</span><span style="color:#a71d5d;">=</span><span style="color:#333333;">depth,</span>
+<span style="color:#333333;">                           </span><span style="color:#0086b3;">tree_output</span><span style="color:#a71d5d;">=</span><span style="color:#333333;">tree_output,</span>
+<span style="color:#333333;">                           </span><span style="color:#0086b3;">folder_depth</span><span style="color:#a71d5d;">=</span><span style="color:#333333;">folder_depth,</span>
+<span style="background-color:#ffe0e0;">                           show_files=show_files)</span><span style="background-color:#ffe0e0;"></span>
+<span style="color:#333333;background-color:#d0ffd0;">                           </span><span style="color:#0086b3;background-color:#d0ffd0;">show_directory_structure</span><span style="color:#a71d5d;background-color:#d0ffd0;">=</span><span style="color:#333333;background-color:#d0ffd0;">show_directory_structure)</span><span style="background-color:#d0ffd0;"></span>
+
+<span style="color:#a71d5d;">if</span><span style="color:#333333;"> __name__ </span><span style="color:#a71d5d;">==</span><span style="color:#333333;"> </span><span style="color:#183691;">&quot;__main__&quot;</span><span style="color:#333333;">:</span>
+<span style="color:#333333;">    app.</span><span style="color:#0086b3;">run</span><span style="color:#333333;">(</span><span style="color:#0086b3;">debug</span><span style="color:#a71d5d;">=</span><span style="color:#0086b3;">True</span><span style="color:#333333;">)</span>
+</pre>
+</body>
+</html>
+<!--HTML generated by ansifilter 2.20, http://www.andre-simon.de/-->
