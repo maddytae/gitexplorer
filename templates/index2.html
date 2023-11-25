@@ -96,50 +96,14 @@ Index Page
 <div class="container mt-4" id="contentArea">
     {{ line_html | safe }}
 </div>
-<script>
-    let lineContent, noLineContent, sideBySideContent;
 
-    function loadContent() {
-        // Fetch and store the contents of each HTML file
-        fetch('/static/diff/line.html').then(response => response.text()).then(html => lineContent = html);
-        fetch('/static/diff/no_line.html').then(response => response.text()).then(html => noLineContent = html);
-        fetch('/static/diff/side_by_side.html').then(response => response.text()).then(html => sideBySideContent = html);
-    }
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
-    function updateContent() {
-        const noLineCheckbox = document.getElementById('noLineCheckbox');
-        const sideBySideCheckbox = document.getElementById('sideBySideCheckbox');
 
-        // Update the content area based on the checkbox selection
-        if (noLineCheckbox.checked) {
-            document.getElementById('contentArea').innerHTML = noLineContent;
-        } else if (sideBySideCheckbox.checked) {
-            document.getElementById('contentArea').innerHTML = sideBySideContent;
-        } else {
-            document.getElementById('contentArea').innerHTML = lineContent;
-        }
-    }
 
-    function setupCheckboxInteractions() {
-        const noLineCheckbox = document.getElementById('noLineCheckbox');
-        const sideBySideCheckbox = document.getElementById('sideBySideCheckbox');
 
-        noLineCheckbox.addEventListener('change', function() {
-            sideBySideCheckbox.disabled = this.checked;
-            updateContent();
-        });
 
-        sideBySideCheckbox.addEventListener('change', function() {
-            noLineCheckbox.disabled = this.checked;
-            updateContent();
-        });
-    }
-
-    window.onload = function() {
-        loadContent();
-        setupCheckboxInteractions();
-    };
-</script>
 
 
 {% endblock %}
+
