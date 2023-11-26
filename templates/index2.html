@@ -21,25 +21,25 @@ Index Page
         <!-- First Row: Input Box -->
         <div class="row mb-3">
             <div class="col-md-8 offset-md-2"> <!-- Adjusted column size -->
-                <input type="text" class="form-control" placeholder="Enter SSH Address" style="width: 100%;">
+                <input type="text" class="form-control" placeholder="Enter the SSH Address" style="width: 100%;">
             </div>
         </div>
 
         <!-- Second Row: Two Dropdown Boxes with Labels -->
         <div class="row mb-3">
-            <!-- Branch 1 Dropdown -->
+            <!-- Select First Branch Dropdown -->
             <div class="col-md-4 offset-md-2">
-                <label for="branch1Dropdown">Branch 1</label>
-                <select class="form-select" name="branch1Dropdown" id="branch1Dropdown">
+                <label for="branch1">Select 1'st Branch</label>
+                <select class="form-select" name="branch1" id="branch1">
                     <option value="a" {% if branch1 == 'a' %} selected {% endif %}>a</option>
                     <option value="b" {% if branch1 == 'b' %} selected {% endif %}>b</option>
                     <option value="c" {% if branch1 == 'c' %} selected {% endif %}>c</option>
                 </select>
             </div>
-            <!-- Branch 2 Dropdown -->
+            <!-- Select Second Branch Dropdown -->
             <div class="col-md-4">
-                <label for="branch2Dropdown">Branch 2</label>
-                <select class="form-select" name="branch2Dropdown" id="branch2Dropdown">
+                <label for="branch2">Select 2'nd Branch</label>
+                <select class="form-select" name="branch2" id="branch2">
                     <option value="a" {% if branch2 == 'a' %} selected {% endif %}>a</option>
                     <option value="b" {% if branch2 == 'b' %} selected {% endif %}>b</option>
                     <option value="c" {% if branch2 == 'c' %} selected {% endif %}>c</option>
@@ -50,16 +50,16 @@ Index Page
         <!-- Third Row: Two More Dropdown Boxes with Labels -->
         <div class="row mb-3">
             <div class="col-md-4 offset-md-2">
-                <label for="dropdown1">Dropdown 1</label>
-                <select class="form-select" name="dropdown1" id="dropdown1">
+                <label for="commit1">Select 1'st Commit</label>
+                <select class="form-select" name="commit1" id="commit1">
                     <option value="x" {% if dropdown1 == 'x' %} selected {% endif %}>x</option>
                     <option value="y" {% if dropdown1 == 'y' %} selected {% endif %}>y</option>
                     <option value="z" {% if dropdown1 == 'z' %} selected {% endif %}>z</option>
                 </select>
             </div>
             <div class="col-md-4">
-                <label for="dropdown2">Dropdown 2</label>
-                <select class="form-select" name="dropdown2" id="dropdown2">
+                <label for="commit2">Select 2'nd Commit</label>
+                <select class="form-select" name="commit2" id="commit2">
                     <option value="x" {% if dropdown2 == 'x' %} selected {% endif %}>x</option>
                     <option value="y" {% if dropdown2 == 'y' %} selected {% endif %}>y</option>
                     <option value="z" {% if dropdown2 == 'z' %} selected {% endif %}>z</option>
@@ -83,11 +83,11 @@ Index Page
     <div class="row">
         <div class="col-md-4 offset-md-2 mb-3">
             <input class="form-check-input" type="checkbox" id="noLineCheckbox" onchange="updateContent()">
-            <label class="form-check-label" for="noLineCheckbox">No Line</label>
+            <label class="form-check-label" for="noLineCheckbox">Hide Lines</label>
         </div>
         <div class="col-md-4">
             <input class="form-check-input" type="checkbox" id="sideBySideCheckbox" onchange="updateContent()">
-            <label class="form-check-label" for="sideBySideCheckbox">Side-by-Side</label>
+            <label class="form-check-label" for="sideBySideCheckbox">Side by Side Comparison</label>
         </div>
     </div>
 </div>

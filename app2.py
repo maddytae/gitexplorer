@@ -10,17 +10,17 @@ def index():
 @app.route('/generate_diff', methods=['POST'])
 def generate_diff():
     # Get the form data
-    branch1 = request.form.get('branch1Dropdown')
-    branch2 = request.form.get('branch2Dropdown')
-    dropdown1 = request.form.get('dropdown1')
-    dropdown2 = request.form.get('dropdown2')
+    branch1 = request.form.get('branch1')
+    branch2 = request.form.get('branch2')
+    commit1 = request.form.get('commit1')
+    commit2 = request.form.get('commit2')
     # files_ready = False
 
     # Path to the static directory
     static_folder = app.static_folder
 
     # Logic to generate new sets of HTML files based on the selections
-    if branch1 == 'a' and branch2 == 'b' and dropdown1 == 'x' and dropdown2 == 'y':
+    if branch1 == 'a' and branch2 == 'b' and commit1 == 'x' and commit2 == 'y':
         # files_ready = True
         # Load the content of the HTML files from static directory
         with open(os.path.join(static_folder, 'diff/line.html'), 'r') as file:
@@ -36,8 +36,8 @@ def generate_diff():
     return render_template('index2.html', 
                            branch1=branch1, 
                            branch2=branch2, 
-                           dropdown1=dropdown1, 
-                           dropdown2=dropdown2, 
+                           commit1=commit1, 
+                           commit2=commit2, 
                            line_html=line_html, 
                            no_line_html=no_line_html, 
                            side_by_side_html=side_by_side_html)
