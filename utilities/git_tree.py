@@ -40,32 +40,32 @@ def print_tree(base, prefix=''):
             }.get(subtree, UNCHANGED_COLOR)
             print(f"{prefix}{'└── ' if i == len(base) - 1 else '├── '}{color}{path}{END_COLOR}")
 
-def compare_branches(repo_path, branch1, branch2):
-    """Compare two branches and return a list of (status, file_path) tuples."""
+def compare_branches(repo_path, item1, item2):
+    """Compare two branches or two commits  and return a list of (status, file_path) tuples."""
     os.chdir(repo_path)
-    diff_command = f"git diff --name-status {branch1} {branch2}"
+    diff_command = f"git diff --name-status {item1} {item2}"
 
     
     result = subprocess.run(diff_command, shell=True, capture_output=True, text=True)
     diff_output = result.stdout.splitlines()
 
     # Get a list of all files in both branches
-    files_branch1 = subprocess.run(f"git ls-tree -r --name-only {branch1}", shell=True, capture_output=True, text=True).stdout.splitlines()
-    files_branch2 = subprocess.run(f"git ls-tree -r --name-only {branch2}", shell=True, capture_output=True, text=True).stdout.splitlines()
+    files_item1 = subprocess.run(f"git ls-tree -r --name-only {item1}", shell=True, capture_output=True, text=True).stdout.splitlines()
+    files_item2 = subprocess.run(f"git ls-tree -r --name-only {item2}", shell=True, capture_output=True, text=True).stdout.splitlines()
 
     # Combine lists and sort uniquely
-    all_files = sorted(set(files_branch1 + files_branch2))
+    all_files = sorted(set(files_item1 + files_item2))
 
     file_statuses = {line.split('\t')[1]: line.split('\t')[0] for line in diff_output}
     return [(file_statuses.get(file, 'U'), file) for file in all_files]
 
 def main():
     if len(sys.argv) != 4:
-        print("Usage: ./git_tree.py <path-to-repo> <branch1> <branch2>")
+        print("Usage: ./git_tree.py <path-to-repo> <item1> <item2>")
         sys.exit(1)
 
-    repo_path, branch1, branch2 = sys.argv[1], sys.argv[2], sys.argv[3]
-    file_list = compare_branches(repo_path, branch1, branch2)
+    repo_path, item1, item2 = sys.argv[1], sys.argv[2], sys.argv[3]
+    file_list = compare_branches(repo_path, item1, item2)
 
     my_tree = tree()
     for status, path in file_list:
