@@ -21,14 +21,18 @@ def monitor_size(path, size_limit, process):
             break
         time.sleep(1) # Wait for 1 second before next check
 
-def clone_repo(repo_url, target_path, size_limit):
-    process = subprocess.Popen(["git", "clone", repo_url, target_path])
+def repo_cloning(repo_url, target_path, size_limit):
+
+    if os.path.exists(target_path):
+        os.system('rm -rf '+target_path)
+
+    process = subprocess.Popen(["git", "clone","--filter=blob:limit=0","--no-checkout" , repo_url, target_path])
     monitor = threading.Thread(target=monitor_size, args=(target_path, size_limit, process))
     monitor.start()
     process.wait()
     monitor.join()
 
-repo_url = 'git@github.com:pandas-dev/pandas.git'  # Replace with actual repo URL
-target_path = 'target_repo'  # Path where the repo is to be cloned
-size_limit = 100  # Size limit in MB
-clone_repo(repo_url, target_path, size_limit)
+# repo_url = 'git@github.com:pandas-dev/pandas.git'  # Replace with actual repo URL
+# target_path = 'target_repo'  # Path where the repo is to be cloned
+# size_limit = 50  # Size limit in MB
+# clone_repo(repo_url, target_path, size_limit)

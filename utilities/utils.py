@@ -38,3 +38,42 @@ def clone_repo(ssh_address, branch, clone_directory, depth=1):
     except subprocess.CalledProcessError as e:
         # Handle error
         print(f"An error occurred: {e}")
+
+
+
+
+def get_git_branches(sshAddress):
+
+    repo_path = return_full_path(sshAddress)
+
+    # Run the Git command
+    command = ['git', '-C', repo_path, 'branch', '-a']
+    result = subprocess.run(command, capture_output=True, text=True)
+
+    # Check if the command was successful
+    if result.returncode != 0:
+        print("Error running git command:", result.stderr)
+        return []
+
+    # Parse the output to extract branch names
+    branches = []
+    for line in result.stdout.splitlines():
+        # Remove leading characters (*, space, remotes/origin/)
+        cleaned_line = line.replace('* ', '').replace('remotes/origin/', '').strip()
+
+        # Skip the line if it's a pointer to another branch (e.g., HEAD -> origin/main)
+        if ' -> ' in cleaned_line:
+            continue
+
+        branches.append(cleaned_line)
+
+    return branches
+
+
+def return_full_path(sshAddress):
+    repo_name = sshAddress.split('/')[-1].replace('.git', '')
+    full_clone_path = os.path.join('/Users/maddy/my_repos/repo_store', repo_name)
+    return full_clone_path
+
+
+
