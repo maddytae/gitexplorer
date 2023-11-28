@@ -31,8 +31,3 @@ def repo_cloning(repo_url, target_path, size_limit):
     monitor.start()
     process.wait()
     monitor.join()
-
-# repo_url = 'git@github.com:pandas-dev/pandas.git'  # Replace with actual repo URL
-# target_path = 'target_repo'  # Path where the repo is to be cloned
-# size_limit = 50  # Size limit in MB
-# clone_repo(repo_url, target_path, size_limit)
