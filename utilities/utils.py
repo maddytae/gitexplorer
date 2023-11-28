@@ -40,7 +40,7 @@ def return_full_path(sshAddress):
     
     return full_clone_path
 
-def get_commits_of_branch(sshAddress, branch):
+def get_commits_of_branch_original(sshAddress, branch):
     full_path = return_full_path(sshAddress)
 
     # Run the Git command for the specified branch
@@ -56,3 +56,13 @@ def get_commits_of_branch(sshAddress, branch):
     commits = result.stdout.strip().split('\n')
     return commits
 
+def get_commits_for_branch(branch_name):
+    # Dictionary simulating branches and their respective commits
+    branches_commits = {
+        "main": ["a", "b", "c"],
+        "master": ["x", "y", "z"]
+    }
+
+  
+    # Return the commits for the given branch, or default if branch not found
+    return branches_commits.get(branch_name, ["l", "m", "n"])

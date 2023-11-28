@@ -1,89 +1,58 @@
-from flask import Flask, render_template, request,session
 import os
-import subprocess
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 import utilities as ut
-
 import settings
-st=settings.PrepareSettings()
+
+st = settings.PrepareSettings()
 
 app = Flask(__name__)
-app.secret_key = 'khiadh2727sdhks888s'
+app.secret_key = "khiadh2727sdhks888s"
 
-@app.route('/', methods=['GET'])
+@app.route("/", methods=["GET", "POST"])
 def index():
- 
-    return render_template('index.html')
+    error_message = None
+    if request.method == "POST":
+        sshAddress = request.form.get("sshAddress")
+        if sshAddress:
+            try:
+                ut.repo_cloning(sshAddress, ut.return_full_path(sshAddress), st.repo_size_limit)
+                session["sshAddress"] = sshAddress
+                repo_name = sshAddress.split('/')[-1].replace('.git', '')
+                return redirect(url_for("repo", repo_name=repo_name))
+            except ut.SizeLimitExceededError as e:
+                error_message = "Repo exceeded size limit."
+            except ut.InvalidSSHAddressError as e:
+                error_message = "Invalid ssh address."
+            except Exception as e:
+                error_message = "An unexpected error occurred."
 
-@app.route('/generate_diff', methods=['POST'])
-def generate_diff():
-
-    sshAddress=''
-
-
-    # Get the SSH address from the form
-    sshAddress = request.form.get('sshAddress', '')
-
-
- 
-    # Perform the git clone operation using the imported function
-    if sshAddress:
-        try:
-            ut.repo_cloning(sshAddress, ut.return_full_path(sshAddress), st.repo_size_limit)
-            message = "Repository successfully cloned."
-        except Exception as e:
-            message = f"Failed to clone repository. Error: {str(e)}"
+    return render_template("index.html", error_message=error_message)
 
 
 
+@app.route("/repo/<repo_name>", methods=["GET", "POST"])
+def repo(repo_name):
+    sshAddress = session.get("sshAddress", "")
+    branches = ut.get_git_branches(sshAddress) if sshAddress else []
 
-    # branches=[]
-
-    # Get the form data
-    branch1 = request.form.get('branch1')
-    branch2 = request.form.get('branch2')
-    commit1 = request.form.get('commit1')
-    commit2 = request.form.get('commit2')
-    sshAddress = request.form.get('sshAddress')
-
-
-    # branches=ut.get_git_branches(sshAddress)
-    # print(branches)
-
-    branches=['fd','fs','edf']
+    branch1 = []
+    branch2 = []
+    commits1 = []
+    commits2 = []
 
 
-    # files_ready = False
 
-    # Path to the static directory
-    static_folder = app.static_folder
+    if request.method == "POST":
+        branch1 = request.form.get("branch1")
+        branch2 = request.form.get("branch2")
 
-    # Logic to generate new sets of HTML files based on the selections
-    if branch1 == 'a' and branch2 == 'b' and commit1 == 'x' and commit2 == 'y':
-        # files_ready = True
-        # Load the content of the HTML files from static directory
-        with open(os.path.join(static_folder, 'diff/line.html'), 'r') as file:
-            line_html = file.read()
-        with open(os.path.join(static_folder, 'diff/no_line.html'), 'r') as file:
-            no_line_html = file.read()
-        with open(os.path.join(static_folder, 'diff/side_by_side.html'), 'r') as file:
-            side_by_side_html = file.read()
-    else:
-        line_html, no_line_html, side_by_side_html = '', '', ''
+        if branch1:
+            commits1 = ut.get_commits_for_branch(branch1)
+        if branch2:
+            commits2 = ut.get_commits_for_branch(branch2)
 
-    # Render the template with the form data and the HTML content
-    return render_template('index.html', 
-                           branch1=branch1, 
-                           branch2=branch2, 
-                           commit1=commit1, 
-                           commit2=commit2, 
-                           line_html=line_html, 
-                           no_line_html=no_line_html, 
-                           side_by_side_html=side_by_side_html,
-                           sshAddress=sshAddress,
-                           branches=branches,
-                           message=message)
+    return render_template("repo.html", repo_name=repo_name, branches=branches, commits1=commits1, commits2=commits2, selected_branch1=branch1, selected_branch2=branch2)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run(debug=True)
-
-

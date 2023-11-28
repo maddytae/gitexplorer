@@ -1,117 +1,44 @@
 {% extends "base.html" %}
 
-{% block title %}
-Index Page
-{% endblock %}
+{% block title %}GitExplorer{% endblock %}
 
 {% block body %}
 
-{% if message %}
-<div class="alert alert-info alert-dismissible fade show" role="alert">
-    {{ message }}
+<!-- Error Message Alert -->
+{% if error_message %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ error_message }}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 {% endif %}
 
-
+<div class="text-center" style="padding-top: 10vh; max-width: 600px; margin: auto;">
+    <h1 class="display-4 mb-4">MyGitExplorer</h1>
+    <form method="post" class="mt-4">
+        <div class="form-group d-inline-block" style="width: 100%;">
+            <input type="text" class="form-control form-control-lg" id="sshAddress" name="sshAddress" placeholder="Enter SSH Address" style="text-align: center;">
+        </div>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary btn-lg">Initialize</button>
+        </div>
+    </form>
+</div>
 
 <style>
-    .custom-bg {
-        background-color: #f8f9fa; /* Light grey background */
-        border-radius: 15px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
+    body {
+        background-color: #f8f9fa; /* Light background color */
+    }
+    .display-4 {
+        color: #343a40; /* Dark text for contrast */
+    }
+    .form-control {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow around input */
+        border-radius: 25px; /* Rounded borders for input */
+    }
+    .btn-primary {
+        border-radius: 25px; /* Rounded borders for button */
     }
 </style>
-
-<div class="container mt-5 custom-bg"> <!-- Container with top margin and custom background -->
-        <!-- Form for Input Box and Generate Button -->
-        <form id="sshForm" method="post" action="{{ url_for('generate_diff') }}">
-            <div class="row mb-3">
-                <div class="col-md-6 offset-md-2">
-                    <input type="text" name="sshAddress" value="{{ sshAddress }}" class="form-control" placeholder="Enter the SSH Address">
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Generate</button>
-                </div>
-            </div>
-        </form>
-
-
-
-    <!-- Form for Dropdown Boxes -->
-    <form id="dropdownForm" method="post" action="{{ url_for('generate_diff') }}">
-        <!-- Second Row: Two Dropdown Boxes with Labels -->
-    
-        <div class="row mb-3">
-            <!-- Select First Branch Dropdown -->
-            <div class="col-md-4 offset-md-2">
-                <label for="branch1">Select 1'st Branch</label>
-                <select class="form-select" name="branch1" id="branch1">
-                    {% for branch in branches %}
-                    <option value="{{ branch }}">{{ branch }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <!-- Select Second Branch Dropdown -->
-            <div class="col-md-4">
-                <label for="branch2">Select 2'nd Branch</label>
-                <select class="form-select" name="branch2" id="branch2">
-                    {% for branch in branches %}
-                    <option value="{{ branch }}">{{ branch }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-  
-
-        <!-- Third Row: Two More Dropdown Boxes with Labels -->
-        <div class="row mb-3">
-            <div class="col-md-4 offset-md-2">
-                <label for="commit1">Select 1'st Commit</label>
-                <select class="form-select" name="commit1" id="commit1">
-                    <option value="x" {% if dropdown1 == 'x' %} selected {% endif %}>x</option>
-                    <option value="y" {% if dropdown1 == 'y' %} selected {% endif %}>y</option>
-                    <option value="z" {% if dropdown1 == 'z' %} selected {% endif %}>z</option>
-                </select>
-            </div>
-            <div class="col-md-4">
-                <label for="commit2">Select 2'nd Commit</label>
-                <select class="form-select" name="commit2" id="commit2">
-                    <option value="x" {% if dropdown2 == 'x' %} selected {% endif %}>x</option>
-                    <option value="y" {% if dropdown2 == 'y' %} selected {% endif %}>y</option>
-                    <option value="z" {% if dropdown2 == 'z' %} selected {% endif %}>z</option>
-                </select>
-            </div>
-        </div>
-
-
-    </form>
-
-</div>
-
-<!-- Checkboxes for JavaScript functionality -->
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-4 offset-md-2 mb-3">
-            <input class="form-check-input" type="checkbox" id="noLineCheckbox" onchange="updateContent()">
-            <label class="form-check-label" for="noLineCheckbox">Hide Lines</label>
-        </div>
-        <div class="col-md-4">
-            <input class="form-check-input" type="checkbox" id="sideBySideCheckbox" onchange="updateContent()">
-            <label class="form-check-label" for="sideBySideCheckbox">Side by Side Comparison</label>
-        </div>
-    </div>
-</div>
-
-<!-- Content Area -->
-<div class="container mt-4" id="contentArea">
-    {{ line_html | safe }}
-</div>
-
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
 {% endblock %}
-
