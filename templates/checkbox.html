@@ -3,7 +3,7 @@
     <div class="row mb-3">
         <!-- Heading for the Diff Type with reduced margin -->
         <div class="col-md-12">
-            <h5 class="heading-margin" style="text-decoration: underline;">Diff Type</h5>
+            <h5 class="heading-margin" style="text-decoration: underline;">Select Diff Type</h5>
         </div>
     </div>
 
@@ -11,40 +11,32 @@
         <!-- Folder Checkbox -->
         <div class="col">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showFolderCheckbox">
-                <label class="form-check-label" for="showFolderCheckbox">
-                    Folder
-                </label>
+                <input class="form-check-input" type="checkbox" id="showFolderCheckbox" data-url="{{ url_for('static', filename='diff/folder_diff.html') }}">
+                <label class="form-check-label" for="showFolderCheckbox">Folder</label>
             </div>
         </div>
 
         <!-- Code Checkbox -->
         <div class="col">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showCodeCheckbox">
-                <label class="form-check-label" for="showCodeCheckbox">
-                    Code
-                </label>
+                <input class="form-check-input" type="checkbox" id="showCodeCheckbox" data-url="{{ url_for('static', filename='diff/line.html') }}">
+                <label class="form-check-label" for="showCodeCheckbox">Code</label>
             </div>
         </div>
 
         <!-- Code (w/o line) Checkbox -->
         <div class="col">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showCodeWoLineCheckbox">
-                <label class="form-check-label" for="showCodeWoLineCheckbox">
-                    Code (w/o line)
-                </label>
+                <input class="form-check-input" type="checkbox" id="showCodeWoLineCheckbox" data-url="{{ url_for('static', filename='diff/no_line.html') }}">
+                <label class="form-check-label" for="showCodeWoLineCheckbox">Code: Without-Line</label>
             </div>
         </div>
 
         <!-- Code Side by Side Checkbox -->
         <div class="col">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showCodeSideBySideCheckbox">
-                <label class="form-check-label" for="showCodeSideBySideCheckbox">
-                    Code Side by Side
-                </label>
+                <input class="form-check-input" type="checkbox" id="showCodeSideBySideCheckbox" data-url="{{ url_for('static', filename='diff/side_by_side.html') }}">
+                <label class="form-check-label" for="showCodeSideBySideCheckbox">Code: Side-by-Side</label>
             </div>
         </div>
     </div>

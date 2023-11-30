@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.secret_key = "khiadh2727sdhks888s"
 
 @app.route("/", methods=["GET", "POST"])
-def index():
+def main():
     error_message = None
     if request.method == "POST":
         sshAddress = request.form.get("sshAddress")
@@ -31,7 +31,7 @@ def index():
             except Exception as e:
                 error_message = "An unexpected error occurred."
 
-    return render_template("index.html", error_message=error_message)
+    return render_template("main.html", error_message=error_message)
 
 
 @app.route("/repo/<repo_name>", methods=["GET", "POST"])
