@@ -21,7 +21,8 @@ def get_git_branches(sshAddress):
     branches = []
     for line in result.stdout.splitlines():
         # Remove leading characters (*, space, remotes/origin/)
-        cleaned_line = line.replace('* ', '').replace('origin/', '').strip()
+        # cleaned_line = line.replace('* ', '').replace('origin/', '').strip()
+        cleaned_line = line.replace('* ', '').strip()
 
         # Skip the line if it's a pointer to another branch (e.g., HEAD -> origin/main)
         if ' -> ' in cleaned_line:
@@ -40,7 +41,7 @@ def return_full_path(sshAddress):
     
     return full_clone_path
 
-def get_commits_of_branch_original(sshAddress, branch):
+def get_commits_for_branch(sshAddress, branch):
     full_path = return_full_path(sshAddress)
 
     # Run the Git command for the specified branch
@@ -52,11 +53,12 @@ def get_commits_of_branch_original(sshAddress, branch):
         print("Error running git log:", result.stderr)
         return []
 
-    # Parse the output to extract commit hashes
-    commits = result.stdout.strip().split('\n')
+    # Parse the output to extract commit hashes and truncate them to 10 characters
+    commits = [commit[:8] for commit in result.stdout.strip().split('\n')]
     return commits
 
-def get_commits_for_branch(branch_name):
+
+def get_commits_for_branch_demo(branch_name):
     # Dictionary simulating branches and their respective commits
     branches_commits = {
         "main": ["a", "b", "c"],

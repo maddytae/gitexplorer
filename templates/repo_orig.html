@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}Repository Operations{% endblock %}
+
+{% block body %}
+
+
+
+
+<style>
+    .custom-bg {
+        background-color: #f8f9fa; /* Light grey background */
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
+        margin-bottom: 20px; /* Adds space between custom-bg sections */
+    }
+
+    .custom-bg-alt {
+        background-color: #e9ecef; /* Slightly different background color */
+        padding: 5px; /* Significantly reduced padding */
+    }
+
+    .heading-margin {
+        margin-bottom: 0; /* Remove bottom margin of the heading */
+    }
+
+    .form-check {
+        margin-bottom: 0; /* Reduce margin for form-check elements */
+    }
+</style>
+
+
+
+<div class="container mt-5">
+    <div class="custom-bg">
+        <form method="post" action="{{ url_for('repo', repo_name=repo_name) }}">
+            <!-- Row for Branch Dropdowns -->
+            <div class="row mb-3">
+                <!-- Select First Branch Dropdown -->
+                <div class="col-md-6">
+                    <label for="branch1">Select 1'st Branch</label>
+                    <select class="form-select" name="branch1" id="branch1" onchange="this.form.submit()">
+                        <option value="" {% if not selected_branch1 %}selected{% endif %}>Select a branch</option>
+                        {% for branch in branches %}
+                        <option value="{{ branch }}" {% if branch == selected_branch1 %}selected{% endif %}>{{ branch }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <!-- Select Second Branch Dropdown -->
+                <div class="col-md-6">
+                    <label for="branch2">Select 2'nd Branch</label>
+                    <select class="form-select" name="branch2" id="branch2" onchange="this.form.submit()">
+                        <option value="" {% if not selected_branch2 %}selected{% endif %}>Select a branch</option>
+                        {% for branch in branches %}
+                        <option value="{{ branch }}" {% if branch == selected_branch2 %}selected{% endif %}>{{ branch }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- Row for Commit Dropdowns -->
+            <div class="row mb-3">
+                <!-- Select First Commit Dropdown -->
+                <div class="col-md-6">
+                    <label for="commit1">Select 1'st Commit</label>
+                    <select class="form-select" name="commit1" id="commit1" onchange="this.form.submit()">
+                        <option value="" {% if not selected_commit1 %}selected{% endif %}>Select a commit</option>
+                        {% for commit in commits1 %}
+                        <option value="{{ commit }}" {% if commit == selected_commit1 %}selected{% endif %}>{{ commit }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <!-- Select Second Commit Dropdown -->
+                <div class="col-md-6">
+                    <label for="commit2">Select 2'nd Commit</label>
+                    <select class="form-select" name="commit2" id="commit2" onchange="this.form.submit()">
+                        <option value="" {% if not selected_commit2 %}selected{% endif %}>Select a commit</option>
+                        {% for commit in commits2 %}
+                        <option value="{{ commit }}" {% if commit == selected_commit2 %}selected{% endif %}>{{ commit }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Checkbox within a custom background -->
+    <div class="custom-bg custom-bg-alt">
+        <div class="row mb-3">
+            <!-- Heading for the Diff Type with reduced margin -->
+            <div class="col-md-12">
+                <h5 class="heading-margin" style="text-decoration: underline;">Diff Type</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Folder Checkbox -->
+            <div class="col">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="showFolderCheckbox">
+                    <label class="form-check-label" for="showFolderCheckbox">
+                        Folder
+                    </label>
+                </div>
+            </div>
+
+            <!-- Code Checkbox -->
+            <div class="col">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="showCodeCheckbox">
+                    <label class="form-check-label" for="showCodeCheckbox">
+                        Code
+                    </label>
+                </div>
+            </div>
+
+            <!-- Code (w/o line) Checkbox -->
+            <div class="col">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="showCodeWoLineCheckbox">
+                    <label class="form-check-label" for="showCodeWoLineCheckbox">
+                        Code (w/o line)
+                    </label>
+                </div>
+            </div>
+
+            <!-- Code Side by Side Checkbox -->
+            <div class="col">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="showCodeSideBySideCheckbox">
+                    <label class="form-check-label" for="showCodeSideBySideCheckbox">
+                        Code Side by Side
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- iframe for folder_diff.html, initially hidden -->
+    <iframe id="diffFrame" src="{{ url_for('static', filename='diff/folder_diff.html') }}" width="100%" height="600px" style="border:none; display: none;"></iframe>
+
+    <!-- JavaScript to toggle the display of the iframe -->
+<!-- JavaScript to toggle the display of the iframe -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var checkbox = document.getElementById('showFolderCheckbox');
+        if (checkbox) {
+            checkbox.addEventListener('change', function() {
+                var diffFrame = document.getElementById('diffFrame');
+                if (diffFrame) {
+                    diffFrame.style.display = checkbox.checked ? 'block' : 'none';
+                }
+            });
+        }
+    });
+</script>
+
+</div>
+
+{% endblock %}
