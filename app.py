@@ -63,7 +63,7 @@ def repo(repo_name):
         # Generate HTML comparison when both commits are selected
         if selected_commit1 and selected_commit2:
             repo_path = os.path.join(st.repo_store, repo_name)
-            html_comparison = ut.generate_html_comparison(repo_path, selected_commit1, selected_commit2)
+            html_comparison = ut.generate_html_comparison(repo_path, selected_commit1, selected_commit2,include_unchanged=True)
 
             # Save the HTML content to a file
             output_path = os.path.join(app.static_folder, 'diff', 'folder_diff.html')

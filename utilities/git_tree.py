@@ -7,9 +7,8 @@ from collections import defaultdict
 # Define color codes for HTML output
 ADDED_COLOR = 'style="color:green;"'   # Green for added files
 DELETED_COLOR = 'style="color:red;"'   # Red for deleted files
-MODIFIED_COLOR = 'style="color:purple;"' # Brown for modified files
+MODIFIED_COLOR = 'style="color:purple;"' # Purple for modified files
 UNCHANGED_COLOR = 'style="color:black;"' # Black for unchanged files
-DIR_COLOR = 'style="color:blue;"'     # Blue for directories
 
 def tree():
     return defaultdict(tree)
@@ -21,13 +20,27 @@ def add_to_tree(base, path, status):
     else:
         add_to_tree(base[parts[0]], parts[1], status)
 
-def print_tree_html(base, prefix=''):
+def is_directory_modified(subtree):
+    if isinstance(subtree, dict):
+        for item in subtree.values():
+            if is_directory_modified(item):
+                return True
+    else:
+        return subtree in ['A', 'D', 'M']
+    return False
+
+def print_tree_html(base, prefix='', include_unchanged=True):
     html_output = ''
     for i, (path, subtree) in enumerate(base.items()):
+        dir_modified = is_directory_modified(subtree) if isinstance(subtree, dict) else False
+        dir_color = MODIFIED_COLOR if dir_modified else UNCHANGED_COLOR
+
         if isinstance(subtree, dict):
-            html_output += f"{prefix}{'└── ' if i == len(base) - 1 else '├── '}<span {DIR_COLOR}>{path}</span><br>"
-            html_output += print_tree_html(subtree, prefix + ('    ' if i == len(base) - 1 else '│   '))
+            html_output += f"{prefix}{'└── ' if i == len(base) - 1 else '├── '}<span {dir_color}>{path}</span><br>"
+            html_output += print_tree_html(subtree, prefix + ('    ' if i == len(base) - 1 else '│   '), include_unchanged)
         else:
+            if subtree == 'U' and not include_unchanged:
+                continue
             color = {
                 'A': ADDED_COLOR,
                 'D': DELETED_COLOR,
@@ -51,9 +64,13 @@ def compare_branches(repo_path, item1, item2):
     file_statuses = {line.split('\t')[1]: line.split('\t')[0] for line in diff_output}
     return [(file_statuses.get(file, 'U'), file) for file in all_files]
 
-def generate_html_comparison(repo_path, item1, item2):
+def generate_html_comparison(repo_path, item1, item2, include_unchanged=True):
     file_list = compare_branches(repo_path, item1, item2)
     my_tree = tree()
     for status, path in file_list:
+        if status == 'U' and not include_unchanged:
+            continue
         add_to_tree(my_tree, path, status)
-    return print_tree_html(my_tree)
+    return print_tree_html(my_tree, include_unchanged=include_unchanged)
+
+generate_html_comparison('/Users/maddy/my_repos/repo_store/ccar_streamlit','246e6b2a','938162f1')
