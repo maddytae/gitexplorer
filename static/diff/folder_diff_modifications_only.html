@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+pre {
+  font-family:Courier New;
+  font-size:10pt;
+}
+
+.af_line {
+  color: gray;
+  text-decoration: none;
+}
+
+</style>
+<title>Source file</title>
+</head>
+<body>
+<pre>├── <span style="color:#cdcd00;">.gitignore</span>
+├── <span style="color:#cdcd00;">.travis.yml</span>
+├── <span style="color:#cdcd00;">asv_bench</span>
+│   └── <span style="color:#cdcd00;">benchmarks</span>
+│       ├── <span style="color:#cdcd00;">algorithms.py</span>
+│       ├── <span style="color:#cdcd00;">frame_methods.py</span>
+│       ├── <span style="color:#cdcd00;">period.py</span>
+│       ├── <span style="color:#cdcd00;">replace.py</span>
+│       └── <span style="color:#cdcd00;">series_methods.py</span>
+├── <span style="color:#cdcd00;">ci</span>
+│   ├── <span style="color:#cd0000;">install-2.7_NUMPY_DEV.sh</span>
+│   ├── <span style="color:#00cd00;">install-3.6_DEV.sh</span>
+│   ├── <span style="color:#cdcd00;">install_travis.sh</span>
+│   ├── <span style="color:#cdcd00;">lint.sh</span>
+│   ├── <span style="color:#cd0000;">requirements-2.7_NUMPY_DEV.build</span>
+│   ├── <span style="color:#cd0000;">requirements-2.7_NUMPY_DEV.run</span>
+│   ├── <span style="color:#00cd00;">requirements-3.4_SLOW.sh</span>
+│   └── <span style="color:#cdcd00;">requirements-3.5_OSX.pip</span>
+├── <span style="color:#cdcd00;">doc</span>
+│   ├── <span style="color:#cdcd00;">cheatsheet</span>
+│   │   ├── <span style="color:#00cd00;">Pandas_Cheat_Sheet.pdf</span>
+│   │   ├── <span style="color:#00cd00;">Pandas_Cheat_Sheet.pptx</span>
+│   │   └── <span style="color:#00cd00;">README.txt</span>
+│   └── <span style="color:#cdcd00;">source</span>
+│       ├── <span style="color:#cdcd00;">api.rst</span>
+│       ├── <span style="color:#cdcd00;">computation.rst</span>
+│       ├── <span style="color:#cdcd00;">ecosystem.rst</span>
+│       ├── <span style="color:#cdcd00;">faq.rst</span>
+│       ├── <span style="color:#cdcd00;">groupby.rst</span>
+│       ├── <span style="color:#cdcd00;">install.rst</span>
+│       ├── <span style="color:#cdcd00;">io.rst</span>
+│       ├── <span style="color:#cdcd00;">release.rst</span>
+│       ├── <span style="color:#cdcd00;">timeseries.rst</span>
+│       ├── <span style="color:#cdcd00;">whatsnew.rst</span>
+│       └── <span style="color:#cdcd00;">whatsnew</span>
+│           ├── <span style="color:#cdcd00;">v0.13.0.txt</span>
+│           ├── <span style="color:#cdcd00;">v0.19.1.txt</span>
+│           ├── <span style="color:#00cd00;">v0.19.2.txt</span>
+│           └── <span style="color:#cdcd00;">v0.20.0.txt</span>
+├── <span style="color:#cdcd00;">pandas</span>
+│   ├── <span style="color:#cdcd00;">api</span>
+│   │   └── <span style="color:#cdcd00;">tests</span>
+│   │       └── <span style="color:#cdcd00;">test_api.py</span>
+│   ├── <span style="color:#cdcd00;">compat</span>
+│   │   └── <span style="color:#cdcd00;">__init__.py</span>
+│   ├── <span style="color:#cdcd00;">core</span>
+│   │   ├── <span style="color:#cdcd00;">algorithms.py</span>
+│   │   ├── <span style="color:#cdcd00;">base.py</span>
+│   │   ├── <span style="color:#cdcd00;">common.py</span>
+│   │   ├── <span style="color:#cdcd00;">frame.py</span>
+│   │   ├── <span style="color:#cdcd00;">generic.py</span>
+│   │   ├── <span style="color:#cdcd00;">groupby.py</span>
+│   │   ├── <span style="color:#cdcd00;">indexing.py</span>
+│   │   ├── <span style="color:#cdcd00;">internals.py</span>
+│   │   ├── <span style="color:#cdcd00;">missing.py</span>
+│   │   ├── <span style="color:#cdcd00;">ops.py</span>
+│   │   ├── <span style="color:#cdcd00;">reshape.py</span>
+│   │   └── <span style="color:#cdcd00;">series.py</span>
+│   ├── <span style="color:#cdcd00;">index.pyx</span>
+│   ├── <span style="color:#cdcd00;">indexes</span>
+│   │   ├── <span style="color:#cdcd00;">base.py</span>
+│   │   └── <span style="color:#cdcd00;">multi.py</span>
+│   ├── <span style="color:#cdcd00;">io</span>
+│   │   ├── <span style="color:#cdcd00;">clipboard.py</span>
+│   │   ├── <span style="color:#cdcd00;">parsers.py</span>
+│   │   ├── <span style="color:#cdcd00;">pytables.py</span>
+│   │   ├── <span style="color:#cdcd00;">sas</span>
+│   │   │   └── <span style="color:#cdcd00;">sas7bdat.py</span>
+│   │   ├── <span style="color:#cdcd00;">stata.py</span>
+│   │   └── <span style="color:#cdcd00;">tests</span>
+│   │       ├── <span style="color:#cdcd00;">json</span>
+│   │       │   └── <span style="color:#cdcd00;">test_pandas.py</span>
+│   │       ├── <span style="color:#cdcd00;">parser</span>
+│   │       │   ├── <span style="color:#cdcd00;">c_parser_only.py</span>
+│   │       │   ├── <span style="color:#cdcd00;">common.py</span>
+│   │       │   ├── <span style="color:#cdcd00;">data</span>
+│   │       │   │   ├── <span style="color:#00cd00;">salaries.csv.bz2</span>
+│   │       │   │   ├── <span style="color:#00cd00;">salaries.csv.xz</span>
+│   │       │   │   └── <span style="color:#00cd00;">salaries.csv.zip</span>
+│   │       │   ├── <span style="color:#cdcd00;">header.py</span>
+│   │       │   ├── <span style="color:#cdcd00;">na_values.py</span>
+│   │       │   ├── <span style="color:#cdcd00;">python_parser_only.py</span>
+│   │       │   ├── <span style="color:#cdcd00;">test_network.py</span>
+│   │       │   ├── <span style="color:#cdcd00;">test_unsupported.py</span>
+│   │       │   └── <span style="color:#cdcd00;">usecols.py</span>
+│   │       ├── <span style="color:#cdcd00;">sas</span>
+│   │       │   ├── <span style="color:#cdcd00;">test_sas7bdat.py</span>
+│   │       │   └── <span style="color:#cdcd00;">test_xport.py</span>
+│   │       ├── <span style="color:#cdcd00;">test_clipboard.py</span>
+│   │       ├── <span style="color:#cdcd00;">test_excel.py</span>
+│   │       ├── <span style="color:#cdcd00;">test_gbq.py</span>
+│   │       ├── <span style="color:#cdcd00;">test_html.py</span>
+│   │       ├── <span style="color:#cdcd00;">test_pytables.py</span>
+│   │       ├── <span style="color:#cdcd00;">test_sql.py</span>
+│   │       └── <span style="color:#cdcd00;">test_stata.py</span>
+│   ├── <span style="color:#cdcd00;">parser.pyx</span>
+│   ├── <span style="color:#cdcd00;">sparse</span>
+│   │   └── <span style="color:#cdcd00;">tests</span>
+│   │       └── <span style="color:#cdcd00;">test_array.py</span>
+│   ├── <span style="color:#cdcd00;">src</span>
+│   │   ├── <span style="color:#cd0000;">algos_common_helper.pxi</span>
+│   │   ├── <span style="color:#cd0000;">algos_groupby_helper.pxi</span>
+│   │   ├── <span style="color:#cd0000;">algos_take_helper.pxi</span>
+│   │   ├── <span style="color:#cdcd00;">datetime.pxd</span>
+│   │   ├── <span style="color:#cdcd00;">datetime_helper.h</span>
+│   │   ├── <span style="color:#00cd00;">hash.pyx</span>
+│   │   ├── <span style="color:#cd0000;">hashtable_class_helper.pxi</span>
+│   │   ├── <span style="color:#cd0000;">hashtable_func_helper.pxi</span>
+│   │   ├── <span style="color:#cd0000;">join_helper.pxi</span>
+│   │   ├── <span style="color:#cd0000;">joins_func_helper.pxi</span>
+│   │   ├── <span style="color:#cdcd00;">joins_func_helper.pxi.in</span>
+│   │   ├── <span style="color:#cdcd00;">parser</span>
+│   │   │   └── <span style="color:#cdcd00;">tokenizer.c</span>
+│   │   └── <span style="color:#cd0000;">sparse_op_helper.pxi</span>
+│   ├── <span style="color:#cdcd00;">tests</span>
+│   │   ├── <span style="color:#cdcd00;">formats</span>
+│   │   │   └── <span style="color:#cdcd00;">test_format.py</span>
+│   │   ├── <span style="color:#cdcd00;">frame</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_analytics.py</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_combine_concat.py</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_constructors.py</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_quantile.py</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_query_eval.py</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_replace.py</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_repr_info.py</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_reshape.py</span>
+│   │   │   └── <span style="color:#cdcd00;">test_to_csv.py</span>
+│   │   ├── <span style="color:#cdcd00;">indexes</span>
+│   │   │   ├── <span style="color:#cdcd00;">common.py</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_base.py</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_category.py</span>
+│   │   │   └── <span style="color:#cdcd00;">test_multi.py</span>
+│   │   ├── <span style="color:#cdcd00;">indexing</span>
+│   │   │   └── <span style="color:#cdcd00;">test_indexing.py</span>
+│   │   ├── <span style="color:#cdcd00;">plotting</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_datetimelike.py</span>
+│   │   │   └── <span style="color:#cdcd00;">test_series.py</span>
+│   │   ├── <span style="color:#cdcd00;">series</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_analytics.py</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_missing.py</span>
+│   │   │   └── <span style="color:#cdcd00;">test_quantile.py</span>
+│   │   ├── <span style="color:#cdcd00;">test_base.py</span>
+│   │   ├── <span style="color:#cdcd00;">test_generic.py</span>
+│   │   ├── <span style="color:#cdcd00;">test_groupby.py</span>
+│   │   ├── <span style="color:#cdcd00;">test_internals.py</span>
+│   │   ├── <span style="color:#cdcd00;">test_multilevel.py</span>
+│   │   ├── <span style="color:#cdcd00;">test_panel.py</span>
+│   │   ├── <span style="color:#cdcd00;">test_strings.py</span>
+│   │   ├── <span style="color:#cdcd00;">test_testing.py</span>
+│   │   └── <span style="color:#cdcd00;">test_util.py</span>
+│   ├── <span style="color:#cdcd00;">tools</span>
+│   │   ├── <span style="color:#00cd00;">hashing.py</span>
+│   │   ├── <span style="color:#cdcd00;">merge.py</span>
+│   │   ├── <span style="color:#cdcd00;">plotting.py</span>
+│   │   ├── <span style="color:#cdcd00;">tests</span>
+│   │   │   ├── <span style="color:#00cd00;">test_hashing.py</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_merge_asof.py</span>
+│   │   │   ├── <span style="color:#cdcd00;">test_tile.py</span>
+│   │   │   └── <span style="color:#cdcd00;">test_util.py</span>
+│   │   ├── <span style="color:#cdcd00;">tile.py</span>
+│   │   └── <span style="color:#cdcd00;">util.py</span>
+│   ├── <span style="color:#cdcd00;">tseries</span>
+│   │   ├── <span style="color:#cdcd00;">index.py</span>
+│   │   ├── <span style="color:#cdcd00;">offsets.py</span>
+│   │   ├── <span style="color:#cdcd00;">period.py</span>
+│   │   ├── <span style="color:#cdcd00;">plotting.py</span>
+│   │   ├── <span style="color:#cdcd00;">resample.py</span>
+│   │   └── <span style="color:#cdcd00;">tests</span>
+│   │       ├── <span style="color:#cdcd00;">test_base.py</span>
+│   │       ├── <span style="color:#cdcd00;">test_offsets.py</span>
+│   │       ├── <span style="color:#cdcd00;">test_period.py</span>
+│   │       ├── <span style="color:#cdcd00;">test_resample.py</span>
+│   │       ├── <span style="color:#cdcd00;">test_timeseries.py</span>
+│   │       ├── <span style="color:#cdcd00;">test_timezones.py</span>
+│   │       └── <span style="color:#cdcd00;">test_tslib.py</span>
+│   ├── <span style="color:#cdcd00;">tslib.pyx</span>
+│   ├── <span style="color:#cdcd00;">types</span>
+│   │   └── <span style="color:#cdcd00;">common.py</span>
+│   └── <span style="color:#cdcd00;">util</span>
+│       ├── <span style="color:#cd0000;">clipboard.py</span>
+│       ├── <span style="color:#cdcd00;">clipboard</span>
+│       │   ├── <span style="color:#00cd00;">__init__.py</span>
+│       │   ├── <span style="color:#00cd00;">clipboards.py</span>
+│       │   ├── <span style="color:#00cd00;">exceptions.py</span>
+│       │   └── <span style="color:#00cd00;">windows.py</span>
+│       └── <span style="color:#cdcd00;">move.c</span>
+└── <span style="color:#cdcd00;">setup.py</span>
+</pre>
+</body>
+</html>
+<!--HTML generated by ansifilter 2.20, http://www.andre-simon.de/-->

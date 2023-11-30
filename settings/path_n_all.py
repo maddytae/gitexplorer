@@ -6,6 +6,7 @@ from yaml.loader import SafeLoader
 class PrepareSettings:
     def __init__(self):
         self.project_path = os.getcwd()
+
         self.config_path= os.path.join(self.project_path, 'configuration')
 
 

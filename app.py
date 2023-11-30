@@ -60,16 +60,20 @@ def repo(repo_name):
         # app.logger.debug(f"Selected Branch 1: {selected_branch1}, Selected Branch 2: {selected_branch2}")
         # app.logger.debug(f"Selected Commit 1: {selected_commit1}, Selected Commit 2: {selected_commit2}")
 
-        # Generate HTML comparison when both commits are selected
         if selected_commit1 and selected_commit2:
             repo_path = os.path.join(st.repo_store, repo_name)
-            html_comparison = ut.generate_html_comparison(repo_path, selected_commit1, selected_commit2,include_unchanged=True)
+            output_path1 = os.path.join(app.static_folder, 'diff', 'folder_diff.html')
+            output_path2 = os.path.join(app.static_folder, 'diff', 'folder_diff_modifications_only.html')
+            # Command to run the git_tree_cli.py script
+            command1 = f"python utilities/git_tree_cli.py {repo_path} {selected_commit1} {selected_commit2} | ansifilter --encoding=UTF-8 --html"
+            command2 = f"python utilities/git_tree_cli.py {repo_path} {selected_commit1} {selected_commit2} --only-modifications | ansifilter --encoding=UTF-8 --html"
 
-            # Save the HTML content to a file
-            output_path = os.path.join(app.static_folder, 'diff', 'folder_diff.html')
-            with open(output_path, 'w') as file:
-                file.write(html_comparison)
+            # Running the command and writing the output to the HTML file
+            with open(output_path1, 'w') as file:
+                subprocess.run(command1, shell=True, stdout=file, check=True)
 
+            with open(output_path2, 'w') as file:
+                subprocess.run(command2, shell=True, stdout=file, check=True)
 
 
     return render_template("repo.html", repo_name=repo_name, 

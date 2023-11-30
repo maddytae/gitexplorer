@@ -3,7 +3,7 @@
     <div class="row mb-3">
         <!-- Heading for the Diff Type with reduced margin -->
         <div class="col-md-12">
-            <h5 class="heading-margin" style="text-decoration: underline;">Select Diff Type</h5>
+            <h6 class="heading-margin" style="text-decoration: underline;">Select Diff Type:</h6>
         </div>
     </div>
 
@@ -13,6 +13,14 @@
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="showFolderCheckbox" data-url="{{ url_for('static', filename='diff/folder_diff.html') }}">
                 <label class="form-check-label" for="showFolderCheckbox">Folder</label>
+            </div>
+        </div>
+
+        <!-- Folder Checkbox Modifications only -->
+        <div class="col">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="showFolderCheckboxmodifications" data-url="{{ url_for('static', filename='diff/folder_diff_modifications_only.html') }}">
+                <label class="form-check-label" for="showFolderCheckboxmodifications">Folder: Modified only</label>
             </div>
         </div>
 

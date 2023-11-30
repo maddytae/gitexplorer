@@ -52,19 +52,23 @@ def print_tree(base, prefix='', only_modifications=False):
                 print(f"{prefix}{'└── ' if i == len(base) - 1 else '├── '}{color}{path}{END_COLOR}")
 
 def compare_branches(repo_path, item1, item2):
-    os.chdir(repo_path)
-    diff_command = f"git diff --name-status {item1} {item2}"
-
+    # Build the git diff command with the full repository path
+    diff_command = f"git -C {repo_path} diff --name-status {item1} {item2}"
     result = subprocess.run(diff_command, shell=True, capture_output=True, text=True)
     diff_output = result.stdout.splitlines()
 
-    files_item1 = subprocess.run(f"git ls-tree -r --name-only {item1}", shell=True, capture_output=True, text=True).stdout.splitlines()
-    files_item2 = subprocess.run(f"git ls-tree -r --name-only {item2}", shell=True, capture_output=True, text=True).stdout.splitlines()
+    # Build the git ls-tree commands with the full repository path
+    files_item1_command = f"git -C {repo_path} ls-tree -r --name-only {item1}"
+    files_item2_command = f"git -C {repo_path} ls-tree -r --name-only {item2}"
+
+    files_item1 = subprocess.run(files_item1_command, shell=True, capture_output=True, text=True).stdout.splitlines()
+    files_item2 = subprocess.run(files_item2_command, shell=True, capture_output=True, text=True).stdout.splitlines()
 
     all_files = sorted(set(files_item1 + files_item2))
 
     file_statuses = {line.split('\t')[1]: line.split('\t')[0] for line in diff_output}
     return [(file_statuses.get(file, 'U'), file) for file in all_files]
+
 
 def main():
     if len(sys.argv) < 4 or len(sys.argv) > 5:
