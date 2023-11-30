@@ -7,7 +7,7 @@ from collections import defaultdict
 # Define color codes for HTML output
 ADDED_COLOR = 'style="color:green;"'   # Green for added files
 DELETED_COLOR = 'style="color:red;"'   # Red for deleted files
-MODIFIED_COLOR = 'style="color:brown;"' # Brown for modified files
+MODIFIED_COLOR = 'style="color:purple;"' # Brown for modified files
 UNCHANGED_COLOR = 'style="color:black;"' # Black for unchanged files
 DIR_COLOR = 'style="color:blue;"'     # Blue for directories
 
