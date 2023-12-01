@@ -6,7 +6,7 @@ import subprocess
 
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
+# logging.basicConfig(level=logging.DEBUG)
 
 st = settings.PrepareSettings()
 
@@ -38,10 +38,13 @@ def main():
 def repo(repo_name):
     sshAddress = session.get("sshAddress", "")
     branches = ut.get_git_branches(sshAddress) if sshAddress else []
+    
+
 
     # Initialize variables with default values
-    selected_branch1 = selected_branch2 = selected_commit1 = selected_commit2 = ""
-    commits1 = commits2 = []
+    selected_branch1 = selected_branch2 = selected_commit1 = selected_commit2 = selected_filePath = ""
+    commits1 = commits2 = filePaths = []
+
 
     if request.method == "POST":
         # Fetch the selected branches and commits from the form
@@ -49,6 +52,7 @@ def repo(repo_name):
         selected_branch2 = request.form.get("branch2", "")
         selected_commit1 = request.form.get("commit1", "")
         selected_commit2 = request.form.get("commit2", "")
+        selected_filePath= request.form.get("filePath", "")
 
         # Fetch commits for the selected branches
         if selected_branch1:
@@ -61,23 +65,55 @@ def repo(repo_name):
         # app.logger.debug(f"Selected Commit 1: {selected_commit1}, Selected Commit 2: {selected_commit2}")
 
         if selected_commit1 and selected_commit2:
+            filePaths = ut.get_modified_files(sshAddress,selected_commit1,selected_commit2)
+            diff_folder_path = os.path.join(app.static_folder, 'diff')
+            ut.clear_directory(diff_folder_path)
+
             repo_path = os.path.join(st.repo_store, repo_name)
+
             output_path1 = os.path.join(app.static_folder, 'diff', 'folder_diff.html')
             output_path2 = os.path.join(app.static_folder, 'diff', 'folder_diff_modifications_only.html')
+
             # Command to run the git_tree_cli.py script
             command1 = f"python utilities/git_tree_cli.py {repo_path} {selected_commit1} {selected_commit2} | ansifilter --encoding=UTF-8 --html"
             command2 = f"python utilities/git_tree_cli.py {repo_path} {selected_commit1} {selected_commit2} --only-modifications | ansifilter --encoding=UTF-8 --html"
 
+
             # Running the command and writing the output to the HTML file
             with open(output_path1, 'w') as file:
                 subprocess.run(command1, shell=True, stdout=file, check=True)
-
             with open(output_path2, 'w') as file:
                 subprocess.run(command2, shell=True, stdout=file, check=True)
 
 
+        if selected_commit1 and selected_commit2 and selected_filePath:
+
+
+            subprocess.run(["git", "-C", repo_path, "checkout", selected_commit1, selected_filePath])
+            subprocess.run(["git", "-C", repo_path, "checkout", selected_commit2, selected_filePath])
+
+
+
+            output_path3 = os.path.join(app.static_folder, 'diff', 'line.html')
+            output_path4 = os.path.join(app.static_folder, 'diff', 'no_line.html')
+            output_path5 = os.path.join(app.static_folder, 'diff', 'side_by_side.html')
+            
+            command3 = f"git -C {repo_path} diff -U10000 {selected_commit1} {selected_commit2} {selected_filePath} |delta --line-numbers | ansifilter --encoding=UTF-8 --html"
+            command4 = f"git -C {repo_path} diff -U10000 {selected_commit1} {selected_commit2} {selected_filePath}|delta  | ansifilter --encoding=UTF-8 --html"
+            command5 = f"git -C {repo_path} diff -U10000 {selected_commit1} {selected_commit2} {selected_filePath}|delta --width=150 --side-by-side | ansifilter --encoding=UTF-8 --html"
+            print(command3)
+            with open(output_path3, 'w') as file:
+                subprocess.run(command3, shell=True, stdout=file, check=True)
+            with open(output_path4, 'w') as file:
+                subprocess.run(command4, shell=True, stdout=file, check=True)
+            with open(output_path5, 'w') as file:
+                subprocess.run(command5, shell=True, stdout=file, check=True)
+
+
     return render_template("repo.html", repo_name=repo_name, 
                            branches=branches, 
+                           filePaths=filePaths,
+                           selected_filePath=selected_filePath,
                            commits1=commits1, 
                            commits2=commits2, 
                            selected_branch1=selected_branch1,

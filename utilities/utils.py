@@ -58,13 +58,44 @@ def get_commits_for_branch(sshAddress, branch):
     return commits
 
 
-def get_commits_for_branch_demo(branch_name):
-    # Dictionary simulating branches and their respective commits
-    branches_commits = {
-        "main": ["a", "b", "c"],
-        "master": ["x", "y", "z"]
-    }
 
-  
-    # Return the commits for the given branch, or default if branch not found
-    return branches_commits.get(branch_name, ["l", "m", "n"])
+
+def clear_directory(directory):
+    for filename in os.listdir(directory):
+        file_path = os.path.join(directory, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                # If you have subdirectories, you can use shutil.rmtree(file_path)
+                pass  # Add logic here if you have subdirectories
+        except Exception as e:
+            print(f'Failed to delete {file_path}. Reason: {e}')
+
+
+def get_modified_files(sshAddress, commit1, commit2):
+    
+    """
+    Returns a list of modified files between two commits in a given repository.
+    :param repo_path: Path to the repository
+    :param commit1: The first commit hash
+    :param commit2: The second commit hash
+    :return: List of modified files
+    """
+
+    repo_path = return_full_path(sshAddress)
+
+    try:
+        # Running the git diff command to find modified files between two commits
+        result = subprocess.run(
+            ["git", "-C", repo_path, "diff", "--name-only", commit1, commit2],
+            capture_output=True, text=True, check=True
+        )
+        # Splitting the output by new lines to get individual file paths
+        modified_files = result.stdout.splitlines()
+        return modified_files
+    except subprocess.CalledProcessError as e:
+        # In case of error, return the error message
+        return f"Error occurred: {e}"
+
+
