@@ -51,7 +51,7 @@ def print_tree(base, prefix='', only_modifications=False):
                 }.get(subtree, UNCHANGED_COLOR)
                 print(f"{prefix}{'└── ' if i == len(base) - 1 else '├── '}{color}{path}{END_COLOR}")
 
-def compare_branches(repo_path, item1, item2):
+def compare_items(repo_path, item1, item2):
     # Build the git diff command with the full repository path
     diff_command = f"git -C {repo_path} diff --name-status {item1} {item2}"
     result = subprocess.run(diff_command, shell=True, capture_output=True, text=True)
@@ -78,7 +78,7 @@ def main():
     repo_path, item1, item2 = sys.argv[1], sys.argv[2], sys.argv[3]
     only_modifications = '--only-modifications' in sys.argv
 
-    file_list = compare_branches(repo_path, item1, item2)
+    file_list = compare_items(repo_path, item1, item2)
 
     my_tree = tree()
     for status, path in file_list:

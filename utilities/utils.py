@@ -3,6 +3,8 @@ import subprocess
 import settings
 st = settings.PrepareSettings()
 
+from .git_tree_cli import compare_items
+
 
 def get_git_branches(sshAddress):
 
@@ -73,29 +75,21 @@ def clear_directory(directory):
             print(f'Failed to delete {file_path}. Reason: {e}')
 
 
+
 def get_modified_files(sshAddress, commit1, commit2):
-    
-    """
-    Returns a list of modified files between two commits in a given repository.
-    :param repo_path: Path to the repository
-    :param commit1: The first commit hash
-    :param commit2: The second commit hash
-    :return: List of modified files
-    """
+
 
     repo_path = return_full_path(sshAddress)
+    item1,item2=commit1,commit2
+   
+    file_list = compare_items(repo_path, item1, item2)
 
-    try:
-        # Running the git diff command to find modified files between two commits
-        result = subprocess.run(
-            ["git", "-C", repo_path, "diff", "--name-only", commit1, commit2],
-            capture_output=True, text=True, check=True
-        )
-        # Splitting the output by new lines to get individual file paths
-        modified_files = result.stdout.splitlines()
-        return modified_files
-    except subprocess.CalledProcessError as e:
-        # In case of error, return the error message
-        return f"Error occurred: {e}"
+    modified_files=[]
+    for status, path in file_list:
+        if status in ['A', 'D', 'M']:
+            modified_files.append(path)
+
+    return modified_files
+
 
 
