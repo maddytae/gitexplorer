@@ -43,6 +43,8 @@ def return_full_path(sshAddress):
     
     return full_clone_path
 
+
+
 def get_commits_for_branch(sshAddress, branch):
     full_path = return_full_path(sshAddress)
 
@@ -92,4 +94,36 @@ def get_modified_files(sshAddress, commit1, commit2):
     return modified_files
 
 
+###Note that it won't return same result as git log --all --format='%H' | sort -u | wc -l            
+###because not all commits may be associate with branches; there might be commits that are there whose branch might have 
+### been deleted but commit hash are still reachable.
 
+def get_commit_dataframe(repo_path):
+    # Get all branches
+    branch_command = ["git", "-C", repo_path, "branch", "-r", "--format=%(refname:short)"]
+    branch_result = subprocess.run(branch_command, capture_output=True, text=True)
+    if branch_result.returncode != 0:
+        raise Exception(f"Error getting branches: {branch_result.stderr}")
+
+    branches = branch_result.stdout.strip().split('\n')
+
+    # Collecting commit data
+    commit_data = []
+    for branch in branches:
+        # Get commit details for each branch
+        commit_command = ["git", "-C", repo_path, "log","--pretty=format:%H|%an|%ae|%ad", "--date=iso", branch]
+        commit_result = subprocess.run(commit_command, capture_output=True, text=True)
+        if commit_result.returncode != 0:
+            raise Exception(f"Error getting commits for branch {branch}: {commit_result.stderr}")
+
+        for line in commit_result.stdout.strip().split('\n'):
+            commit_hash, author, email, date = line.split('|')
+            commit_data.append({'Commit': commit_hash, 'Author': author, 'Email': email, 'Date': date, 'Branch': branch})
+
+    # Create DataFrame from list
+    df = pd.DataFrame(commit_data)
+    df = df.groupby(['Commit', 'Author', 'Email', 'Date'])['Branch'].apply(';'.join).reset_index()
+
+
+
+    return df
