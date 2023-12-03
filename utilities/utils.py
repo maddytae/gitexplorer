@@ -10,9 +10,8 @@ st = settings.PrepareSettings()
 from .git_tree_cli import compare_items
 
 
-def get_git_branches(sshAddress):
+def get_git_branches(repo_path):
 
-    repo_path = return_full_path(sshAddress)
 
     # Run the Git command
     command = ['git', '-C', repo_path, 'branch', '-r']
@@ -39,18 +38,12 @@ def get_git_branches(sshAddress):
     return branches
 
 
-def return_full_path(sshAddress):
-    repo_name = sshAddress.split('/')[-1].replace('.git', '')
-    # full_clone_path = os.path.join('/Users/maddy/my_repos/repo_store', repo_name)
-    full_clone_path = os.path.join(st.repo_store, repo_name)
 
+
+
+
+def get_commits_for_branch(full_path, branch):
     
-    return full_clone_path
-
-
-
-def get_commits_for_branch(sshAddress, branch):
-    full_path = return_full_path(sshAddress)
 
     # Run the Git command for the specified branch
     command = ['git', '-C', full_path, 'log', '--pretty=format:%H', branch]
@@ -67,25 +60,8 @@ def get_commits_for_branch(sshAddress, branch):
 
 
 
+def get_modified_files(repo_path, commit1, commit2):
 
-def clear_directory(directory):
-    for filename in os.listdir(directory):
-        file_path = os.path.join(directory, filename)
-        try:
-            if os.path.isfile(file_path) or os.path.islink(file_path):
-                os.unlink(file_path)
-            elif os.path.isdir(file_path):
-                # If you have subdirectories, you can use shutil.rmtree(file_path)
-                pass  # Add logic here if you have subdirectories
-        except Exception as e:
-            print(f'Failed to delete {file_path}. Reason: {e}')
-
-
-
-def get_modified_files(sshAddress, commit1, commit2):
-
-
-    repo_path = return_full_path(sshAddress)
     item1,item2=commit1,commit2
    
     file_list = compare_items(repo_path, item1, item2)
@@ -97,8 +73,7 @@ def get_modified_files(sshAddress, commit1, commit2):
 
     return modified_files
 
-def get_unique_authors_for_branch(sshAddress, branch):
-    full_path = return_full_path(sshAddress)
+def get_unique_authors_for_branch(full_path, branch):
 
     # Run the Git command for the specified branch to get author names
     command = ['git', '-C', full_path, 'log', '--pretty=format:%an', branch]
@@ -119,8 +94,7 @@ def get_unique_authors_for_branch(sshAddress, branch):
 
 import subprocess
 
-def get_commits(sshAddress, branch, author=None):
-    full_path = return_full_path(sshAddress)
+def get_commits(full_path, branch, author=None):
 
     # Initialize the base Git command
     command = ['git', '-C', full_path, 'log', '--pretty=format:%H', branch]
@@ -140,4 +114,16 @@ def get_commits(sshAddress, branch, author=None):
     # Parse the output to extract commit hashes and truncate them to 8 characters
     commits = [commit[:8] for commit in result.stdout.strip().split('\n')]
     return commits
+
+def clear_directory(directory):
+    for filename in os.listdir(directory):
+        file_path = os.path.join(directory, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                # If you have subdirectories, you can use shutil.rmtree(file_path)
+                pass  # Add logic here if you have subdirectories
+        except Exception as e:
+            print(f'Failed to delete {file_path}. Reason: {e}')
 

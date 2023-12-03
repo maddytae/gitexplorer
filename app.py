@@ -1,8 +1,9 @@
 import os
-from flask import Flask, render_template, request, session, redirect, url_for, jsonify
+from flask import Flask, render_template, request, session, redirect, url_for
 import utilities as ut
 import settings
 import subprocess
+import uuid
 
 import logging
 
@@ -18,26 +19,38 @@ def main():
     error_message = None
     if request.method == "POST":
         sshAddress = request.form.get("sshAddress")
+        repo_name = sshAddress.split('/')[-1].replace('.git', '')
+    
         if sshAddress:
+            # Generate a unique session identifier
+            if 'session_id' not in session:
+                session['session_id'] = str(uuid.uuid4())
+            if 'repo_path' not in session:
+                session['repo_path'] = os.path.join(st.repo_store, 
+                                                    repo_name+'_'+session.get('session_id', ''))
+
             try:
-                ut.repo_cloning(sshAddress, ut.return_full_path(sshAddress), st.repo_size_limit)
+                ut.repo_cloning(sshAddress,session.get('repo_path', ''), st.repo_size_limit)
                 session["sshAddress"] = sshAddress
-                repo_name = sshAddress.split('/')[-1].replace('.git', '')
                 return redirect(url_for("repo", repo_name=repo_name))
             except ut.SizeLimitExceededError as e:
                 error_message = "Repo exceeded size limit."
             except ut.InvalidSSHAddressError as e:
                 error_message = "Invalid ssh address."
             except Exception as e:
-                error_message = "An unexpected error occurred."
+                error_message = f"An unexpected error occurred: {e}"
+                logging.error(f"Error: {e}", exc_info=True)
 
     return render_template("main.html", error_message=error_message)
 
 
 @app.route("/repo/<repo_name>", methods=["GET", "POST"])
 def repo(repo_name):
-    sshAddress = session.get("sshAddress", "")
-    branches = ut.get_git_branches(sshAddress) if sshAddress else []
+
+    repo_path=session.get('repo_path', '')
+
+
+    branches = ut.get_git_branches(repo_path) if repo_path else []
     
     # Initialize variables with default values
     selected_branch1 = selected_branch2 = selected_commit1 = selected_commit2 = selected_filePath = ""
@@ -57,26 +70,26 @@ def repo(repo_name):
 
         # Fetch authors for the selected branches
         if selected_branch1:
-            authors1 = ut.get_unique_authors_for_branch(sshAddress, selected_branch1)
+            authors1 = ut.get_unique_authors_for_branch(repo_path, selected_branch1)
 
         if selected_branch2:
-            authors2 = ut.get_unique_authors_for_branch(sshAddress, selected_branch2)
+            authors2 = ut.get_unique_authors_for_branch(repo_path, selected_branch2)
 
         # Fetch commits for the selected authors
         if selected_author1:
-            commits1 = ut.get_commits(sshAddress, selected_branch1,selected_author1)
+            commits1 = ut.get_commits(repo_path, selected_branch1,selected_author1)
 
         if selected_branch2:
-            commits2 = ut.get_commits(sshAddress, selected_branch2,selected_author2)
+            commits2 = ut.get_commits(repo_path, selected_branch2,selected_author2)
 
 
 
         if selected_commit1 and selected_commit2:
-            filePaths = ut.get_modified_files(sshAddress,selected_commit1,selected_commit2)
+            filePaths = ut.get_modified_files(repo_path,selected_commit1,selected_commit2)
             diff_folder_path = os.path.join(app.static_folder, 'diff')
             ut.clear_directory(diff_folder_path)
 
-            repo_path = os.path.join(st.repo_store, repo_name)
+
 
             output_path1 = os.path.join(app.static_folder, 'diff', 'folder_diff.html')
             output_path2 = os.path.join(app.static_folder, 'diff', 'folder_diff_modifications_only.html')
