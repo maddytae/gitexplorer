@@ -1,5 +1,9 @@
 import os
 import subprocess
+import json
+from io import StringIO
+import pandas as pd
+
 import settings
 st = settings.PrepareSettings()
 
@@ -93,38 +97,47 @@ def get_modified_files(sshAddress, commit1, commit2):
 
     return modified_files
 
+def get_unique_authors_for_branch(sshAddress, branch):
+    full_path = return_full_path(sshAddress)
 
-###Note that it won't return same result as git log --all --format='%H' | sort -u | wc -l            
-###because not all commits may be associate with branches; there might be commits that are there whose branch might have 
-### been deleted but commit hash are still reachable.
-def get_commit_dataframes_by_branch(repo_path):
-    # Get all branches
-    branch_command = ["git", "-C", repo_path, "branch", "-r", "--format=%(refname:short)"]
-    branch_result = subprocess.run(branch_command, capture_output=True, text=True)
-    if branch_result.returncode != 0:
-        raise Exception(f"Error getting branches: {branch_result.stderr}")
+    # Run the Git command for the specified branch to get author names
+    command = ['git', '-C', full_path, 'log', '--pretty=format:%an', branch]
+    result = subprocess.run(command, capture_output=True, text=True)
 
-    branches = branch_result.stdout.strip().split('\n')
+    # Check if command execution was successful
+    if result.returncode != 0:
+        print("Error running git log:", result.stderr)
+        return []
 
-    # Initialize a dictionary to hold branch names as keys and DataFrames as values
-    branch_dataframes = {}
+    # Extract author names from the output
+    authors = result.stdout.strip().split('\n')
 
-    for branch in branches:
-        # Get commit details for each branch
-        commit_command = ["git", "-C", repo_path, "log", "--pretty=format:%H|%an|%ae|%ad", "--date=iso", branch]
-        commit_result = subprocess.run(commit_command, capture_output=True, text=True)
-        if commit_result.returncode != 0:
-            raise Exception(f"Error getting commits for branch {branch}: {commit_result.stderr}")
+    # Get unique authors
+    unique_authors = list(set(authors))
 
-        # Collecting commit data for the branch
-        commit_data = []
-        for line in commit_result.stdout.strip().split('\n'):
-            commit_hash, author, email, date = line.split('|')
-            commit_data.append({'Commit': commit_hash, 'Author': author, 'Email': email, 'Date': date})
+    return unique_authors
 
-        # Create DataFrame for the current branch and add it to the dictionary
-        branch_df = pd.DataFrame(commit_data)
-        branch_dataframes[branch.strip()] = branch_df
+import subprocess
 
-    return branch_dataframes
+def get_commits(sshAddress, branch, author=None):
+    full_path = return_full_path(sshAddress)
+
+    # Initialize the base Git command
+    command = ['git', '-C', full_path, 'log', '--pretty=format:%H', branch]
+
+    # Add author filtering if author is provided
+    if author:
+        command.insert(-1, f'--author={author}')
+
+    # Run the Git command
+    result = subprocess.run(command, capture_output=True, text=True)
+
+    # Check if command execution was successful
+    if result.returncode != 0:
+        print("Error running git log:", result.stderr)
+        return []
+
+    # Parse the output to extract commit hashes and truncate them to 8 characters
+    commits = [commit[:8] for commit in result.stdout.strip().split('\n')]
+    return commits
 

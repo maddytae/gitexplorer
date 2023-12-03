@@ -15,3 +15,5 @@ class PrepareSettings:
             
         self.repo_store= self.config['repo_store']
         self.repo_size_limit=self.config['repo_size_limit']
+        self.static_path= os.path.join(self.project_path, 'static','diff')
+        # self.json_path= os.path.join(self.project_path, 'json_files')

@@ -6,7 +6,7 @@ import subprocess
 
 import logging
 
-# logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG)
 
 st = settings.PrepareSettings()
 
@@ -39,12 +39,9 @@ def repo(repo_name):
     sshAddress = session.get("sshAddress", "")
     branches = ut.get_git_branches(sshAddress) if sshAddress else []
     
-
-
     # Initialize variables with default values
     selected_branch1 = selected_branch2 = selected_commit1 = selected_commit2 = selected_filePath = ""
     commits1 = commits2 = filePaths = []
-
 
     if request.method == "POST":
         # Fetch the selected branches and commits from the form
@@ -57,12 +54,10 @@ def repo(repo_name):
         # Fetch commits for the selected branches
         if selected_branch1:
             commits1 = ut.get_commits_for_branch(sshAddress, selected_branch1)
+
         if selected_branch2:
             commits2 = ut.get_commits_for_branch(sshAddress, selected_branch2)
 
-        # # Log for debugging
-        # app.logger.debug(f"Selected Branch 1: {selected_branch1}, Selected Branch 2: {selected_branch2}")
-        # app.logger.debug(f"Selected Commit 1: {selected_commit1}, Selected Commit 2: {selected_commit2}")
 
         if selected_commit1 and selected_commit2:
             filePaths = ut.get_modified_files(sshAddress,selected_commit1,selected_commit2)
@@ -78,7 +73,6 @@ def repo(repo_name):
             command1 = f"python utilities/git_tree_cli.py {repo_path} {selected_commit1} {selected_commit2} | ansifilter --encoding=UTF-8 --html"
             command2 = f"python utilities/git_tree_cli.py {repo_path} {selected_commit1} {selected_commit2} --only-modifications | ansifilter --encoding=UTF-8 --html"
 
-
             # Running the command and writing the output to the HTML file
             with open(output_path1, 'w') as file:
                 subprocess.run(command1, shell=True, stdout=file, check=True)
@@ -88,11 +82,8 @@ def repo(repo_name):
 
         if selected_commit1 and selected_commit2 and selected_filePath:
 
-
             subprocess.run(["git", "-C", repo_path, "checkout", selected_commit1, selected_filePath])
             subprocess.run(["git", "-C", repo_path, "checkout", selected_commit2, selected_filePath])
-
-
 
             output_path3 = os.path.join(app.static_folder, 'diff', 'line.html')
             output_path4 = os.path.join(app.static_folder, 'diff', 'no_line.html')
