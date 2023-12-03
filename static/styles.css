@@ -1,3 +1,19 @@
+
+.main-page body {
+    background-color: #f8f9fa; /* Light background color */
+}
+.main-page .display-4 {
+    color: #343a40; /* Dark text for contrast */
+}
+.main-page .form-control {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow around input */
+    border-radius: 25px; /* Rounded borders for input */
+}
+.main-page .btn-primary {
+    border-radius: 25px; /* Rounded borders for button */
+}
+
+
 .custom-bg {
     background-color: #f8f9fa; /* Light grey background */
     border-radius: 15px;

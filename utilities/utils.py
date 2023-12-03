@@ -97,8 +97,7 @@ def get_modified_files(sshAddress, commit1, commit2):
 ###Note that it won't return same result as git log --all --format='%H' | sort -u | wc -l            
 ###because not all commits may be associate with branches; there might be commits that are there whose branch might have 
 ### been deleted but commit hash are still reachable.
-
-def get_commit_dataframe(repo_path):
+def get_commit_dataframes_by_branch(repo_path):
     # Get all branches
     branch_command = ["git", "-C", repo_path, "branch", "-r", "--format=%(refname:short)"]
     branch_result = subprocess.run(branch_command, capture_output=True, text=True)
@@ -107,23 +106,25 @@ def get_commit_dataframe(repo_path):
 
     branches = branch_result.stdout.strip().split('\n')
 
-    # Collecting commit data
-    commit_data = []
+    # Initialize a dictionary to hold branch names as keys and DataFrames as values
+    branch_dataframes = {}
+
     for branch in branches:
         # Get commit details for each branch
-        commit_command = ["git", "-C", repo_path, "log","--pretty=format:%H|%an|%ae|%ad", "--date=iso", branch]
+        commit_command = ["git", "-C", repo_path, "log", "--pretty=format:%H|%an|%ae|%ad", "--date=iso", branch]
         commit_result = subprocess.run(commit_command, capture_output=True, text=True)
         if commit_result.returncode != 0:
             raise Exception(f"Error getting commits for branch {branch}: {commit_result.stderr}")
 
+        # Collecting commit data for the branch
+        commit_data = []
         for line in commit_result.stdout.strip().split('\n'):
             commit_hash, author, email, date = line.split('|')
-            commit_data.append({'Commit': commit_hash, 'Author': author, 'Email': email, 'Date': date, 'Branch': branch})
+            commit_data.append({'Commit': commit_hash, 'Author': author, 'Email': email, 'Date': date})
 
-    # Create DataFrame from list
-    df = pd.DataFrame(commit_data)
-    df = df.groupby(['Commit', 'Author', 'Email', 'Date'])['Branch'].apply(';'.join).reset_index()
+        # Create DataFrame for the current branch and add it to the dictionary
+        branch_df = pd.DataFrame(commit_data)
+        branch_dataframes[branch.strip()] = branch_df
 
+    return branch_dataframes
 
-
-    return df

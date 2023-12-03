@@ -3,7 +3,7 @@
 {% block title %}GitExplorer{% endblock %}
 
 {% block body %}
-
+<div class="main-page">
 <!-- Error Message Alert -->
 {% if error_message %}
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -25,20 +25,5 @@
         </div>
     </form>
 </div>
-
-<style>
-    body {
-        background-color: #f8f9fa; /* Light background color */
-    }
-    .display-4 {
-        color: #343a40; /* Dark text for contrast */
-    }
-    .form-control {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow around input */
-        border-radius: 25px; /* Rounded borders for input */
-    }
-    .btn-primary {
-        border-radius: 25px; /* Rounded borders for button */
-    }
-</style>
+</div>
 {% endblock %}
