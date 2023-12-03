@@ -30,6 +30,63 @@
     </div>
 </div>
 
+
+
+
+
+
+
+
+<!-- Row for Author Dropdowns -->
+<div class="row mb-3">
+    <!-- Select First Author Dropdown -->
+    <div class="col-md-6">
+
+        <select class="form-select" name="author1" id="author1" onchange="this.form.submit()">
+            <option value="" {% if not selected_author1 %}selected{% endif %}>Select first author</option>
+            {% for author in authors1 %}
+            <option value="{{ author }}" {% if author == selected_author1 %}selected{% endif %}>{{ author }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <!-- Select Second Author Dropdown -->
+    <div class="col-md-6">
+   
+        <select class="form-select" name="author2" id="author2" onchange="this.form.submit()">
+            <option value="" {% if not selected_author2 %}selected{% endif %}>Select second author</option>
+            {% for author in authors2 %}
+            <option value="{{ author }}" {% if author == selected_author2 %}selected{% endif %}>{{ author }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Row for Commit Dropdowns -->
 <div class="row mb-3">
     <!-- Select First Commit Dropdown -->

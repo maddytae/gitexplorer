@@ -113,7 +113,7 @@ def get_unique_authors_for_branch(sshAddress, branch):
     authors = result.stdout.strip().split('\n')
 
     # Get unique authors
-    unique_authors = list(set(authors))
+    unique_authors = sorted(list(set(authors)), key=str.lower)
 
     return unique_authors
 

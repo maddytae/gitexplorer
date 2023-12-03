@@ -41,7 +41,9 @@ def repo(repo_name):
     
     # Initialize variables with default values
     selected_branch1 = selected_branch2 = selected_commit1 = selected_commit2 = selected_filePath = ""
-    commits1 = commits2 = filePaths = []
+    selected_author1=selected_author2=""
+    commits1 = commits2 = filePaths = authors1 = authors2=[]
+
 
     if request.method == "POST":
         # Fetch the selected branches and commits from the form
@@ -49,14 +51,24 @@ def repo(repo_name):
         selected_branch2 = request.form.get("branch2", "")
         selected_commit1 = request.form.get("commit1", "")
         selected_commit2 = request.form.get("commit2", "")
+        selected_author1 = request.form.get("author1", "")
+        selected_author2 = request.form.get("author2", "")
         selected_filePath= request.form.get("filePath", "")
 
-        # Fetch commits for the selected branches
+        # Fetch authors for the selected branches
         if selected_branch1:
-            commits1 = ut.get_commits_for_branch(sshAddress, selected_branch1)
+            authors1 = ut.get_unique_authors_for_branch(sshAddress, selected_branch1)
 
         if selected_branch2:
-            commits2 = ut.get_commits_for_branch(sshAddress, selected_branch2)
+            authors2 = ut.get_unique_authors_for_branch(sshAddress, selected_branch2)
+
+        # Fetch commits for the selected authors
+        if selected_author1:
+            commits1 = ut.get_commits(sshAddress, selected_branch1,selected_author1)
+
+        if selected_branch2:
+            commits2 = ut.get_commits(sshAddress, selected_branch2,selected_author2)
+
 
 
         if selected_commit1 and selected_commit2:
@@ -107,6 +119,10 @@ def repo(repo_name):
                            selected_filePath=selected_filePath,
                            commits1=commits1, 
                            commits2=commits2, 
+                           authors1=authors1,
+                           authors2=authors2,
+                           selected_author1=selected_author1,
+                           selected_author2=selected_author2,
                            selected_branch1=selected_branch1,
                            selected_branch2=selected_branch2,
                            selected_commit1=selected_commit1,
