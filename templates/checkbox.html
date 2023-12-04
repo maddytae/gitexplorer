@@ -1,51 +1,40 @@
 <!-- Checkbox within a custom background -->
-<div class="custom-bg custom-bg-alt">
-    <div class="row mb-3">
-        <!-- Heading for the Diff Type with reduced margin -->
-        <div class="col-md-12">
-            <h6 class="heading-margin" style="text-decoration: underline;">Select diff type:</h6>
-        </div>
-    </div>
-
-    <div class="row">
+<div class="row">
+    <!-- First box with first two checkboxes -->
+    <div class="col-md-6" style="padding-right: 10px;">
+        <h6 class="heading-margin" style="text-decoration: underline; margin-bottom: 20px;">Folder Diff:</h6> <!-- Increased margin-bottom for more space -->
         <!-- Folder Checkbox -->
-        <div class="col">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showFolderCheckbox" data-url="{{ diff_files['folder_diff'] }}">
-                <label class="form-check-label" for="showFolderCheckbox">Folder</label>
-            </div>
+        <div class="form-check mb-2"> <!-- Reduced margin-bottom to decrease gap between checkboxes -->
+            <input class="form-check-input" type="checkbox" id="showFolderCheckbox" data-url="{{ diff_files['folder_diff'] }}">
+            <label class="form-check-label" for="showFolderCheckbox">Folder</label>
         </div>
 
         <!-- Folder Checkbox Modifications only -->
-        <div class="col">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showFolderCheckboxmodifications" data-url="{{ diff_files['folder_diff_mod'] }}">
-                <label class="form-check-label" for="showFolderCheckboxmodifications">Folder: Modified only</label>
-            </div>
+        <div class="form-check mb-2"> <!-- Reduced margin-bottom to decrease gap between checkboxes -->
+            <input class="form-check-input" type="checkbox" id="showFolderCheckboxmodifications" data-url="{{ diff_files['folder_diff_mod'] }}">
+            <label class="form-check-label" for="showFolderCheckboxmodifications">Folder: Modified only</label>
         </div>
+    </div>
 
+    <!-- Second box with remaining three checkboxes -->
+    <div class="col-md-6" style="padding-left: 10px;">
+        <h6 class="heading-margin" style="text-decoration: underline; margin-bottom: 20px;">File Diff:</h6> <!-- Increased margin-bottom for more space -->
         <!-- Code Checkbox -->
-        <div class="col">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showCodeCheckbox" data-url="{{ diff_files['line_diff'] }}">
-                <label class="form-check-label" for="showCodeCheckbox">Code</label>
-            </div>
+        <div class="form-check mb-2"> <!-- Reduced margin-bottom to decrease gap between checkboxes -->
+            <input class="form-check-input" type="checkbox" id="showCodeCheckbox" data-url="{{ diff_files['line_diff'] }}">
+            <label class="form-check-label" for="showCodeCheckbox">Code</label>
         </div>
 
         <!-- Code (w/o line) Checkbox -->
-        <div class="col">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showCodeWoLineCheckbox" data-url="{{ diff_files['no_line_diff'] }}">
-                <label class="form-check-label" for="showCodeWoLineCheckbox">Code: Without-Line</label>
-            </div>
+        <div class="form-check mb-2"> <!-- Reduced margin-bottom to decrease gap between checkboxes -->
+            <input class="form-check-input" type="checkbox" id="showCodeWoLineCheckbox" data-url="{{ diff_files['no_line_diff'] }}">
+            <label class="form-check-label" for="showCodeWoLineCheckbox">Code: Without-Line</label>
         </div>
 
         <!-- Code Side by Side Checkbox -->
-        <div class="col">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showCodeSideBySideCheckbox" data-url="{{ diff_files['side_by_side_diff'] }}">
-                <label class="form-check-label" for="showCodeSideBySideCheckbox">Code: Side-by-Side</label>
-            </div>
+        <div class="form-check mb-2"> <!-- Reduced margin-bottom to decrease gap between checkboxes -->
+            <input class="form-check-input" type="checkbox" id="showCodeSideBySideCheckbox" data-url="{{ diff_files['side_by_side_diff'] }}">
+            <label class="form-check-label" for="showCodeSideBySideCheckbox">Code: Side-by-Side</label>
         </div>
     </div>
 </div>
