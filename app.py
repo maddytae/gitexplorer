@@ -4,6 +4,10 @@ import utilities as ut
 import settings
 import subprocess
 import uuid
+import shutil
+import time
+from apscheduler.schedulers.background import BackgroundScheduler
+import atexit
 
 import logging
 
@@ -14,25 +18,57 @@ st = settings.PrepareSettings()
 app = Flask(__name__)
 app.secret_key = "khiadh2727sdhks888s"
 
+
+
+def clean_old_directories(base_path=st.repo_store, age_threshold_hours=1):
+    current_time = time.time()
+    age_threshold_seconds = age_threshold_hours * 3600
+
+    for folder_name in os.listdir(base_path):
+        folder_path = os.path.join(base_path, folder_name)
+
+        if os.path.isdir(folder_path):
+            last_modified = os.path.getmtime(folder_path)
+
+            if current_time - last_modified > age_threshold_seconds:
+                try:
+                    print(f"Deleting folder: {folder_path}")
+                    shutil.rmtree(folder_path)
+                except Exception as e:
+                    print(f"Error deleting {folder_path}: {e}")
+
+# Initialize scheduler; clean up every 15 seconds for any folder that is more than 1 hour old
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=clean_old_directories, trigger="interval", hours=0.25)
+scheduler.start()
+
+# Shut down the scheduler when exiting the app
+atexit.register(lambda: scheduler.shutdown())
+
+
 @app.route("/", methods=["GET", "POST"])
 def main():
     error_message = None
     if request.method == "POST":
         sshAddress = request.form.get("sshAddress")
         repo_name = sshAddress.split('/')[-1].replace('.git', '')
+        print(repo_name)
     
         if sshAddress:
             # Generate a unique session identifier
             if 'session_id' not in session:
                 session['session_id'] = str(uuid.uuid4())
-            if 'user_dir' not in session:
-                session['user_dir']=os.path.join(st.repo_store,
-                                                 repo_name+'_'+session.get('session_id', ''))
-            if 'repo_path' not in session:
-                session['repo_path'] = os.path.join(session.get('user_dir', ''),repo_name)
-            if 'diff_path' not in session:
-                session['diff_path'] = os.path.join(session.get('user_dir', ''),'diff')
+            # Construct the user directory using the actual repository name
+            user_dir = os.path.join(st.repo_store, f"{repo_name}_{session['session_id']}")
 
+            # Set paths for repo and diff
+            repo_path = os.path.join(user_dir, repo_name)
+            diff_path = os.path.join(user_dir, 'diff')
+
+            # Store paths in session
+            session['user_dir'] = user_dir
+            session['repo_path'] = repo_path
+            session['diff_path'] = diff_path
             try:
                 ut.repo_cloning(sshAddress,session.get('repo_path', ''), st.repo_size_limit)
                 session["sshAddress"] = sshAddress
