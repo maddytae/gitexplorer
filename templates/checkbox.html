@@ -11,7 +11,7 @@
         <!-- Folder Checkbox -->
         <div class="col">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showFolderCheckbox" data-url="{{ url_for('static', filename='diff/folder_diff.html') }}">
+                <input class="form-check-input" type="checkbox" id="showFolderCheckbox" data-url="{{ diff_files['folder_diff'] }}">
                 <label class="form-check-label" for="showFolderCheckbox">Folder</label>
             </div>
         </div>
@@ -19,7 +19,7 @@
         <!-- Folder Checkbox Modifications only -->
         <div class="col">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showFolderCheckboxmodifications" data-url="{{ url_for('static', filename='diff/folder_diff_modifications_only.html') }}">
+                <input class="form-check-input" type="checkbox" id="showFolderCheckboxmodifications" data-url="{{ diff_files['folder_diff_mod'] }}">
                 <label class="form-check-label" for="showFolderCheckboxmodifications">Folder: Modified only</label>
             </div>
         </div>
@@ -27,7 +27,7 @@
         <!-- Code Checkbox -->
         <div class="col">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showCodeCheckbox" data-url="{{ url_for('static', filename='diff/line.html') }}">
+                <input class="form-check-input" type="checkbox" id="showCodeCheckbox" data-url="{{ diff_files['line_diff'] }}">
                 <label class="form-check-label" for="showCodeCheckbox">Code</label>
             </div>
         </div>
@@ -35,7 +35,7 @@
         <!-- Code (w/o line) Checkbox -->
         <div class="col">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showCodeWoLineCheckbox" data-url="{{ url_for('static', filename='diff/no_line.html') }}">
+                <input class="form-check-input" type="checkbox" id="showCodeWoLineCheckbox" data-url="{{ diff_files['no_line_diff'] }}">
                 <label class="form-check-label" for="showCodeWoLineCheckbox">Code: Without-Line</label>
             </div>
         </div>
@@ -43,7 +43,7 @@
         <!-- Code Side by Side Checkbox -->
         <div class="col">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showCodeSideBySideCheckbox" data-url="{{ url_for('static', filename='diff/side_by_side.html') }}">
+                <input class="form-check-input" type="checkbox" id="showCodeSideBySideCheckbox" data-url="{{ diff_files['side_by_side_diff'] }}">
                 <label class="form-check-label" for="showCodeSideBySideCheckbox">Code: Side-by-Side</label>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for,send_from_directory
 import utilities as ut
 import settings
 import subprocess
@@ -132,6 +132,14 @@ def repo(repo_name):
                 subprocess.run(command5, shell=True, stdout=file, check=True)
 
 
+    diff_files = {
+        'folder_diff': url_for('serve_diffs', filename='folder_diff.html', session_id=session['session_id']),
+        'folder_diff_mod': url_for('serve_diffs', filename='folder_diff_modifications_only.html', session_id=session['session_id']),
+        'line_diff': url_for('serve_diffs', filename='line.html', session_id=session['session_id']),
+        'no_line_diff': url_for('serve_diffs', filename='no_line.html', session_id=session['session_id']),
+        'side_by_side_diff': url_for('serve_diffs', filename='side_by_side.html', session_id=session['session_id'])
+    }
+
     return render_template("repo.html", repo_name=repo_name, 
                            branches=branches, 
                            filePaths=filePaths,
@@ -145,7 +153,19 @@ def repo(repo_name):
                            selected_branch1=selected_branch1,
                            selected_branch2=selected_branch2,
                            selected_commit1=selected_commit1,
-                           selected_commit2=selected_commit2)
+                           selected_commit2=selected_commit2,
+                           diff_files=diff_files)
+
+
+
+
+@app.route("/diffs/<session_id>/<path:filename>")
+def serve_diffs(session_id, filename):
+    # Construct the full path to the file
+    diff_path =session.get('diff_path', '')
+    return send_from_directory(diff_path, filename)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
