@@ -25,9 +25,13 @@ def main():
             # Generate a unique session identifier
             if 'session_id' not in session:
                 session['session_id'] = str(uuid.uuid4())
+            if 'user_dir' not in session:
+                session['user_dir']=os.path.join(st.repo_store,
+                                                 repo_name+'_'+session.get('session_id', ''))
             if 'repo_path' not in session:
-                session['repo_path'] = os.path.join(st.repo_store, 
-                                                    repo_name+'_'+session.get('session_id', ''))
+                session['repo_path'] = os.path.join(session.get('user_dir', ''),repo_name)
+            if 'diff_path' not in session:
+                session['diff_path'] = os.path.join(session.get('user_dir', ''),'diff')
 
             try:
                 ut.repo_cloning(sshAddress,session.get('repo_path', ''), st.repo_size_limit)
@@ -48,6 +52,9 @@ def main():
 def repo(repo_name):
 
     repo_path=session.get('repo_path', '')
+    diff_path=session.get('diff_path','')
+    os.makedirs(diff_path,exist_ok=True)
+    # ut.clear_directory(diff_path)
 
 
     branches = ut.get_git_branches(repo_path) if repo_path else []
@@ -86,13 +93,12 @@ def repo(repo_name):
 
         if selected_commit1 and selected_commit2:
             filePaths = ut.get_modified_files(repo_path,selected_commit1,selected_commit2)
-            diff_folder_path = os.path.join(app.static_folder, 'diff')
-            ut.clear_directory(diff_folder_path)
+            
 
 
 
-            output_path1 = os.path.join(app.static_folder, 'diff', 'folder_diff.html')
-            output_path2 = os.path.join(app.static_folder, 'diff', 'folder_diff_modifications_only.html')
+            output_path1 = os.path.join(diff_path, 'folder_diff.html')
+            output_path2 = os.path.join(diff_path, 'folder_diff_modifications_only.html')
 
             # Command to run the git_tree_cli.py script
             command1 = f"python utilities/git_tree_cli.py {repo_path} {selected_commit1} {selected_commit2} | ansifilter --encoding=UTF-8 --html"
@@ -110,9 +116,9 @@ def repo(repo_name):
             subprocess.run(["git", "-C", repo_path, "checkout", selected_commit1, selected_filePath])
             subprocess.run(["git", "-C", repo_path, "checkout", selected_commit2, selected_filePath])
 
-            output_path3 = os.path.join(app.static_folder, 'diff', 'line.html')
-            output_path4 = os.path.join(app.static_folder, 'diff', 'no_line.html')
-            output_path5 = os.path.join(app.static_folder, 'diff', 'side_by_side.html')
+            output_path3 = os.path.join(diff_path, 'line.html')
+            output_path4 = os.path.join(diff_path, 'no_line.html')
+            output_path5 = os.path.join(diff_path, 'side_by_side.html')
             
             command3 = f"git -C {repo_path} diff -U10000 {selected_commit1} {selected_commit2} {selected_filePath} |delta --line-numbers | ansifilter --encoding=UTF-8 --html"
             command4 = f"git -C {repo_path} diff -U10000 {selected_commit1} {selected_commit2} {selected_filePath}|delta  | ansifilter --encoding=UTF-8 --html"
