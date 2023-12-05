@@ -22,3 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+var myCodeMirror1 = CodeMirror.fromTextArea(document.getElementById('code1'), {
+    lineNumbers: true,
+    lineWrapping: false // Disable line wrapping
+});
+
+var myCodeMirror2 = CodeMirror.fromTextArea(document.getElementById('code2'), {
+    lineNumbers: true,
+    lineWrapping: false // Disable line wrapping
+});

@@ -4,26 +4,47 @@
 
 {% block body %}
 <div class="main-page">
-<!-- Error Message Alert -->
-{% if error_message %}
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    {{ error_message }}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-{% endif %}
+    <!-- Error Message Alert -->
+    {% if error_message %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ error_message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
 
-<div class="text-center" style="padding-top: 10vh; max-width: 600px; margin: auto;">
-    <h1 class="display-4 mb-4">MyGitExplorer</h1>
-    <form method="post" class="mt-4">
-        <div class="form-group d-inline-block" style="width: 100%;">
-            <input type="text" class="form-control form-control-lg" id="sshAddress" name="sshAddress" placeholder="Enter SSH Address" style="text-align: center;">
-        </div>
-        <div class="mt-4">
-            <button type="submit" class="btn btn-primary btn-lg">Initialize</button>
-        </div>
-    </form>
+    <div class="text-center" style="padding-top: 10vh; max-width: 600px; margin: auto;">
+        <h1 class="display-4 mb-4">MyGitExplorer</h1>
+        <form method="post" class="mt-4">
+            <div class="form-group d-flex justify-content-between align-items-center" style="width: 100%;">
+                <input type="text" class="form-control form-control-lg mr-4" id="sshAddress" name="sshAddress" placeholder="Enter SSH Address" 
+                       style="text-align: center; flex-grow: 1; margin-right: 1rem; border-radius: 1rem;"> <!-- Adjusted radius here -->
+                <button type="submit" class="btn btn-primary btn-lg" 
+                        style="white-space: nowrap; border-radius: 1rem;"> <!-- And here -->Initialize</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="text-center" style="padding-top: 2vh; max-width: 1000px; margin: auto;">
+        <form method="post" class="mt-4">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+
+            <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+            
+            <div class="text-center" style="padding-top: 2vh; max-width: 1200px; margin: auto;">
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="width: 48%; margin-right: 1rem;">
+                        <textarea id="code1" name="code1">// Your code here</textarea>
+                    </div>
+                    <div style="width: 48%;">
+                        <textarea id="code2" name="code2">// More code here</textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
-</div>
+
+<script src="{{ url_for('static', filename='scripts.js') }}"></script>
 {% endblock %}

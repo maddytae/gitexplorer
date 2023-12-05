@@ -34,3 +34,10 @@
 .form-check {
     margin-bottom: 0; /* Reduce margin for form-check elements */
 }
+
+/* Additional style to ensure CodeMirror aligns text to the left */
+.CodeMirror {
+    text-align: left;
+    direction: ltr; /* Left-to-right text direction */
+    height: 30rem;
+}
