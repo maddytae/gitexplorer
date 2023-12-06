@@ -49,37 +49,53 @@ atexit.register(lambda: scheduler.shutdown())
 @app.route("/", methods=["GET", "POST"])
 def main():
     error_message = None
+
     if request.method == "POST":
-        sshAddress = request.form.get("sshAddress")
-        repo_name = sshAddress.split('/')[-1].replace('.git', '')
-        print(repo_name)
-    
-        if sshAddress:
-            # Generate a unique session identifier
-            if 'session_id' not in session:
-                session['session_id'] = str(uuid.uuid4())
-            # Construct the user directory using the actual repository name
-            user_dir = os.path.join(st.repo_store, f"{repo_name}_{session['session_id']}")
+        # Check if SSH address form is submitted
+        if 'sshAddress' in request.form:
+            sshAddress = request.form.get("sshAddress")
+            if sshAddress:
+                repo_name = sshAddress.split('/')[-1].replace('.git', '')
+                print(repo_name)
+            
+                # Generate a unique session identifier
+                if 'session_id' not in session:
+                    session['session_id'] = str(uuid.uuid4())
 
-            # Set paths for repo and diff
-            repo_path = os.path.join(user_dir, repo_name)
-            diff_path = os.path.join(user_dir, 'diff')
+                # Construct the user directory using the actual repository name
+                user_dir = os.path.join(st.repo_store, f"{repo_name}_{session['session_id']}")
 
-            # Store paths in session
-            session['user_dir'] = user_dir
-            session['repo_path'] = repo_path
-            session['diff_path'] = diff_path
-            try:
-                ut.repo_cloning(sshAddress,session.get('repo_path', ''), st.repo_size_limit)
-                session["sshAddress"] = sshAddress
-                return redirect(url_for("repo", repo_name=repo_name))
-            except ut.SizeLimitExceededError as e:
-                error_message = "Repo exceeded size limit."
-            except ut.InvalidSSHAddressError as e:
-                error_message = "Invalid ssh address."
-            except Exception as e:
-                error_message = f"An unexpected error occurred: {e}"
-                logging.error(f"Error: {e}", exc_info=True)
+                # Set paths for repo and diff
+                repo_path = os.path.join(user_dir, repo_name)
+                diff_path = os.path.join(user_dir, 'diff')
+
+                # Store paths in session
+                session['user_dir'] = user_dir
+                session['repo_path'] = repo_path
+                session['diff_path'] = diff_path
+
+                try:
+                    ut.repo_cloning(sshAddress, session.get('repo_path', ''), st.repo_size_limit)
+                    session["sshAddress"] = sshAddress
+                    return redirect(url_for("repo", repo_name=repo_name))
+                except ut.SizeLimitExceededError as e:
+                    error_message = "Repo exceeded size limit."
+                except ut.InvalidSSHAddressError as e:
+                    error_message = "Invalid SSH address."
+                except Exception as e:
+                    error_message = f"An unexpected error occurred: {e}"
+                    logging.error(f"Error: {e}", exc_info=True)
+
+        # Check if CodeMirror text area form is submitted
+        elif 'code1' in request.form and 'code2' in request.form:
+            code1 = request.form["code1"]
+            code2 = request.form["code2"]
+            # Process the submitted code
+            print(f"Code 1: {code1}")
+            print(f"Code 2: {code2}")
+            # You can add more code here to handle the text area data
+
+            return redirect(url_for('main'))
 
     return render_template("main.html", error_message=error_message)
 
@@ -200,6 +216,7 @@ def serve_diffs(session_id, filename):
     # Construct the full path to the file
     diff_path =session.get('diff_path', '')
     return send_from_directory(diff_path, filename)
+
 
 
 
