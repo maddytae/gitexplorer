@@ -54,26 +54,21 @@ def main():
         # Generate a unique session identifier
         if 'session_id' not in session:
             session['session_id'] = str(uuid.uuid4())
+            session_dir = os.path.join(st.repo_store, f"{session['session_id']}")
+            session['session_dir'] = session_dir
+            if not os.path.exists(session_dir):
+                os.makedirs(session_dir, exist_ok=True)
 
         if 'sshAddress' in request.form:
             sshAddress = request.form.get("sshAddress")
             if sshAddress:
                 repo_name = sshAddress.split('/')[-1].replace('.git', '')
-                print(repo_name)
-            
-
-
-                # Construct the user directory using the actual repository name
-                user_dir = os.path.join(st.repo_store, f"{repo_name}_{session['session_id']}")
-                session_dir = os.path.join(st.repo_store, f"{session['session_id']}")
-                _dir = os.path.join(st.repo_store, f"{repo_name}_{session['session_id']}")
-
                 # Set paths for repo and diff
-                repo_path = os.path.join(user_dir, repo_name)
-                diff_path = os.path.join(user_dir, 'diff')
+                repo_path = os.path.join(session.get('session_dir', ''), repo_name)
+                diff_path = os.path.join(session.get('session_dir', ''), 'diff')
 
                 # Store paths in session
-                session['user_dir'] = user_dir
+                # session['user_dir'] = user_dir
                 session['repo_path'] = repo_path
                 session['diff_path'] = diff_path
 
@@ -91,10 +86,7 @@ def main():
 
         # Check if CodeMirror text area form is submitted
         elif 'code1' in request.form and 'code2' in request.form:
-            session_dir = os.path.join(st.repo_store, f"{session['session_id']}")
-            session['session_dir'] = session_dir
-            if not os.path.exists(session_dir):
-                os.makedirs(session_dir, exist_ok=True)
+
 
             code1 = request.form["code1"]
             code2 = request.form["code2"]
