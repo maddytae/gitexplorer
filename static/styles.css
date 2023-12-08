@@ -7,16 +7,16 @@
 }
 .main-page .form-control {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow around input */
-    border-radius: 25px; /* Rounded borders for input */
+    border-radius: 10px; /* Rounded borders for input */
 }
 .main-page .btn-primary {
-    border-radius: 25px; /* Rounded borders for button */
+    border-radius: 10px; /* Rounded borders for button */
 }
 
 
 .custom-bg {
     background-color: #f8f9fa; /* Light grey background */
-    border-radius: 15px;
+    /* border-radius: 15px; */
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
     margin-bottom: 20px; /* Adds space between custom-bg sections */
@@ -39,7 +39,21 @@
 .CodeMirror {
     text-align: left;
     direction: ltr; /* Left-to-right text direction */
-    height: 30rem;
+    height: 60rem;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
+}
+
+.iframe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#diffFrame {
+    width: 80%; /* Adjust the width as needed */
+    height: 600px;
+    border: none;
+    display: block; /* Ensure it's not set to none */
 }

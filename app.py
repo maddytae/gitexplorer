@@ -42,7 +42,8 @@ scheduler = BackgroundScheduler()
 scheduler.add_job(func=clean_old_directories, trigger="interval", hours=0.25)
 scheduler.start()
 
-# Shut down the scheduler when exiting the app
+# Shut down the scheduler w
+# hen exiting the app
 atexit.register(lambda: scheduler.shutdown())
 
 
