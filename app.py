@@ -51,6 +51,8 @@ def main():
     error_message = None
     code1 = ''
     code2 = ''
+    show_checkbox_page = False
+    diff_files = {}
 
     if request.method == "POST":
         # Generate a unique session identifier
@@ -93,6 +95,7 @@ def main():
 
         # Check if CodeMirror text area form is submitted
         elif 'code1' in request.form and 'code2' in request.form:
+            show_checkbox_page = True
 
 
             code1 = request.form["code1"]
@@ -126,11 +129,21 @@ def main():
             with open(output_path3, 'w') as file:
                 subprocess.run(command3, shell=True, stdout=file, check=True)
 
+            diff_files = {
+                'line_diff': url_for('serve_diffs', filename='line.html', session_id=session['session_id'],origin='main'),
+                'no_line_diff': url_for('serve_diffs', filename='no_line.html', session_id=session['session_id'],origin='main'),
+                'side_by_side_diff': url_for('serve_diffs', filename='side_by_side.html', session_id=session['session_id'],origin='main')
+            }
 
 
-            return render_template("main.html", error_message=error_message,code1=code1,code2=code2)
+            # return render_template("main.html", error_message=error_message,code1=code1,code2=code2)
 
-    return render_template("main.html", error_message=error_message,code1=code1,code2=code2)
+    return render_template("main.html", 
+                           error_message=error_message,
+                           code1=code1,
+                           code2=code2,
+                           show_checkbox_page=show_checkbox_page,
+                           diff_files=diff_files)
 
 
 @app.route("/repo/<repo_name>", methods=["GET", "POST"])
@@ -213,11 +226,11 @@ def repo(repo_name):
 
 
     diff_files = {
-        'folder_diff': url_for('serve_diffs', filename='folder_diff.html', session_id=session['session_id']),
-        'folder_diff_mod': url_for('serve_diffs', filename='folder_diff_modifications_only.html', session_id=session['session_id']),
-        'line_diff': url_for('serve_diffs', filename='line.html', session_id=session['session_id']),
-        'no_line_diff': url_for('serve_diffs', filename='no_line.html', session_id=session['session_id']),
-        'side_by_side_diff': url_for('serve_diffs', filename='side_by_side.html', session_id=session['session_id'])
+        'folder_diff': url_for('serve_diffs', filename='folder_diff.html', session_id=session['session_id'],origin='repo'),
+        'folder_diff_mod': url_for('serve_diffs', filename='folder_diff_modifications_only.html', session_id=session['session_id'],origin='repo'),
+        'line_diff': url_for('serve_diffs', filename='line.html', session_id=session['session_id'],origin='repo'),
+        'no_line_diff': url_for('serve_diffs', filename='no_line.html', session_id=session['session_id'],origin='repo'),
+        'side_by_side_diff': url_for('serve_diffs', filename='side_by_side.html', session_id=session['session_id'],origin='repo')
     }
 
     return render_template("repo.html", repo_name=repo_name, 
@@ -239,11 +252,20 @@ def repo(repo_name):
 
 
 
-@app.route("/diffs/<session_id>/<path:filename>")
-def serve_diffs(session_id, filename):
-    # Construct the full path to the file
-    diff_path =session.get('diff_path', '')
-    return send_from_directory(diff_path, filename)
+@app.route("/diffs/<session_id>/<origin>/<path:filename>")
+def serve_diffs(session_id, origin, filename):
+    if origin == 'main':
+        diff_dir = os.path.join(st.repo_store, session_id, "main_diff_path")
+    elif origin == 'repo':
+        diff_dir = os.path.join(st.repo_store, session_id, 'diff')
+    else:
+        return "Invalid origin", 400
+
+    file_path = os.path.join(diff_dir, filename)
+    if os.path.exists(file_path):
+        return send_from_directory(diff_dir, filename)
+    else:
+        return "File not found", 404
 
 
 

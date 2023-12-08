@@ -47,5 +47,17 @@
 
 </div>
 
+{% if show_checkbox_page %}
+    {% include 'checkbox_main.html' %}
+    <!-- iframe for displaying the diff files, initially hidden -->
+    <iframe id="diffFrame" width="100%" height="600px" style="border:none; display: none;"></iframe>
+{% endif %}
+
 <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+
+
+
+
+
+
 {% endblock %}
