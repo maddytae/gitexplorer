@@ -49,6 +49,8 @@ atexit.register(lambda: scheduler.shutdown())
 @app.route("/", methods=["GET", "POST"])
 def main():
     error_message = None
+    code1 = ''
+    code2 = ''
 
     if request.method == "POST":
         # Generate a unique session identifier
@@ -109,9 +111,26 @@ def main():
                 error_message = f"An error occurred while saving files: {e}"
                 logging.error(f"Error: {e}", exc_info=True)
 
-            return redirect(url_for('main'))
+            output_path1 = os.path.join(main_diff_dir, 'line.html')
+            output_path2 = os.path.join(main_diff_dir, 'no_line.html')
+            output_path3 = os.path.join(main_diff_dir, 'side_by_side.html')
 
-    return render_template("main.html", error_message=error_message)
+            command1 = f"git -C {main_diff_dir} diff -U10000 {filename1} {filename2}  |delta --line-numbers | ansifilter --encoding=UTF-8 --html"
+            command2 = f"git -C {main_diff_dir} diff -U10000 {filename1} {filename2}  |delta  | ansifilter --encoding=UTF-8 --html"
+            command3 = f"git -C {main_diff_dir} diff -U10000 {filename1} {filename2}  |delta --width=150 --side-by-side | ansifilter --encoding=UTF-8 --html"
+  
+            with open(output_path1, 'w') as file:
+                subprocess.run(command1, shell=True, stdout=file, check=True)
+            with open(output_path2, 'w') as file:
+                subprocess.run(command2, shell=True, stdout=file, check=True)
+            with open(output_path3, 'w') as file:
+                subprocess.run(command3, shell=True, stdout=file, check=True)
+
+
+
+            return render_template("main.html", error_message=error_message,code1=code1,code2=code2)
+
+    return render_template("main.html", error_message=error_message,code1=code1,code2=code2)
 
 
 @app.route("/repo/<repo_name>", methods=["GET", "POST"])

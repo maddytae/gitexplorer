@@ -40,4 +40,6 @@
     text-align: left;
     direction: ltr; /* Left-to-right text direction */
     height: 30rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
 }
