@@ -33,3 +33,5 @@ var myCodeMirror2 = CodeMirror.fromTextArea(document.getElementById('code2'), {
     lineNumbers: true,
     lineWrapping: false // Disable line wrapping
 });
+
+

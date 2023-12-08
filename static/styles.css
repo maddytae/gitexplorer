@@ -57,3 +57,7 @@
     border: none;
     display: block; /* Ensure it's not set to none */
 }
+
+.main-page .form-control, .main-page .btn-primary {
+    height: 40px; /* Example height, adjust as needed */
+}
