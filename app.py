@@ -51,19 +51,22 @@ def main():
     error_message = None
 
     if request.method == "POST":
-        # Check if SSH address form is submitted
+        # Generate a unique session identifier
+        if 'session_id' not in session:
+            session['session_id'] = str(uuid.uuid4())
+
         if 'sshAddress' in request.form:
             sshAddress = request.form.get("sshAddress")
             if sshAddress:
                 repo_name = sshAddress.split('/')[-1].replace('.git', '')
                 print(repo_name)
             
-                # Generate a unique session identifier
-                if 'session_id' not in session:
-                    session['session_id'] = str(uuid.uuid4())
+
 
                 # Construct the user directory using the actual repository name
                 user_dir = os.path.join(st.repo_store, f"{repo_name}_{session['session_id']}")
+                session_dir = os.path.join(st.repo_store, f"{session['session_id']}")
+                _dir = os.path.join(st.repo_store, f"{repo_name}_{session['session_id']}")
 
                 # Set paths for repo and diff
                 repo_path = os.path.join(user_dir, repo_name)
@@ -88,12 +91,26 @@ def main():
 
         # Check if CodeMirror text area form is submitted
         elif 'code1' in request.form and 'code2' in request.form:
+            session_dir = os.path.join(st.repo_store, f"{session['session_id']}")
+            session['session_dir'] = session_dir
+            if not os.path.exists(session_dir):
+                os.makedirs(session_dir, exist_ok=True)
+
             code1 = request.form["code1"]
             code2 = request.form["code2"]
-            # Process the submitted code
-            print(f"Code 1: {code1}")
-            print(f"Code 2: {code2}")
-            # You can add more code here to handle the text area data
+
+
+            filename1='code1.txt'
+            filename2='code2.txt'
+
+            try:
+                with open(os.path.join(session_dir, filename1), 'w') as file:
+                    file.write(code1)
+                with open(os.path.join(session_dir, filename2), 'w') as file:
+                    file.write(code2)
+            except Exception as e:
+                error_message = f"An error occurred while saving files: {e}"
+                logging.error(f"Error: {e}", exc_info=True)
 
             return redirect(url_for('main'))
 
