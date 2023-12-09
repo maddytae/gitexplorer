@@ -34,4 +34,14 @@ var myCodeMirror2 = CodeMirror.fromTextArea(document.getElementById('code2'), {
     lineWrapping: false // Disable line wrapping
 });
 
+function updateFileName1() {
+    var fileInput = document.getElementById('fileUpload1');
+    var fileUploadStatus = document.getElementById('file-upload-status1');
+    fileUploadStatus.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : '';
+}
 
+function updateFileName2() {
+    var fileInput = document.getElementById('fileUpload2');
+    var fileUploadStatus = document.getElementById('file-upload-status2');
+    fileUploadStatus.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : '';
+}

@@ -1,5 +1,6 @@
 import os
 import subprocess
+import requests
 # import json
 # from io import StringIO
 # import pandas as pd
@@ -126,4 +127,33 @@ def clear_directory(directory):
                 pass  # Add logic here if you have subdirectories
         except Exception as e:
             print(f'Failed to delete {file_path}. Reason: {e}')
+
+def process_paste(code, file_path):
+    with open(file_path, 'w') as file:
+        file.write(code)
+
+
+
+
+def process_link(newInput, file_path):
+    try:
+        response = requests.get(newInput)
+        response.raise_for_status()  # Raises an HTTPError if the HTTP request returned an unsuccessful status code
+        
+        with open(file_path, 'w') as file:
+            file.write(response.text)
+        return "Content saved successfully."
+    except Exception as e:
+        return f"An error occurred: {e}"
+
+
+def process_upload(fileUpload, file_path):
+    if fileUpload:
+        try:
+            fileUpload.save(file_path)
+            return "File uploaded successfully."
+        except Exception as e:
+            return f"An error occurred: {e}"
+    else:
+        return "No file was uploaded."
 
