@@ -50,7 +50,7 @@ atexit.register(lambda: scheduler.shutdown())
 @app.route("/", methods=["GET", "POST"])
 def main():
     error_message = None
-    show_checkbox_page = False
+    show_checkbox_page = True
     diff_files = {}
     code1 = ''
     code2 = '' 
