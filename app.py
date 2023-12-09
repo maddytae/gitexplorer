@@ -56,8 +56,8 @@ def main():
     code2 = '' 
     newInput1 = ''
     newInput2 = ''
-    uname1 = session.get('uname1', '')  # Initialize from session
-    uname2 = session.get('uname2', '')  # Initialize from session
+    uname1 = ''  # Initialize from session
+    uname2 = ''  # Initialize from session
 
 
     if request.method == "POST":
@@ -136,7 +136,7 @@ def main():
                     fileUpload1=request.files["fileUpload1"]
                     session['uname1'] = fileUpload1.filename
                     fileUpload1.save(file_path1)  #later see we can save in original file format
-                    
+                    uname1 = session.get('uname1', '')
 
 
             for v in ['code2', 'newInput2', 'fileUpload2']:
@@ -161,6 +161,7 @@ def main():
                     fileUpload2=request.files["fileUpload2"]
                     session['uname2'] = fileUpload2.filename
                     fileUpload2.save(file_path2)
+                    uname2 = session.get('uname2', '')
 
                     # ut.process_upload(fileUpload2,file_path2)
 
@@ -187,7 +188,7 @@ def main():
             }
 
 
-
+    
 
     return render_template("main.html", 
                            error_message=error_message,
