@@ -95,12 +95,38 @@ def main():
                     logging.error(f"Error: {e}", exc_info=True)
 
         # Check if CodeMirror text area form is submitted
-        elif 'code1' in request.form and 'code2' in request.form:
+        # elif 'code1' in request.form and 'code2' in request.form:
+        #     show_checkbox_page = True
+
+        elif any(request.form.get(key) for key in ['paste1', 'newInput1', 'fileUpload1']) and \
+            any(request.form.get(key) for key in ['paste2', 'newInput2', 'fileUpload2']):
             show_checkbox_page = True
 
+            for v in ['paste1', 'newInput1', 'fileUpload1']:
+                if v == 'paste1' and request.form.get('paste1'):
+                    code1 = request.form["paste1"]
+                    break
+                elif v == 'newInput1' and request.form.get('newInput1'):
+                    # Logic for newInput1
+                    break
+                elif v == 'fileUpload1' and request.form.get('fileUpload1'):
+                    break
+                    # Logic for fileUpload1
 
-            code1 = request.form["code1"]
-            code2 = request.form["code2"]
+            for v in ['paste2', 'newInput2', 'fileUpload2']:
+                if v == 'paste2' and request.form.get('paste2'):
+                    code2 = request.form["paste2"]
+                    break
+                elif v == 'newInput2' and request.form.get('newInput2'):
+                    # Logic for newInput2
+                    break
+                elif v == 'fileUpload2' and request.form.get('fileUpload2'):
+                    break
+                    # Logic for fileUpload2              
+
+
+            # code1 = request.form["paste1"]
+            # code2 = request.form["paste2"]
 
 
             filename1='code1.txt'
