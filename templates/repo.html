@@ -8,34 +8,28 @@
         <form method="post" action="{{ url_for_repo }}">
             {% include 'dropdown.html' %}
         </form>
-      
     </div>
 
     <div class="row">
-        <!-- Single column containing both folders and files checkboxes -->
         <div class="col-md-12">
-            <!-- Folder Checkboxes Section -->
             <div class="folder-checkboxes">
                 {% include 'checkbox_folders.html' %}
             </div>
-
-            <!-- Horizontal Divider -->
-            <hr>
-
-            <!-- File Checkboxes Section -->
+            <hr> <!-- Horizontal Divider -->
             <div class="file-checkboxes">
                 {% include 'checkbox_files.html' %}
             </div>
+      
+              
         </div>
     </div>
-
- 
-
-    <!-- iframe for folder_diff.html, initially hidden -->
-    <iframe id="diffFrame" src="{{ diff_files['folder_diff'] }}" width="100%" height="600px" style="border:none; display: none;"></iframe>
 
 
 </div>
 
+<div class="iframe-container">
+    <!-- <iframe id="diffFrame" width="100%" height="600px" style="border:none; display: none;"></iframe> -->
+    <iframe id="diffFrame" width="100%" height="600px"></iframe>
 
+</div>
 {% endblock %}

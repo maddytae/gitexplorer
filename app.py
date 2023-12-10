@@ -1,8 +1,8 @@
 import os
 from flask import Flask
-from repo_route import repo_blueprint
-from main_route import main_blueprint
-from serve_route import serve_blueprint
+from app.repo_route import repo_blueprint
+from app.main_route import main_blueprint
+from app.serve_route import serve_blueprint
 import settings
 import shutil
 import time
