@@ -1,111 +1,58 @@
 <!-- Row for Branch Dropdowns -->
 <div class="row mb-3">
-
-    <div class="row mb-3">
-        <!-- Heading for the Diff Type with reduced margin -->
-        <div class="col-md-12">
-            <h6 class="heading-margin" style="text-decoration: underline;">Select repo parameters:</h6>
-        </div>
-    </div>
-
-    <!-- Select First Branch Dropdown -->
     <div class="col-md-6">
-     
         <select class="form-select" name="branch1" id="branch1" onchange="this.form.submit()">
-            <option value="" {% if not selected_branch1 %}selected{% endif %}>Select first branch</option>
+            <option value="" {% if not selected_branch1 and branches|length != 1 %}selected{% endif %}>Select first branch</option>
             {% for branch in branches %}
-            <option value="{{ branch }}" {% if branch == selected_branch1 %}selected{% endif %}>{{ branch }}</option>
+            <option value="{{ branch }}" {% if branch == selected_branch1 or branches|length == 1 %}selected{% endif %}>{{ branch }}</option>
             {% endfor %}
         </select>
     </div>
-    <!-- Select Second Branch Dropdown -->
     <div class="col-md-6">
-    
         <select class="form-select" name="branch2" id="branch2" onchange="this.form.submit()">
-            <option value="" {% if not selected_branch2 %}selected{% endif %}>Select second branch</option>
+            <option value="" {% if not selected_branch2 and branches|length != 1 %}selected{% endif %}>Select second branch</option>
             {% for branch in branches %}
-            <option value="{{ branch }}" {% if branch == selected_branch2 %}selected{% endif %}>{{ branch }}</option>
+            <option value="{{ branch }}" {% if branch == selected_branch2 or branches|length == 1 %}selected{% endif %}>{{ branch }}</option>
             {% endfor %}
         </select>
     </div>
 </div>
-
-
-
-
-
-
-
 
 <!-- Row for Author Dropdowns -->
 <div class="row mb-3">
-    <!-- Select First Author Dropdown -->
     <div class="col-md-6">
-
         <select class="form-select" name="author1" id="author1" onchange="this.form.submit()">
-            <option value="" {% if not selected_author1 %}selected{% endif %}>Select first author</option>
+            <option value="" {% if not selected_author1 and authors1|length != 1 %}selected{% endif %}>Select first author</option>
             {% for author in authors1 %}
-            <option value="{{ author }}" {% if author == selected_author1 %}selected{% endif %}>{{ author }}</option>
+            <option value="{{ author }}" {% if author == selected_author1 or authors1|length == 1 %}selected{% endif %}>{{ author }}</option>
             {% endfor %}
         </select>
     </div>
-    <!-- Select Second Author Dropdown -->
     <div class="col-md-6">
-   
         <select class="form-select" name="author2" id="author2" onchange="this.form.submit()">
-            <option value="" {% if not selected_author2 %}selected{% endif %}>Select second author</option>
+            <option value="" {% if not selected_author2 and authors2|length != 1 %}selected{% endif %}>Select second author</option>
             {% for author in authors2 %}
-            <option value="{{ author }}" {% if author == selected_author2 %}selected{% endif %}>{{ author }}</option>
+            <option value="{{ author }}" {% if author == selected_author2 or authors2|length == 1 %}selected{% endif %}>{{ author }}</option>
             {% endfor %}
         </select>
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- Row for Commit Dropdowns -->
 <div class="row mb-3">
-    <!-- Select First Commit Dropdown -->
     <div class="col-md-6">
-
         <select class="form-select" name="commit1" id="commit1" onchange="this.form.submit()">
-            <option value="" {% if not selected_commit1 %}selected{% endif %}>Select first commit</option>
+            <option value="" {% if not selected_commit1 and commits1|length != 1 %}selected{% endif %}>Select first commit</option>
             {% for commit in commits1 %}
-            <option value="{{ commit }}" {% if commit == selected_commit1 %}selected{% endif %}>{{ commit }}</option>
+            <option value="{{ commit }}" {% if commit == selected_commit1 or commits1|length == 1 %}selected{% endif %}>{{ commit }}</option>
             {% endfor %}
         </select>
     </div>
-    <!-- Select Second Commit Dropdown -->
     <div class="col-md-6">
-   
         <select class="form-select" name="commit2" id="commit2" onchange="this.form.submit()">
-            <option value="" {% if not selected_commit2 %}selected{% endif %}>Select second commit</option>
+            <option value="" {% if not selected_commit2 and commits2|length != 1 %}selected{% endif %}>Select second commit</option>
             {% for commit in commits2 %}
-            <option value="{{ commit }}" {% if commit == selected_commit2 %}selected{% endif %}>{{ commit }}</option>
+            <option value="{{ commit }}" {% if commit == selected_commit2 or commits2|length == 1 %}selected{% endif %}>{{ commit }}</option>
             {% endfor %}
         </select>
     </div>
@@ -113,13 +60,12 @@
 
 <!-- Row for File Path Dropdown -->
 <div class="row mb-3">
-<div class="col-md-12">
-
-    <select class="form-select" name="filePath" id="filePath" onchange="this.form.submit()">
-        <option value="" {% if not selected_filePath %}selected{% endif %}>Select one of the modified files</option>
-        {% for filePath in filePaths %}
-        <option value="{{ filePath }}" {% if filePath == selected_filePath %}selected{% endif %}>{{ filePath }}</option>
-        {% endfor %}
-    </select>
-</div>
+    <div class="col-md-12">
+        <select class="form-select" name="filePath" id="filePath" onchange="this.form.submit()">
+            <option value="" {% if not selected_filePath and filePaths|length != 1 %}selected{% endif %}>Select one of the modified files</option>
+            {% for filePath in filePaths %}
+            <option value="{{ filePath }}" {% if filePath == selected_filePath or filePaths|length == 1 %}selected{% endif %}>{{ filePath }}</option>
+            {% endfor %}
+        </select>
+    </div>
 </div>

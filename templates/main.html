@@ -14,100 +14,76 @@
 
     <div class="text-center" style="padding-top: 10vh; max-width: 600px; margin: auto;">
         <h1 class="display-4 mb-4">MyGitExplorer</h1>
-        <form method="post" class="mt-4" >
+        <form method="post" class="mt-4">
             <div class="form-group d-flex justify-content-between align-items-center" style="width: 100%;">
-
                 <input type="text" class="form-control form-control-lg mr-4 border-radius" id="sshAddress"
                     name="sshAddress" placeholder="Enter SSH Address" style="text-align: center; 
                        flex-grow: 1; margin-right: 1rem;">
 
-
-
-                <!-- <button type="submit" class="btn btn-primary btn-lg border-radius"
-                    style="white-space: nowrap;">Initialize</button> -->
-
-                    <button type="submit" class="btn btn-primary">Initialize</button>
-
+                <!-- Updated Initialize button with btn-secondary class -->
+                <button type="submit" class="btn btn-secondary">Initialize</button>
             </div>
         </form>
     </div>
 
     <div class="text-center" style="padding-top: 2vh; max-width: 800px; margin: auto;">
         <form method="post" class="mt-4" enctype="multipart/form-data">
-            <div class="text-center" style="padding-top: 2vh; max-width: 800px; margin: auto;">
-                <div style="display: flex; justify-content: space-between;">
-                    <div style="width: 49%; margin-right: 1rem;">
-                        <label for="code1" style="display: block; text-align: left;">Paste content below (priority1)</label>
-                        <textarea id="code1" name="code1">{{ code1 }}</textarea>
-                    </div>
-                    <div style="width: 49%;">
-                        <label for="code2" style="display: block; text-align: left;">Paste content below (priority1)</label>
-                        <textarea id="code2" name="code2">{{ code2 }}</textarea>
-                    </div>
+            <div style="display: flex; justify-content: space-between;">
+                <div style="width: 49%; margin-right: 1rem;">
+                    <label for="code1" style="display: block; text-align: left;">Paste content below (priority1)</label>
+                    <textarea id="code1" name="code1">{{ code1 }}</textarea>
                 </div>
-
-                <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-<!-- File Upload for Input 1 -->
-<div style="width: 49%; margin-right: 1rem;">
-    <label for="newInput1" style="display: block; text-align: left;">Paste link (priority2)</label>
-    <input type="text" class="form-control" id="newInput1" name="newInput1" value="{{newInput1}}">
-    <div style="margin-top: 10px; text-align: left;">
-        <label for="fileUpload1">Upload File (priority3)</label>
-        <button type="button" onclick="document.getElementById('fileUpload1').click();">Choose File</button>
-        <span id="file-upload-status1">{{ uname1 }}</span>
-        <input type="file" id="fileUpload1" name="fileUpload1" style="display: none;" onchange="updateFileName1()">
-    </div>
-</div>
-
-<!-- File Upload for Input 2 -->
-<div style="width: 49%;">
-    <label for="newInput2" style="display: block; text-align: left;">Paste link (priority2)</label>
-    <input type="text" class="form-control" id="newInput2" name="newInput2" value="{{newInput2}}">
-    <div style="margin-top: 10px; text-align: left;">
-        <label for="fileUpload2">Upload File (priority3)</label>
-        <button type="button" onclick="document.getElementById('fileUpload2').click();">Choose File</button>
-        <span id="file-upload-status2">{{ uname2 }}</span>
-        <input type="file" id="fileUpload2" name="fileUpload2" style="display: none;" onchange="updateFileName2()">
-    </div>
-</div>
-                </div>
-
-                <!-- ... remaining content ... -->
-                <div style="margin-top: 20px;">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                <div style="width: 49%;">
+                    <label for="code2" style="display: block; text-align: left;">Paste content below (priority1)</label>
+                    <textarea id="code2" name="code2">{{ code2 }}</textarea>
                 </div>
             </div>
 
+            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <!-- File Upload for Input 1 -->
+                <div style="width: 49%; margin-right: 1rem;">
+                    <label for="newInput1" style="display: block; text-align: left;">Paste link (priority2)</label>
+                    <input type="text" class="form-control" id="newInput1" name="newInput1" value="{{newInput1}}">
+                    <div style="margin-top: 10px; text-align: left;">
+                        <label for="fileUpload1">Upload File (priority3)</label>
+                        <button type="button" onclick="document.getElementById('fileUpload1').click();">Choose File</button>
+                        <span id="file-upload-status1">{{ uname1 }}</span>
+                        <input type="file" id="fileUpload1" name="fileUpload1" style="display: none;" onchange="updateFileName1()">
+                    </div>
+                </div>
+
+                <!-- File Upload for Input 2 -->
+                <div style="width: 49%;">
+                    <label for="newInput2" style="display: block; text-align: left;">Paste link (priority2)</label>
+                    <input type="text" class="form-control" id="newInput2" name="newInput2" value="{{newInput2}}">
+                    <div style="margin-top: 10px; text-align: left;">
+                        <label for="fileUpload2">Upload File (priority3)</label>
+                        <button type="button" onclick="document.getElementById('fileUpload2').click();">Choose File</button>
+                        <span id="file-upload-status2">{{ uname2 }}</span>
+                        <input type="file" id="fileUpload2" name="fileUpload2" style="display: none;" onchange="updateFileName2()">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Updated Submit button with btn-secondary class -->
+            <div style="margin-top: 20px;">
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </div>
         </form>
     </div>
 
-
-
     {% if show_checkbox_page %}
-
-
-    <div style="margin-left: 10%; margin-right: 10%;"> <!-- Adjust left and right margins -->
+    <hr> <!-- Horizontal Divider -->
+    <div style="margin-left: 10%; margin-right: 10%;">
         {% include 'checkbox_files.html' %}
     </div>
-
-
+    <hr> <!-- Horizontal Divider -->
     {% endif %}
 
-    <!-- Add a container div around the iframe -->
     <div class="iframe-container">
-        <!-- <iframe id="diffFrame" width="100%" height="600px" style="border:none; display: none;"></iframe> -->
         <iframe id="diffFrame" width="100%" height="600px"></iframe>
-   
     </div>
 
-
- 
-
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
-
-
 </div>
-
-
-
 {% endblock %}

@@ -73,9 +73,9 @@ def repo(repo_name):
             output_path4 = os.path.join(diff_path, 'no_line.html')
             output_path5 = os.path.join(diff_path, 'side_by_side.html')
             
-            command3 = f"git -C {repo_path} diff -U10000 {selected_commit1} {selected_commit2} {selected_filePath} |delta --line-numbers | ansifilter --encoding=UTF-8 --html"
-            command4 = f"git -C {repo_path} diff -U10000 {selected_commit1} {selected_commit2} {selected_filePath}|delta  | ansifilter --encoding=UTF-8 --html"
-            command5 = f"git -C {repo_path} diff -U10000 {selected_commit1} {selected_commit2} {selected_filePath}|delta --width=150 --side-by-side | ansifilter --encoding=UTF-8 --html"
+            command3 = f"git -C {repo_path} diff -w -U10000 {selected_commit1} {selected_commit2} {selected_filePath} |delta --line-numbers | ansifilter --encoding=UTF-8 --html"
+            command4 = f"git -C {repo_path} diff -w -U10000 {selected_commit1} {selected_commit2} {selected_filePath}|delta  | ansifilter --encoding=UTF-8 --html"
+            command5 = f"git -C {repo_path} diff -w -U10000 {selected_commit1} {selected_commit2} {selected_filePath}|delta --width=150 --side-by-side | ansifilter --encoding=UTF-8 --html"
   
             with open(output_path3, 'w') as file:
                 subprocess.run(command3, shell=True, stdout=file, check=True)

@@ -4,6 +4,12 @@
 
 {% block body %}
 <div class="container mt-5">
+    <!-- Back to Main Page Link -->
+    <div class="mb-3">
+        <!-- Update the route name in url_for -->
+        <a href="{{ url_for('main.main') }}" class="btn btn-secondary">Back to Main Page</a>
+    </div>
+
     <div class="custom-bg">
         <form method="post" action="{{ url_for_repo }}">
             {% include 'dropdown.html' %}
@@ -19,17 +25,12 @@
             <div class="file-checkboxes">
                 {% include 'checkbox_files.html' %}
             </div>
-      
-              
+            <hr> <!-- Horizontal Divider -->
         </div>
     </div>
 
-
-</div>
-
-<div class="iframe-container">
-    <!-- <iframe id="diffFrame" width="100%" height="600px" style="border:none; display: none;"></iframe> -->
-    <iframe id="diffFrame" width="100%" height="600px"></iframe>
-
+    <div class="iframe-container">
+        <iframe id="diffFrame" width="100%" height="600px"></iframe>
+    </div>
 </div>
 {% endblock %}
