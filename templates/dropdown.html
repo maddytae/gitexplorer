@@ -4,16 +4,14 @@
         <select class="form-select" name="branch1" id="branch1" onchange="this.form.submit()">
             <option value="" {% if not selected_branch1 and branches|length != 1 %}selected{% endif %}>Select first branch</option>
             {% for branch in branches %}
-            <option value="{{ branch }}" {% if branch == selected_branch1 or branches|length == 1 %}selected{% endif %}>{{ branch }}</option>
-            {% endfor %}
+            <option value="{{ branch }}" {% if branch == selected_branch1 %}selected{% endif %}>{{ branch }}</option>            {% endfor %}
         </select>
     </div>
     <div class="col-md-6">
         <select class="form-select" name="branch2" id="branch2" onchange="this.form.submit()">
             <option value="" {% if not selected_branch2 and branches|length != 1 %}selected{% endif %}>Select second branch</option>
             {% for branch in branches %}
-            <option value="{{ branch }}" {% if branch == selected_branch2 or branches|length == 1 %}selected{% endif %}>{{ branch }}</option>
-            {% endfor %}
+            <option value="{{ branch }}" {% if branch == selected_branch1 %}selected{% endif %}>{{ branch }}</option>            {% endfor %}
         </select>
     </div>
 </div>
