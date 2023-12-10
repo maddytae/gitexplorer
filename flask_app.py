@@ -15,12 +15,12 @@ logging.basicConfig(level=logging.DEBUG)
 
 st = settings.PrepareSettings()
 
-app = Flask(__name__)
-app.secret_key = "khiadh2727sdhks888s"
+flask_app = Flask(__name__)
+flask_app.secret_key = "khiadh2727sdhks888s"
 # Register the blueprint
-app.register_blueprint(repo_blueprint)
-app.register_blueprint(main_blueprint)
-app.register_blueprint(serve_blueprint, url_prefix='/')
+flask_app.register_blueprint(repo_blueprint)
+flask_app.register_blueprint(main_blueprint)
+flask_app.register_blueprint(serve_blueprint, url_prefix='/')
 
 def clean_old_directories(base_path=st.repo_store, age_threshold_hours=1):
     current_time = time.time()
@@ -49,7 +49,7 @@ scheduler.start()
 atexit.register(lambda: scheduler.shutdown())
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    flask_app.run(debug=True)
 
 
 
