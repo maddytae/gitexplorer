@@ -50,7 +50,7 @@ atexit.register(lambda: scheduler.shutdown())
 @app.route("/", methods=["GET", "POST"])
 def main():
     error_message = None
-    show_checkbox_page = True
+    show_checkbox_page = True 
     diff_files = {}
     code1 = ''
     code2 = '' 
@@ -84,6 +84,8 @@ def main():
                 # Set paths for repo and diff
                 repo_path = os.path.join(session_dir, repo_name)
                 diff_path = os.path.join(session_dir, 'diff')
+
+                ut.clear_directory(diff_path) #clears the diff_path
 
                 # Store paths in session
                 session['repo_path'] = repo_path
