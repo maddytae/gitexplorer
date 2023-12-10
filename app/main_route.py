@@ -142,9 +142,9 @@ def main():
             output_path2 = os.path.join(main_diff_dir, 'no_line.html')
             output_path3 = os.path.join(main_diff_dir, 'side_by_side.html')
 
-            command1 = f"git -C {main_diff_dir} diff -w -U10000 {filename1} {filename2}  |delta --line-numbers | ansifilter --encoding=UTF-8 --html"
-            command2 = f"git -C {main_diff_dir} diff -w -U10000 {filename1} {filename2}  |delta  | ansifilter --encoding=UTF-8 --html"
-            command3 = f"git -C {main_diff_dir} diff -w -U10000 {filename1} {filename2}  |delta --width=150 --side-by-side | ansifilter --encoding=UTF-8 --html"
+            command1 = f"git -C {main_diff_dir} diff -U10000 {filename1} {filename2}  |delta --line-numbers | ansifilter --encoding=UTF-8 --html"
+            command2 = f"git -C {main_diff_dir} diff -U10000 {filename1} {filename2}  |delta  | ansifilter --encoding=UTF-8 --html"
+            command3 = f"git -C {main_diff_dir} diff -U10000 {filename1} {filename2}  |delta --width=150 --side-by-side | ansifilter --encoding=UTF-8 --html"
   
             with open(output_path1, 'w') as file:
                 subprocess.run(command1, shell=True, stdout=file, check=True)
