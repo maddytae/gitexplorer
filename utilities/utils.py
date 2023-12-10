@@ -1,6 +1,7 @@
 import os
 import subprocess
 import requests
+import shutil
 # import json
 # from io import StringIO
 # import pandas as pd
@@ -133,18 +134,20 @@ def process_paste(code, file_path):
         file.write(code)
 
 
-
-
-def process_link(newInput, file_path):
+#put this to yaml
+def process_link(newInput, file_path, size):
+    size_limit=size*1024*1024  # size is in mb and size_limit is translating it to byte.
     try:
         response = requests.get(newInput)
-        response.raise_for_status()  # Raises an HTTPError if the HTTP request returned an unsuccessful status code
-        
-        with open(file_path, 'w') as file:
-            file.write(response.text)
-        return "Content saved successfully."
+        response.raise_for_status()
+
+        if len(response.content) < size_limit:
+            with open(file_path, 'w', encoding='utf-8') as file:
+                file.write(response.text)
+
     except Exception as e:
         return f"An error occurred: {e}"
+
 
 
 def process_upload(fileUpload, file_path):
@@ -157,3 +160,7 @@ def process_upload(fileUpload, file_path):
     else:
         return "No file was uploaded."
 
+def recreate_directory(directory_path):
+    if os.path.exists(directory_path):
+        shutil.rmtree(directory_path)  # Removes the directory even if it contains files/folders
+    os.makedirs(directory_path, exist_ok=True) 

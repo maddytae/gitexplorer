@@ -73,8 +73,8 @@ def main():
         session['main_diff_dir'] = main_diff_dir
         if not os.path.exists(session_dir):
             os.makedirs(session_dir, exist_ok=True)
-        if not os.path.exists(main_diff_dir):
-            os.makedirs(main_diff_dir, exist_ok=True)
+        ut.recreate_directory(main_diff_dir)
+
 
         if 'sshAddress' in request.form:
             sshAddress = request.form.get("sshAddress")
@@ -85,7 +85,7 @@ def main():
                 repo_path = os.path.join(session_dir, repo_name)
                 diff_path = os.path.join(session_dir, 'diff')
 
-                ut.clear_directory(diff_path) #clears the diff_path
+                # ut.clear_directory(diff_path) #clears the diff_path
 
                 # Store paths in session
                 session['repo_path'] = repo_path
@@ -108,6 +108,9 @@ def main():
             (any(request.form.get(key) for key in ['code2', 'newInput2']) or 
             'fileUpload2' in request.files):
             show_checkbox_page = True
+
+
+
             filename1='file1.txt'
             filename2='file2.txt'
 
@@ -128,7 +131,7 @@ def main():
                     newInput1 = ''
                     fileUpload1 = None
                     newInput1=request.form["newInput1"]
-                    ut.process_link(newInput1,file_path1) # this should save file1.txt in the destination folder
+                    ut.process_link(newInput1,file_path1,st.link_size_limit) # this should save file1.txt in the destination folder
                     break
 
                 elif v == 'fileUpload1' and 'fileUpload1' in request.files:
@@ -154,7 +157,7 @@ def main():
                     newInput2 = ''
                     fileUpload2 = None
                     newInput2=request.form["newInput2"]
-                    ut.process_link(newInput2,file_path2)
+                    ut.process_link(newInput2,file_path2,st.link_size_limit)
                     break
                 elif v == 'fileUpload2' and 'fileUpload2' in request.files:
                     code2 = ''
@@ -209,8 +212,8 @@ def repo(repo_name):
 
     repo_path=session.get('repo_path', '')
     diff_path=session.get('diff_path','')
-    os.makedirs(repo_path,exist_ok=True)
-    os.makedirs(diff_path,exist_ok=True)
+    ut.recreate_directory(diff_path)
+
 
 
     branches = ut.get_git_branches(repo_path) if repo_path else []
