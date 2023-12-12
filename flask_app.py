@@ -41,7 +41,7 @@ def clean_old_directories(base_path=st.repo_store, age_threshold_hours=1):
 
 # Initialize scheduler; clean up every 15 seconds for any folder that is more than 1 hour old
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=clean_old_directories, trigger="interval", hours=0.25)
+scheduler.add_job(func=clean_old_directories, trigger="interval", hours=300)
 scheduler.start()
 
 # Shut down the scheduler w
