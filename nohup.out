@@ -1,0 +1,541 @@
+[2023-12-13 02:45:34 +0000] [2054] [INFO] Starting gunicorn 21.2.0
+[2023-12-13 02:45:34 +0000] [2054] [INFO] Listening at: http://0.0.0.0:8000 (2054)
+[2023-12-13 02:45:34 +0000] [2054] [INFO] Using worker: sync
+[2023-12-13 02:45:34 +0000] [2055] [INFO] Booting worker with pid: 2055
+[2023-12-13 02:45:34 +0000] [2056] [INFO] Booting worker with pid: 2056
+[2023-12-13 02:45:34 +0000] [2057] [INFO] Booting worker with pid: 2057
+[2023-12-13 02:45:34 +0000] [2058] [INFO] Booting worker with pid: 2058
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+DEBUG:tzlocal:/etc/localtime found
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:45:34.683941+00:00 (in 1079999.995850 seconds)
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:45:34.685207+00:00 (in 1079999.996817 seconds)
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:45:34.686709+00:00 (in 1079999.997972 seconds)
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:45:34.686605+00:00 (in 1079999.997684 seconds)
+[2023-12-13 02:47:15 +0000] [2054] [INFO] Handling signal: int
+[2023-12-13 02:47:15 +0000] [2057] [INFO] Worker exiting (pid: 2057)
+[2023-12-13 02:47:15 +0000] [2058] [INFO] Worker exiting (pid: 2058)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 02:47:15 +0000] [2055] [INFO] Worker exiting (pid: 2055)
+[2023-12-13 02:47:15 +0000] [2056] [INFO] Worker exiting (pid: 2056)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 02:47:15 +0000] [2054] [INFO] Shutting down: Master
+[2023-12-13 02:51:17 +0000] [2085] [INFO] Starting gunicorn 21.2.0
+[2023-12-13 02:51:17 +0000] [2085] [INFO] Listening at: http://0.0.0.0:8000 (2085)
+[2023-12-13 02:51:17 +0000] [2085] [INFO] Using worker: sync
+[2023-12-13 02:51:17 +0000] [2086] [INFO] Booting worker with pid: 2086
+[2023-12-13 02:51:17 +0000] [2087] [INFO] Booting worker with pid: 2087
+[2023-12-13 02:51:17 +0000] [2088] [INFO] Booting worker with pid: 2088
+[2023-12-13 02:51:17 +0000] [2089] [INFO] Booting worker with pid: 2089
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:51:18.033175+00:00 (in 1079999.990471 seconds)
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:51:18.097172+00:00 (in 1079999.982777 seconds)
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:51:18.205341+00:00 (in 1079999.998299 seconds)
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:51:18.205341+00:00 (in 1079999.998299 seconds)
+[2023-12-13 02:56:45 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2086)
+[2023-12-13 02:56:45 +0000] [2086] [INFO] Worker exiting (pid: 2086)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 02:56:45 +0000] [2085] [ERROR] Worker (pid:2086) exited with code 1
+[2023-12-13 02:56:45 +0000] [2085] [ERROR] Worker (pid:2086) exited with code 1.
+[2023-12-13 02:56:45 +0000] [2095] [INFO] Booting worker with pid: 2095
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:56:45.546589+00:00 (in 1079999.998873 seconds)
+[2023-12-13 02:57:15 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2088)
+[2023-12-13 02:57:15 +0000] [2088] [INFO] Worker exiting (pid: 2088)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 02:57:15 +0000] [2085] [ERROR] Worker (pid:2088) exited with code 1
+[2023-12-13 02:57:15 +0000] [2085] [ERROR] Worker (pid:2088) exited with code 1.
+[2023-12-13 02:57:15 +0000] [2097] [INFO] Booting worker with pid: 2097
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:57:15.791992+00:00 (in 1079999.998428 seconds)
+[2023-12-13 02:57:45 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2087)
+[2023-12-13 02:57:45 +0000] [2087] [INFO] Worker exiting (pid: 2087)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 02:57:45 +0000] [2085] [ERROR] Worker (pid:2087) exited with code 1
+[2023-12-13 02:57:45 +0000] [2085] [ERROR] Worker (pid:2087) exited with code 1.
+[2023-12-13 02:57:45 +0000] [2099] [INFO] Booting worker with pid: 2099
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:57:45.895893+00:00 (in 1079999.998764 seconds)
+[2023-12-13 02:58:15 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2095)
+[2023-12-13 02:58:15 +0000] [2095] [INFO] Worker exiting (pid: 2095)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 02:58:15 +0000] [2085] [ERROR] Worker (pid:2095) exited with code 1
+[2023-12-13 02:58:15 +0000] [2085] [ERROR] Worker (pid:2095) exited with code 1.
+[2023-12-13 02:58:15 +0000] [2101] [INFO] Booting worker with pid: 2101
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:58:16.051680+00:00 (in 1079999.998861 seconds)
+[2023-12-13 02:58:46 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2089)
+[2023-12-13 02:58:46 +0000] [2089] [INFO] Worker exiting (pid: 2089)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 02:58:46 +0000] [2085] [ERROR] Worker (pid:2089) exited with code 1
+[2023-12-13 02:58:46 +0000] [2085] [ERROR] Worker (pid:2089) exited with code 1.
+[2023-12-13 02:58:46 +0000] [2103] [INFO] Booting worker with pid: 2103
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:58:47.178885+00:00 (in 1079999.998841 seconds)
+[2023-12-13 02:59:17 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2099)
+[2023-12-13 02:59:17 +0000] [2099] [INFO] Worker exiting (pid: 2099)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 02:59:17 +0000] [2085] [ERROR] Worker (pid:2099) exited with code 1
+[2023-12-13 02:59:17 +0000] [2085] [ERROR] Worker (pid:2099) exited with code 1.
+[2023-12-13 02:59:17 +0000] [2105] [INFO] Booting worker with pid: 2105
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:59:17.339277+00:00 (in 1079999.998218 seconds)
+[2023-12-13 02:59:47 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2097)
+[2023-12-13 02:59:47 +0000] [2097] [INFO] Worker exiting (pid: 2097)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 02:59:47 +0000] [2085] [ERROR] Worker (pid:2097) exited with code 1
+[2023-12-13 02:59:47 +0000] [2085] [ERROR] Worker (pid:2097) exited with code 1.
+[2023-12-13 02:59:47 +0000] [2107] [INFO] Booting worker with pid: 2107
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 14:59:47.499868+00:00 (in 1079999.998356 seconds)
+[2023-12-13 03:00:17 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2103)
+[2023-12-13 03:00:17 +0000] [2103] [INFO] Worker exiting (pid: 2103)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 03:00:17 +0000] [2085] [ERROR] Worker (pid:2103) exited with code 1
+[2023-12-13 03:00:17 +0000] [2085] [ERROR] Worker (pid:2103) exited with code 1.
+[2023-12-13 03:00:17 +0000] [2109] [INFO] Booting worker with pid: 2109
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 15:00:17.721121+00:00 (in 1079999.998710 seconds)
+[2023-12-13 03:00:47 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2101)
+[2023-12-13 03:00:47 +0000] [2101] [INFO] Worker exiting (pid: 2101)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 03:00:47 +0000] [2085] [ERROR] Worker (pid:2101) exited with code 1
+[2023-12-13 03:00:47 +0000] [2085] [ERROR] Worker (pid:2101) exited with code 1.
+[2023-12-13 03:00:47 +0000] [2111] [INFO] Booting worker with pid: 2111
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 15:00:47.927909+00:00 (in 1079999.998513 seconds)
+[2023-12-13 03:04:16 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2107)
+[2023-12-13 03:04:16 +0000] [2107] [INFO] Worker exiting (pid: 2107)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 03:04:17 +0000] [2085] [ERROR] Worker (pid:2107) exited with code 1
+[2023-12-13 03:04:17 +0000] [2085] [ERROR] Worker (pid:2107) exited with code 1.
+[2023-12-13 03:04:17 +0000] [2113] [INFO] Booting worker with pid: 2113
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 15:04:17.292496+00:00 (in 1079999.997350 seconds)
+[2023-12-13 03:04:47 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2105)
+[2023-12-13 03:04:47 +0000] [2105] [INFO] Worker exiting (pid: 2105)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 03:04:47 +0000] [2085] [ERROR] Worker (pid:2105) exited with code 1
+[2023-12-13 03:04:47 +0000] [2085] [ERROR] Worker (pid:2105) exited with code 1.
+[2023-12-13 03:04:47 +0000] [2115] [INFO] Booting worker with pid: 2115
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 15:04:47.495533+00:00 (in 1079999.998602 seconds)
+[2023-12-13 03:05:17 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2109)
+[2023-12-13 03:05:17 +0000] [2109] [INFO] Worker exiting (pid: 2109)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 03:05:17 +0000] [2085] [ERROR] Worker (pid:2109) exited with code 1
+[2023-12-13 03:05:17 +0000] [2085] [ERROR] Worker (pid:2109) exited with code 1.
+[2023-12-13 03:05:17 +0000] [2117] [INFO] Booting worker with pid: 2117
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 15:05:17.551274+00:00 (in 1079999.998854 seconds)
+[2023-12-13 03:05:47 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2113)
+[2023-12-13 03:05:47 +0000] [2113] [INFO] Worker exiting (pid: 2113)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 03:05:47 +0000] [2085] [ERROR] Worker (pid:2113) exited with code 1
+[2023-12-13 03:05:47 +0000] [2085] [ERROR] Worker (pid:2113) exited with code 1.
+[2023-12-13 03:05:47 +0000] [2119] [INFO] Booting worker with pid: 2119
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 15:05:47.739726+00:00 (in 1079999.998484 seconds)
+[2023-12-13 03:06:17 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2117)
+[2023-12-13 03:06:17 +0000] [2117] [INFO] Worker exiting (pid: 2117)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 03:06:17 +0000] [2085] [ERROR] Worker (pid:2117) exited with code 1
+[2023-12-13 03:06:17 +0000] [2085] [ERROR] Worker (pid:2117) exited with code 1.
+[2023-12-13 03:06:17 +0000] [2121] [INFO] Booting worker with pid: 2121
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 15:06:17.920454+00:00 (in 1079999.998760 seconds)
+[2023-12-13 03:06:47 +0000] [2085] [CRITICAL] WORKER TIMEOUT (pid:2111)
+[2023-12-13 03:06:47 +0000] [2111] [INFO] Worker exiting (pid: 2111)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 03:06:47 +0000] [2085] [ERROR] Worker (pid:2111) exited with code 1
+[2023-12-13 03:06:47 +0000] [2085] [ERROR] Worker (pid:2111) exited with code 1.
+[2023-12-13 03:06:47 +0000] [2123] [INFO] Booting worker with pid: 2123
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 15:06:48.033124+00:00 (in 1079999.998675 seconds)
+[2023-12-13 03:59:41 +0000] [5188] [INFO] Starting gunicorn 21.2.0
+[2023-12-13 03:59:41 +0000] [5188] [INFO] Listening at: http://0.0.0.0:8000 (5188)
+[2023-12-13 03:59:41 +0000] [5188] [INFO] Using worker: sync
+[2023-12-13 03:59:41 +0000] [5189] [INFO] Booting worker with pid: 5189
+[2023-12-13 03:59:41 +0000] [5190] [INFO] Booting worker with pid: 5190
+[2023-12-13 03:59:41 +0000] [5191] [INFO] Booting worker with pid: 5191
+[2023-12-13 03:59:41 +0000] [5192] [INFO] Booting worker with pid: 5192
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 15:59:41.672501+00:00 (in 1079999.990278 seconds)
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 15:59:41.875522+00:00 (in 1079999.985519 seconds)
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+DEBUG:tzlocal:/etc/localtime found
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 15:59:41.892204+00:00 (in 1079999.998335 seconds)
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 15:59:41.894051+00:00 (in 1079999.998889 seconds)
+[2023-12-13 04:43:28 +0000] [6272] [INFO] Starting gunicorn 21.2.0
+[2023-12-13 04:43:28 +0000] [6272] [INFO] Listening at: http://0.0.0.0:8000 (6272)
+[2023-12-13 04:43:28 +0000] [6272] [INFO] Using worker: sync
+[2023-12-13 04:43:28 +0000] [6273] [INFO] Booting worker with pid: 6273
+[2023-12-13 04:43:28 +0000] [6274] [INFO] Booting worker with pid: 6274
+[2023-12-13 04:43:28 +0000] [6275] [INFO] Booting worker with pid: 6275
+[2023-12-13 04:43:28 +0000] [6276] [INFO] Booting worker with pid: 6276
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 16:43:28.940654+00:00 (in 1079999.986162 seconds)
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 16:43:28.958816+00:00 (in 1079999.988419 seconds)
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 16:43:29.031452+00:00 (in 1079999.998308 seconds)
+DEBUG:tzlocal:/etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG:tzlocal:/etc/localtime found
+DEBUG:tzlocal:2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Etc/UTC'}
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "clean_old_directories" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2023-12-25 16:43:29.037087+00:00 (in 1079999.998781 seconds)
+/bin/sh: 1: ansifilter: not found
+ERROR:flask_app:Exception on / [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/py_env/lib/python3.10/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/py_env/lib/python3.10/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/py_env/lib/python3.10/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/py_env/lib/python3.10/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/ubuntu/my_repos/gitexplorer/app/main_route.py", line 150, in main
+    subprocess.run(command1, shell=True, stdout=file, check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command 'git -C /home/ubuntu/my_repos/repo_store/04e7e596-f872-40f3-94d5-82e3662a8011/main_diff_path diff -U10000 file1.txt file2.txt  |delta --line-numbers | ansifilter --encoding=UTF-8 --html' returned non-zero exit status 127.
+[2023-12-13 04:44:15 +0000] [6272] [INFO] Handling signal: int
+[2023-12-13 04:44:15 +0000] [6274] [INFO] Worker exiting (pid: 6274)
+[2023-12-13 04:44:15 +0000] [6273] [INFO] Worker exiting (pid: 6273)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+[2023-12-13 04:44:15 +0000] [6275] [INFO] Worker exiting (pid: 6275)
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 04:44:15 +0000] [6276] [INFO] Worker exiting (pid: 6276)
+INFO:apscheduler.scheduler:Scheduler has been shut down
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+[2023-12-13 04:44:15 +0000] [6272] [INFO] Shutting down: Master
