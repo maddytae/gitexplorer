@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Instructions{% endblock %}
+
+{% block body %}
+<div class="main-page">
+<!-- Instructions Section -->
+<div class="custom-bg">
+    <div class="heading-margin">
+        <strong>Instructions:</strong>
+    </div>
+    <p>Initialize any public repo from Github/Bitbucket/Gitlab etc using its address (https/ssh). It could be any public repo reachable on web. You can diff not only files but folders too between two commit hashes. The commit hashes need not be on the same branch.</p>
+
+    <p>Some sample repo addresses:<br>
+        <em>git@github.com:yaml/pyyaml.git</em><br>
+        <em>https://github.com/scikit-learn/scikit-learn.git</em><br>
+        <em>git@bitbucket.org:fargo3d/public.git</em>
+    </p>
+
+    <p>Alternatively, if you just want to perform local diff then simply paste two versions of codes in the two text areas below. Once you press "Submit" button, you can select three different styles of diff by checking the boxes. You may also put text in one side and file link or file upload on the another side and vice versa.</p>
+</div>
+</div>
+{% endblock %}

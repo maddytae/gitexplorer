@@ -17,7 +17,7 @@ main_blueprint = Blueprint('main', __name__)
 @main_blueprint.route("/", methods=["GET", "POST"])
 def main():
     error_message = None
-    show_checkbox_page = True 
+    show_checkbox_page = False
     diff_files = {}
     code1 = ''
     code2 = '' 
@@ -173,3 +173,12 @@ def main():
                            show_checkbox_page=show_checkbox_page,
                            diff_files=diff_files)
 
+
+
+@main_blueprint.route("/instructions")
+def instructions():
+    return render_template("instructions.html")
+
+@main_blueprint.route("/privacy_policy")
+def privacy_policy():
+    return render_template("privacy_policy.html")
