@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Contact US{% endblock %}
+
+{% block body %}
+
+<style>
+    body {
+    background-color: #efeeeb;
+}
+</style>
+<div class="container mt-5">
+    <!-- Back to Main Page Link -->
+    <div class="mb-3">
+        <a href="{{ url_for('main.main') }}" class="btn btn-secondary">Back to Main Page</a>
+    </div>
+
+    <div class="custom-bg ">
+        <h3 class="display-7 text-center" style="font-weight: bold; text-decoration: underline;">Get in touch with us</h3>
+        <p></p>
+    
+        
+        <form action="your-backend-endpoint" method="post">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" class="form-control custom-placeholder" placeholder="Name (optional)">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control custom-placeholder" placeholder="Email (optional)">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" class="form-control custom-placeholder" placeholder="Message (required)" required style="height: 150px;"></textarea>
+            </div>
+
+                <p></p>
+                <div class="d-flex justify-content-center mb-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -15,10 +15,10 @@
     <!-- Main content area -->
     <div class="text-center" style="padding-top: 10vh; max-width: 80%; margin: auto;">
         <!-- Form Section -->
-        {% include 'form_section.html' %}
+        {% include 'main_form_section.html' %}
 
         <!-- File Comparison Section -->
-        {% include 'file_comparison_section.html' %}
+        {% include 'main_file_comparison_section.html' %}
 
 
         <!-- Checkbox Files Section, included conditionally -->
@@ -42,6 +42,7 @@
     <a href="/about" style="margin-right: 15px; color: black;">About</a>
     <a href="{{ url_for('main.instructions') }}" style="margin-right: 15px; color: black;">Instructions</a>
     <a href="{{ url_for('main.privacy_policy') }}" style="margin-right: 15px; color: black;">Privacy Policy</a>
+    <a href="{{ url_for('main.contact_us') }}" style="margin-right: 15px; color: black;">Contact</a>
 </div>
 
 

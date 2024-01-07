@@ -3,21 +3,138 @@
 {% block title %}Instructions{% endblock %}
 
 {% block body %}
-<div class="main-page">
-<!-- Instructions Section -->
-<div class="custom-bg">
-    <div class="heading-margin">
-        <strong>Instructions:</strong>
+
+
+
+<style>
+    body {
+    background-color: #efeeeb;
+}
+    .WordSection1 {
+      
+       
+        margin-left: 10%; /* 10% margin on the left */
+        margin-right: 10%; /* 10% margin on the right */
+        margin-top: 10%; /* 10% margin on the right */
+    }
+
+
+
+/* Option 2: Override the MsoNormal Class */
+.MsoNormal {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+</style>
+
+
+
+
+<div class=WordSection1>
+
+    <div class="mb-3">
+        <!-- Update the route name in url_for -->
+        <a href="{{ url_for('main.main') }}" class="btn btn-secondary">Back to Main Page</a>
     </div>
-    <p>Initialize any public repo from Github/Bitbucket/Gitlab etc using its address (https/ssh). It could be any public repo reachable on web. You can diff not only files but folders too between two commit hashes. The commit hashes need not be on the same branch.</p>
 
-    <p>Some sample repo addresses:<br>
-        <em>git@github.com:yaml/pyyaml.git</em><br>
-        <em>https://github.com/scikit-learn/scikit-learn.git</em><br>
-        <em>git@bitbucket.org:fargo3d/public.git</em>
-    </p>
+    <p class=MsoNormal><b><span style='font-size:14.0pt;font-family:"Open Sans",sans-serif;
+    color:#333333'>Instructions: </span></b></p>
+    
+    <p class=MsoNormal><b><span style='font-family:"Open Sans",sans-serif;
+    color:#333333'>&nbsp;</span></b></p>
+    
+    <p class=MsoNormal><b><u><span style='font-family:"Open Sans",sans-serif;
+    color:#333333'>Mode 1: Diff within a repo</span></u></b></p>
+    
+    <p class=MsoNormal><span style='font-family:"Open Sans",sans-serif;color:#333333'>&nbsp;</span></p>
+    
+    <p class=MsoNormal><span style='color:#333333'>In this mode, you can input repo
+    address of any public repo. Currently public repos on GitHub, Bitbucket and Gitlab
+    are supported. The address could be either SSH (for ex:- </span><i><a
+    href="mailto:git@github.com:yaml/pyyaml.git">git@github.com:yaml/pyyaml.git</a></i><span
+    style='color:#333333'>) or HTTPS (for ex:- </span><i><a
+    href="https://github.com/yaml/pyyaml.git">https://github.com/yaml/pyyaml.git</a></i><span
+    style='color:#333333'>). Once you submit the repo address you will be taken to
+    repo page where you can do diff for both folders and files.</span></p>
+    
+    <p class=MsoNormal><span style='color:#333333'>&nbsp;</span></p>
+    
+    <p class=MsoNormal><span style='color:#333333'>On the left side of the drop-down
+    boxes, you can select a branch followed by the author and the commit hash. You
+    can do same in the right side of the select boxes. Once these details are provided
+    you will automatically get list of files that have been modified between the
+    two commit hashes. You can select one of the files and perform usual file diff.
+    </span></p>
+    
+    <p class=MsoNormal><span style='color:#333333'>&nbsp;</span></p>
+    
+    <p class=MsoNormal><span style='color:#333333'>You also have option to do folder
+    diff between the two commit hashes. There are two versions of the folder diff.
+    The first one shows full folder tree which is union between the two commit hashes.
+    The color code is as shown below: -</span></p>
+    
+    <p class=MsoNormal><span style='color:#333333'>&nbsp;</span></p>
+    
+    <p class=MsoNormal><b><span style='color:#333333'>Unchanged</span></b><span
+    style='color:#333333'>: -              This is for any file that is common between
+    the two commit hashes and the file content is unchanged between the two
+    commits.</span></p>
+    
+    <p class=MsoNormal><b><span style='color:red'>Deleted</span></b><span
+    style='color:#333333'>: -                    This is for files which are in
+    left commit hash but are deleted in the right commit hash.</span></p>
+    
+    <p class=MsoNormal><b><span style='color:#00B050'>Added</span></b><span
+    style='color:#333333'>:-                       This is for files which are not
+    in left commit hash but are added in the new commit hash.</span></p>
+    
+    <p class=MsoNormal><span style='font-family:"Arial",sans-serif;color:#CDCD00;'>Modified</span><span style='color:#333333'>: -                  This
+    is for files which are in both commit hashes. However, the file itself has been
+    modified.</span></p>
+    
+    <p class=MsoNormal><span style='color:#333333'>&nbsp;</span></p>
+    
+    <p class=MsoNormal><span style='color:#333333'>You can do file diff on all the
+    categories above except for “Unchanged” since there is nothing to diff.</span></p>
+    
+    <p class=MsoNormal><span style='color:#333333'>&nbsp;</span></p>
+    
+    <p class=MsoNormal><b><u><span style='font-family:"Open Sans",sans-serif;
+    color:#333333'>Mode 2: Diff outside Repo</span></span></u></b></p>
+    
+    <p class=MsoNormal><span style='font-family:"Open Sans",sans-serif;color:#333333'>&nbsp;</span></p>
+    
+    <p class=MsoNormal><span style='color:#333333'>This mode does not require any repo
+    and is intended for some ad-hoc diff. There are three options for providing the
+    input. You can directly paste your content inside input box or provide link to
+    a file on web (for ex <i><a
+    href="https://raw.githubusercontent.com/yaml/pyyaml/main/examples/yaml-highlight/yaml_hl.py">https://raw.githubusercontent.com/yaml/pyyaml/main/examples/yaml-highlight/yaml_hl.py</a></i>)
+    or upload a file. You can choose one of the three options on both left and
+    right and they don’t need to be the same input method. For ex, you can upload a
+    file on left side while you can directly paste content to diff on the right
+    side and so on. </span></p>
+    
+    <p class=MsoNormal><span style='color:#333333'>&nbsp;</span></p>
+    
+    <p class=MsoNormal><span style='color:#333333'>If there are multiple input methods
+    i.e. both the input box and file upload are used, then the content inside input
+    box will take precedence. The pecking order is input box, followed by file link
+    and lastly the file upload.</span></p>
+    
+    <p class=MsoNormal><span style='color:black'>&nbsp;</span></p>
+    
+    <p class=MsoNormal><b><span style='font-family:"Open Sans",sans-serif;
+    color:#333333'>&nbsp;</span></b></p>
+    
+    </div>
+    
 
-    <p>Alternatively, if you just want to perform local diff then simply paste two versions of codes in the two text areas below. Once you press "Submit" button, you can select three different styles of diff by checking the boxes. You may also put text in one side and file link or file upload on the another side and vice versa.</p>
-</div>
-</div>
+
+
+
+
+
 {% endblock %}

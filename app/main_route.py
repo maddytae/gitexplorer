@@ -182,3 +182,7 @@ def instructions():
 @main_blueprint.route("/privacy_policy")
 def privacy_policy():
     return render_template("privacy_policy.html")
+
+@main_blueprint.route("/contact_us")
+def contact_us():
+    return render_template("contact_us.html")

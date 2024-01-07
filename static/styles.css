@@ -1,3 +1,10 @@
+html, body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
 .main-page {
     background-color: #efeeeb; /* Soft pastel blue background */
     font-family: 'Open Sans', sans-serif;
@@ -5,7 +12,7 @@
 
 .main-page .display-4 {
     color: #40343f;
-    margin-bottom: 1em;
+    /* margin-bottom: 1em; */
 }
 
 .main-page .form-control {
@@ -115,3 +122,16 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    margin-top: 10vh; /* Adds space above the container */
+}
+
+.custom-checkbox-spacing {
+    margin-right: 20px; /* Adjust this value as needed */
+}
+
+

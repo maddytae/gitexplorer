@@ -1,8 +1,9 @@
 <!-- Checkbox within a custom background -->
+<div class="custom-bg">
 <div class="row">
     <!-- Container for both checkboxes -->
     <div class="col-md-12">
-        <h6 class="heading-margin" style="text-decoration: underline; margin-bottom: 20px;">Folder Diff:</h6>
+        <h6 class="heading-margin" style="text-decoration: underline; margin-bottom: 20px;font-weight: bold;text-decoration: underline">Folder Diff:</h6>
         
         <!-- Inline container for checkboxes -->
         <div style="display: flex; justify-content: start; align-items: center;">
@@ -17,6 +18,20 @@
                 <input class="form-check-input" type="checkbox" id="showFolderCheckboxmodifications" data-url="{{ diff_files['folder_diff_mod'] }}">
                 <label class="form-check-label" for="showFolderCheckboxmodifications">Folder: Changes only</label>
             </div>
+        
+
+        
+        
+        
         </div>
+        <br>
+        <p style="font-size: small;">
+            <strong><u>Color Code:</u></strong><br>
+            <span style="color: black;">Unchanged</span>
+            <span style="color: red;">Deleted</span>
+            <span style="color: #00cd00;">Added</span>
+            <span style="color: #cdcd00;">Modified</span> 
+          </p>
     </div>
+</div>
 </div>
