@@ -18,3 +18,4 @@ class PrepareSettings:
         self.link_size_limit=self.config['link_size_limit']
         self.static_path= os.path.join(self.project_path, 'static','diff')
         # self.json_path= os.path.join(self.project_path, 'json_files')
+        self.email_store=self.config['email_store']

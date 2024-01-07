@@ -3,6 +3,7 @@ from flask import Flask
 from app.repo_route import repo_blueprint
 from app.main_route import main_blueprint
 from app.serve_route import serve_blueprint
+from app.email_route import email_blueprint
 import settings
 import shutil
 import time
@@ -17,10 +18,14 @@ st = settings.PrepareSettings()
 
 flask_app = Flask(__name__)
 flask_app.secret_key = "khiadh2727sdhks888s"
-# Register the blueprint
+
+# Register the blueprints
 flask_app.register_blueprint(repo_blueprint)
 flask_app.register_blueprint(main_blueprint)
 flask_app.register_blueprint(serve_blueprint, url_prefix='/')
+flask_app.register_blueprint(email_blueprint)
+
+
 
 def clean_old_directories(base_path=st.repo_store, age_threshold_hours=1):
     current_time = time.time()

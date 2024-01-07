@@ -1,4 +1,5 @@
 repo_store: /home/ubuntu/my_repos/repo_store
+email_store: /home/ubuntu/my_repos/email_store
 # repo_store: /Users/maddy/my_repos/repo_store
 repo_size_limit: 50
 link_size_limit: 1
