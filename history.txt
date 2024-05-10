@@ -1,0 +1,967 @@
+    1  ls
+    2  cd .ssh/
+    3  ls
+    4  cd\
+    5  cd .ssh/
+    6  cat authorized_keys 
+    7  cd\
+    8  ssh-keygen
+    9  ls
+   10  cd .ssh
+   11  ls
+   12  cat id_rsa.pub
+   13  cd\
+   14  python --version
+   15  python3 --version
+   16  ls
+   17  mkdir python_envs
+   18  ls
+   19  python -m venv python_envs/
+   20  python3 -m venv python_envs/
+   21  sudo apt update
+   22  neofetch
+   23  sudo apt install neofetch
+   24  neofetch
+   25  ls
+   26  sudo apt install python3-venv
+   27  ls
+   28  cd sudo python3 -m venv python_envs/py_env
+   29  sudo python3 -m venv python_envs/py_env
+   30  ls
+   31  cd python_envs/
+   32  ls
+   33  cd ..
+   34  rm -rf python_envs/
+   35  ls
+   36  rm -rf python_envs/
+   37  sudo rm -rf python_envs/
+   38  ls
+   39  sudo python3 -m venv py_env
+   40  ls
+   41  source py_env/bin/activate
+   42  ls
+   43  mkdir  my_repos
+   44  cd my_repos/
+   45  git clone git@github.com:maddytae/project_y.git
+   46  pwd
+   47  cd my_repos/project_y/
+   48  python3 -m uvicorn main:app --reload
+   49  source ~/py_env/bin/activate
+   50  python3 -m uvicorn main:app --reload
+   51  sudo /etc/nginx/sites-enabled/fastapi_nginx 
+   52  sudo su -
+   53  sudo /etc/nginx/sites-enabled/fastapi_nginx 
+   54  sudo nano /etc/nginx/sites-enabled/fastapi_nginx 
+   55  curl http://127.0.0.1:8000
+   56  curl http://3.19.180.125
+   57  sudo ln -s /etc/nginx/sites-available/your_config_file /etc/nginx/sites-enabled/
+   58  sudo nginx -t
+   59  sudo systemctl restart nginx
+   60  sudo rm /etc/nginx/sites-enabled/your_config_file
+   61  ls /etc/nginx/sites-available/
+   62  sudo ln -s /etc/nginx/sites-available/fastapi_nginx /etc/nginx/sites-enabled/
+   63  sudo rm /etc/nginx/sites-enabled/fastapi_nginx
+   64  sudo ln -s /etc/nginx/sites-available/fastapi_nginx /etc/nginx/sites-enabled/
+   65  sudo nginx -t
+   66  sudo systemctl restart nginx
+   67  ls -la /etc/nginx/sites-available/
+   68  sudo nano /etc/nginx/sites-available/fastapi_nginx
+   69  sudo ln -s /etc/nginx/sites-available/fastapi_nginx /etc/nginx/sites-enabled/
+   70  sudo rm /etc/nginx/sites-enabled/fastapi_nginx
+   71  sudo ln -s /etc/nginx/sites-available/fastapi_nginx /etc/nginx/sites-enabled/
+   72  sudo nginx -t
+   73  sudo systemctl restart nginx
+   74  curl http://127.0.0.1:8000
+   75  sudo apt-get update
+   76  sudo apt install nginx
+   77  sudo nano /etc/nginx/sites-enabled/fastapi_nginx 
+   78  cd my_repos/project_y/
+   79  source ~/py_env/bin/activate
+   80  puthon -m uvicorn -m main:app
+   81  python -m uvicorn -m main:app
+   82  python -m uvicorn main:app
+   83  curl http://localhost:8000
+   84  python -m uvicorn main:app
+   85  sudo nano /etc/nginx/sites-enabled/fastapi_nginx 
+   86  sudo systemctl restart nginx
+   87  python -m uvicorn main:app
+   88  sudo nginx -t
+   89  sudo ls /etc/nginx/sites-available/
+   90  sudo cat /etc/nginx/sites-available/default
+   91  sudo nano /etc/nginx/sites-enabled/fastapi_nginx 
+   92  sudo nginx -t
+   93  python -m uvicorn main:app
+   94  sudo systemctl restart nginx
+   95  python -m uvicorn main:app
+   96  (py_env) ubuntu@ip-172-31-45-2:~/my_repos/project_y$ python -m uvicorn main:app
+   97  INFO:     Started server process [13568]
+   98  INFO:     Waiting for application startup.
+   99  INFO:     Application startup complete.
+  100  ERROR:    [Errno 98] error while attempting to bind on address ('127.0.0.1', 8000): address already in use
+  101  INFO:     Waiting for application shutdown.
+  102  INFO:     Application shutdown complete.
+  103  (py_env) ubuntu@ip-172-31-45-2:~/my_repos/project_y$ 
+  104  sudo lsof -i :8000
+  105  sudo Kill -9 13558
+  106  sudo kill -9 13558
+  107  python -m uvicorn main:app
+  108  sudo nano /etc/nginx/sites-enabled/fastapi_nginx 
+  109  sudo nginx -t
+  110  sudo grep -R "3.19.180.125" /etc/nginx/sites-available/
+  111  sudo grep -R "3.19.180.125" /etc/nginx/sites-enabled/
+  112  sudo rm -rf /etc/nginx/sites-enabled/fastapi_nginxes
+  113  sudo nano /etc/nginx/sites-enabled/fastapi_nginx
+  114  sudo nginx -t
+  115  sudo systemctl reload nginx
+  116  python -m uvicorn main:app
+  117  sudo cp /etc/nginx/sites-enabled/fastapi_nginx /etc/nginx/sites-enabled/fastapi_nginx.backup
+  118  sudo cp /etc/nginx/sites-enabled/fastapi_nginxes /etc/nginx/sites-enabled/fastapi_nginxes.backup
+  119  sudo grep -R "3.19.180.125" /etc/nginx/sites-available/
+  120  sudo grep -R "3.19.180.125" /etc/nginx/sites-enabled/
+  121  sudo rm -rf /etc/nginx/sites-enabled/fastapi_nginx.backup
+  122  sudo grep -R "3.19.180.125" /etc/nginx/sites-enabled/
+  123  uvicorn main:app --host 0.0.0.1 --port 8000
+  124  sudo lsof -i :8000
+  125  sudo lsof -i :80
+  126  kill -9 13566 13661
+  127  sudo netstat -tuln | grep 8000
+  128  sudo install netstat
+  129  sudo netstat -tuln | grep 8000
+  130  sudo install netstat
+  131  sudo apt-get install net-tools
+  132  sudo netstat -tuln | grep 8000
+  133  python3 -m uvicorn main:app --host 0.0.0.1 --port 8000
+  134  python3 -m uvicorn main:app --host 127.0.0.1 --port 8000
+  135  sudo nginx -s reload
+  136  python3 -m uvicorn main:app --host 127.0.0.1 --port 8000
+  137  sudo nano /etc/nginx/sites-enabled/fastapi_nginx
+  138  python3 -m uvicorn main:app --host 127.0.0.1 --port 8000
+  139  source py_env/bin/activate
+  140  python3 -m uvicorn main:app --host 127.0.0.1 --port 8000
+  141  cd my_repos/project_y/
+  142  python3 -m uvicorn main:app --host 127.0.0.1 --port 8000
+  143  pwd
+  144  ls
+  145  cd\
+  146  source py_env/bin/activate
+  147  pip install -r ~/my_repos/project_y/requirements.txt
+  148  cd\
+  149  source py_env/bin/deactivate
+  150  source py_env/deactivate
+  151  source deactivate
+  152  deactivate
+  153  rm -rf py_env/
+  154  sudo rm -rf py_env/
+  155  history | grep venv
+  156  sudo python3 -m venv py_env
+  157  source py_env/bin/deactivate
+  158  cd my_repos/project_y/
+  159  uvicorn main:app --reload
+  160  sudo apt install uvicorn
+  161  uvicorn main:app --reload
+  162  source ~/py_env/bin/activate
+  163  uvicorn main:app --reload
+  164  pip install fastapi
+  165  sudo pip install fastapi
+  166  sudo chown -R ubuntu:ubuntu /home/ubuntu/py_env/
+  167  pip install fastapi
+  168  uvicorn main:app --reload
+  169  pip install fastapi
+  170  uvicorn main:app --reload
+  171  pip uninstall fastapi
+  172  pip install fastapi
+  173  uvicorn main:app --reload
+  174  pip install fastapi
+  175  uvicorn main:app --reload
+  176  which python
+  177  pip list | grep fastapi
+  178  uvicorn /home/ubuntu/my_repos/project_y/main:app --reload
+  179  uvicorn main:app --reload
+  180  python
+  181  uvicorn main:app 
+  182  pip install uvicorn
+  183  uvicorn main:app 
+  184  python3 -n uvicorn main:app
+  185  python3 -m uvicorn main:app
+  186  pip install Jinja2Templates
+  187  pip install jinja2
+  188  python3 -m uvicorn main:app
+  189  pip install python-multipart
+  190  python3 -m uvicorn main:app
+  191  touch .gitignore
+  192  git rm -r --cached */__pycache__/
+  193  git rm --cached */*.pyc
+  194  git status
+  195  git add .
+  196  git commit -m "saving work"
+  197  git push
+  198  python3 -m uvicorn main:app --reload
+  199  sudo apt install nginx
+  200  source py_env/bin/activate
+  201  python3 -m uvicorn main:app --reload
+  202  cd my_repos/project_y/
+  203  python3 -m uvicorn main:app --reload
+  204  curl http://127.0.0.1:8000
+  205  sudo netstat -tuln | grep 80
+  206  curl http://3.19.180.125
+  207  curl http://127.0.0.1:8000
+  208  sudo systemctl status nginx
+  209  sudo nginx -t
+  210  sudo tail /var/log/nginx/error.log
+  211  sudo apt purge nginx nginx-common nginx-full
+  212  sudo rm -rf /etc/nginx/
+  213  sudo rm -rf /var/log/nginx/
+  214  sudo rm -rf /var/cache/nginx/
+  215  source py_env/bin/activate
+  216  sudo rm -rf /etc/nginx/
+  217  sudo rm -rf /var/log/nginx/
+  218  sudo rm -rf /var/cache/nginx/
+  219  pip uninstall nginx
+  220  sudo apt update
+  221  sudo apt install nginx
+  222  sudo systemctl start nginx
+  223  sudo systemctl enable nginx
+  224  sudo systemctl status nginx
+  225  sudo apt install -y python3-pip nginx
+  226  history | grep nano
+  227  sudo nano /etc/nginx/sites-enabled/fastapi_nginx
+  228  sudo service nginx restart
+  229  python3 -m uvicorn main:app
+  230  cd my_repos/project_y/
+  231  python3 -m uvicorn main:app
+  232  sudo nano /etc/nginx/sites-enabled/fastapi_nginx
+  233  sudo rm -rf  /etc/nginx/sites-enabled/fastapi_nginx
+  234  sudo service nginx restart
+  235  sudo systemctl start nginx
+  236  sudo systemctl enable nginx
+  237  sudo systemctl status nginx
+  238  sudo nano /etc/nginx/sites-available/fastapi_nginx
+  239  sudo ln -s /etc/nginx/sites-available/fastapi_nginx /etc/nginx/sites-enabled/
+  240  sudo nginx -t
+  241  sudo systemctl restart nginx
+  242  python3 -m uvicorn main:app
+  243  curl http://3.19.180.125
+  244  sudo tail -f /var/log/nginx/error.log
+  245  sudo ufw status
+  246  sudo tail -f /var/log/nginx/access.log
+  247  sudo nginx -T
+  248  clear
+  249  sudo nginx -T
+  250  sudo rm /etc/nginx/sites-enabled/default
+  251  sudo systemctl restart nginx
+  252  curl http://3.19.180.125
+  253  sudo netstat -plnt | grep :80
+  254  history | grep source
+  255  source ~/py_env/bin/activate
+  256  cd my_repos/project_y/
+  257  python3 -m uvicorn main:app
+  258  curl http://3.19.180.125
+  259  sudo tail /var/log/nginx/access.log
+  260  sudo /etc/nginx/sites-enabled/fastapi_nginx
+  261  sudo nano /etc/nginx/sites-enabled/fastapi_nginx
+  262  sudo systemctl restart nginx
+  263  curl http://3.19.180.125
+  264  sudo iptables -L
+  265  history | grep curl
+  266  curl http://127.0.0.1:8000
+  267  history | grep curl
+  268  curl http://3.19.180.125
+  269  sudo tail -f /var/log/nginx/error.log
+  270  [200~sudo systemctl reload nginx
+  271  sudo systemctl reload nginx
+  272  curl http://3.19.180.125
+  273  sudo systemctl reload nginx
+  274  curl http://3.19.180.125
+  275  sudo nano /etc/nginx/sites-enabled/fastapi_nginx
+  276  history | grep source
+  277  source py_env/bin/activate
+  278  cd my_repos/project_y/
+  279  python -m uvicorn main:app
+  280  history | grep restart
+  281  sudo service nginx restart
+  282  python -m uvicorn main:app
+  283  histor | 1sof
+  284  history | 1sof
+  285  history | lsof
+  286  history | grep lsof
+  287  sudo lsof -i :8000
+  288  sudo kill -9 7341
+  289  python -m uvicorn main:app
+  290  sudo lsof -i :8000
+  291  sudo kill -9 7817
+  292  python -m uvicorn main:app
+  293  uvicorn main:app --host 0.0.0.0 --port 8000
+  294  cd my_repos/project_y/
+  295  source ~/py_env/bin/activate
+  296  cd my_repos/project_y/
+  297  python -m uvicorn main:app
+  298  python -m uvicorn main:app --port 80
+  299  sudo python -m uvicorn main:app --port 80
+  300  sudo python3 -m uvicorn main:app --port 80
+  301  sudo ~/py_env/bin/python3 -m uvicorn main:app --port 80
+  302  history | grep lsof
+  303  sudo lsof -i :80
+  304  sudo kill 442 447
+  305  sudo lsof -i :8000
+  306  sudo ~/py_env/bin/python3 -m uvicorn main:app --port 80
+  307  sudo ~/py_env/bin/python3 -m uvicorn main:app --port 8000
+  308  sudo ~/py_env/bin/python3 -m uvicorn main:app --port 80
+  309  A
+  310  sudo ~/py_env/bin/python3 -m uvicorn main:app --port 80
+  311  sudo lsof -i :80
+  312  sudo kill -9 1164
+  313  sudo ~/py_env/bin/python3 -m uvicorn main:app --port 80
+  314  sudo ~/py_env/bin/python3 -m uvicorn main:app --port 8080
+  315  sudo lsof -i :80
+  316  sudo kill -9 1199
+  317  sudo ~/py_env/bin/python3 -m uvicorn main:app 
+  318  cd my_repos/project_y/
+  319  sudo ~/py_env/bin/python3 -m uvicorn main:app 
+  320  cd my_repos/project_y/
+  321  souce ~/py_env/bin/activate
+  322  source ~/py_env/bin/activate
+  323  sudo ~/py_env/bin/python3 -m uvicorn main:app 
+  324  sudo ~/py_env/bin/python3 -m uvicorn main:app --port 80
+  325  source ~/py_env/bin/activate
+  326  cd my_repos/project_y/
+  327  source ~/py_env/bin/activate
+  328  sudo ~/py_env/bin/python3 -m uvicorn main:app --port 80
+  329  souce py_env/bin/activate
+  330  source py_env/bin/activate
+  331  cd my_repos/project_y/
+  332  sudo ~/py_env/bin/python3 -m uvicorn main:app --host 0.0.0.0 --port 80
+  333  sudo apt update
+  334  sudo apt install nginx
+  335  sudo systemctl start nginx
+  336  sudo systemctl enable nginx
+  337  sudo nano /etc/nginx/sites-available/mygitexplorer
+  338  sudo ln -s /etc/nginx/sites-available/mygitexplorer /etc/nginx/sites-enabled/
+  339  sudo nginx -t
+  340  sudo systemctl reload nginx
+  341  sudo apt-get update
+  342  sudo apt-get install certbot python3-certbot-nginx
+  343  sudo certbot --nginx -d mygitexplorer.com -d www.mygitexplorer.com
+  344  sudo certbot renew --dry-run
+  345  sudo systemctl stop nginx
+  346  sudo certbot renew --dry-run
+  347  sudo systemctl start nginx
+  348  listen 443 ssl http2;
+  349  sudo apt install ruby-listen
+  350  pwd
+  351  sudo apt-get update
+  352  sudo apt-get install certbot
+  353  sudo certbot certonly --standalone -d mygitexplorer.com -d www.mygitexplorer.com
+  354  sudo nano etc/nginx/sites-available/default
+  355  sudo nano etc/nginx/sites-available/
+  356  cd etc/nginx/sites-available/default
+  357  cd etc/nginx/sites-available/
+  358  cd etc/nginx/
+  359  ls /etc/nginx/sites-available/
+  360  sudo nano etc/nginx/sites-available/fastapi_nginx
+  361  sudo netstat -tulnp
+  362  source py_env/bin/activate
+  363  cd my_repos/project_y/
+  364  sudo ~/py_env/bin/python3 -m uvicorn main:app  --port 8000
+  365  pwd
+  366  sudo ~/py_env/bin/python3 -m uvicorn main:app --host 0.0.0.0 --port 80
+  367  sudo ~/py_env/bin/python3 -m uvicorn main:app  --port 8000
+  368  source py_env/bin/activate
+  369  cd my_repos/project_y/
+  370  sudo ~/py_env/bin/python3 -m uvicorn main:app  --reload --port 8000
+  371  nohup sudo ~/py_env/bin/python3 -m uvicorn main:app  --reload --port 8000
+  372  cd my_repos/project_y/
+  373  nohup sudo ~/py_env/bin/python3 -m uvicorn main:app  --reload --port 8000
+  374  cat nohup.out
+  375  sourec ~/py_env/bin/activate
+  376  pip install httpx
+  377  cat nohup.out
+  378  source ~/py_env/bin/activate
+  379  pip install httpx
+  380  nohup sudo ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000 &
+  381  cat nohup.out
+  382  sudo lsof -i:8000
+  383  sudo kill -9 12025 12027
+  384  nohup ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000 &
+  385  cat nohup.out
+  386  which python3
+  387  pip list | grep httpx
+  388  sudo lsof -i:8000
+  389  sudo kill -9 13238 13240
+  390  sudo nano my_repos/project_y/main.py 
+  391  cd my_repos/project_y/
+  392  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  393  git status
+  394  git checkout main.py
+  395  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  396  ~/py_env/bin/python3 -m uvicorn main:app --host 0.0.0.0 --reload --port 8000
+  397  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  398  cd my_repos/project_y/
+  399  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  400  source ~/py_env/bin/activate
+  401  pip install itsdangerous
+  402  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  403  cd my_repos/project_y/
+  404  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  405  git status
+  406  git add --all
+  407  git commit -m "saving work"
+  408  git config --global --edit
+  409  git commit -m "saving work"
+  410  git push
+  411  cd my_repos/project_y/
+  412  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  413  pwd
+  414  cd my_repos/project_y/
+  415  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  416  clear
+  417  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  418  clear
+  419  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  420  clear
+  421  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  422  git status
+  423  git add .
+  424  git commit -m "Made modular"
+  425  git push
+  426  source /home/ubuntu/py_env/bin/activate
+  427  source /home/ubuntu/py_env/bin/activate
+  428  pwd
+  429  ls -la
+  430  systemctl list-units --type=service --state=active
+  431  pwd
+  432  systemctl list-units --type=service --state=active
+  433  top
+  434  toptttop
+  435  top
+  436  top
+  437  ls
+  438  cd my_repos/
+  439  ls
+  440  cd project_y/
+  441  ls
+  442  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  443  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8080
+  444  top
+  445  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8080
+  446  pwd
+  447  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  448  cd my_repos/project_y/
+  449  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  450  cd my_repos/project_y/
+  451  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  452  pwd
+  453  ls
+  454  cd my_repos/
+  455  ls
+  456  history
+  457  cd project_y/
+  458  ~/py_env/bin/python3 -m uvicorn main:app --reload --port 8000
+  459  cd ..
+  460  git clone git@github.com:maddytae/gitexplorer.git
+  461  git branch 
+  462  git branch -a
+  463  cd gitexplorer/
+  464  git branch -a
+  465  git checkout feature/modular_app
+  466  git log
+  467  ~/py_env/bin/python3 app.py --port 8000
+  468  cd ..
+  469  source ~/py_env/bin/activate
+  470  pip install flask
+  471  cd gitexplorer/
+  472  ~/py_env/bin/python3 app.py --port 8000
+  473  pip install requests
+  474  ~/py_env/bin/python3 app.py --port 8000
+  475  pip install pyyaml
+  476  ~/py_env/bin/python3 app.py --port 8000
+  477  pip install apscheduler
+  478  ~/py_env/bin/python3 app.py --port 8000
+  479  pip install gunicorn
+  480  gunicorn -w 4 -b 0.0.0.0:8000 app:app
+  481  vi configuration/config.yaml 
+  482  cd ..
+  483  mkdir repo_store
+  484  cd repo_store/
+  485  pwd
+  486  vi configuration/config.yaml 
+  487  cd ..
+  488  cd gitexplorer/
+  489  vi configuration/config.yaml 
+  490  pwd
+  491  gunicorn -w 4 -b 0.0.0.0:8000 app:app
+  492  tree
+  493  sudo snap install tree
+  494  tree
+  495  gunicorn -w 4 -b 0.0.0.0:8000 app:app
+  496  pwd
+  497  gunicorn -w 4 -b 0.0.0.0:8000 app:app
+  498  vi app.py
+  499  python app.py
+  500  source ~/py_env/
+  501  source ~/py_env/bin/activate
+  502  python app.py
+  503  cd ..
+  504  cd repo_store/
+  505  ls
+  506  cd 51e5fc19-f062-4a8d-a714-93089e84d224/
+  507  ls
+  508  cd main_diff_path/
+  509  ls
+  510  git diff file1.txt file2.txt
+  511  pwd
+  512  ls
+  513  dpkg -i file.deb
+  514  conda install -c conda-forge git-delta
+  515  pip install git-delta
+  516  conda install -c conda-forge git-delta
+  517  curl -sS https://webi.sh/delta | sh
+  518  ls
+  519  git diff file1.txt file2.txt | delta
+  520  pwd
+  521  cd my_repos/repo_store/
+  522  cd 51e5fc19-f062-4a8d-a714-93089e84d224/
+  523  cd main_diff_path/
+  524  ls
+  525  git diff file1.txt file2.txt | delta
+  526  cd test/
+  527  ls
+  528  git diff file1.txt file2.txt
+  529  git diff file1.txt file2.txt | delta
+  530  git diff file1.txt file2.txt
+  531  git diff file1.txt file2.txt | delta
+  532  cd my_repos/gitexplorer/
+  533  gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  534  source ~/py_env/bin/activate
+  535  sudo nohup source ~/py_env/bin/activate
+  536  sudo nohup gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  537  which gnuunicorn
+  538  which gunicorn
+  539  history | grep sudo
+  540  history | grep nohup
+  541  nohup sudo  ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  542  vi templates/dropdown.html 
+  543  git status
+  544  git add templates/dropdown.html
+  545  git commit -m "minor fix"
+  546  git push
+  547  nohup sudo  ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  548  git push
+  549  nohup sudo  ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  550  lsof -i :8000
+  551  lsof -i 8000
+  552  sudo lsof -i :8000
+  553  kill -9 1830 1831 1832 1833 1834
+  554  sudo kill -9 1830 1831 1832 1833 1834
+  555  sudo lsof -i :8000
+  556  nohup sudo  ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  557  sudo lsof -i :8000
+  558  gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  559  cd ..
+  560  cd repo_store/
+  561  ls
+  562  rm -rf 15c23d78-4e89-4e9f-aeca-e895e9aae25c/ 51e5fc19-f062-4a8d-a714-93089e84d224/ a84ae93f-ccbf-42a3-9eae-553b2a513aa7/
+  563  sudo rm -rf 15c23d78-4e89-4e9f-aeca-e895e9aae25c/ 51e5fc19-f062-4a8d-a714-93089e84d224/ a84ae93f-ccbf-42a3-9eae-553b2a513aa7/
+  564  gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  565  cd ..
+  566  cd gitexplorer/
+  567  gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  568  sudo lsof -i :8000
+  569  gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  570  git pull
+  571  gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  572  nohup   ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  573  cd my_repos/gitexplorer/
+  574  cd ..'
+  575  "
+  576  '
+  577  cd ..
+  578  cd repo_store/
+  579  ls
+  580  cd a8565885-d4e2-4963-a864-86b3b52d08c3/
+  581  ls
+  582  cd\
+  583  cd .ssh/
+  584  cat id_rsa.pub 
+  585  cd\
+  586  git clone git@bitbucket.org:maddytae/my_project_setup.git
+  587  ls
+  588  git clone git@gitlab.com:gitlab-org/gitlab.git
+  589  ls
+  590  rm -rf gitlab/ 
+  591  ls
+  592  cd Downloads/
+  593  ls
+  594  cd ..
+  595  rm -rf Downloads/
+  596  history
+  597  nohup   ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  598  source py_env/bin/activate
+  599  nohup   ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  600  cd my_repos/gitexplorer/
+  601  nohup   ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  602  history | 
+  603  ps -ef | grep python
+  604  kill3378 4900 4901 4902 4903 10891
+  605  kill -9 3378 4900 4901 4902 4903 10891
+  606  ps -ef | grep python
+  607  cd my_repos/gitexplorer/
+  608  LS
+  609  ls
+  610  cd templates/
+  611  ls
+  612  vi main.html 
+  613  git status
+  614  git add main.html 
+  615  git add ../flask_app.py 
+  616  git commit -m "saving work"
+  617  git push
+  618  nohup   ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  619  cd ..
+  620  nohup   ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  621  ps -ef | grep python
+  622  kill -9 11101
+  623  cd templates/
+  624  cd main.html
+  625  vi main.html 
+  626  git status
+  627  git add .
+  628  git commit -m "saving work"
+  629  git push
+  630  cd ..
+  631  nohup   ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  632  ps -ef | grep python
+  633  cd my_repos/gitexplorer/
+  634  nohup   ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  635  ps -ef | grep python
+  636  vi templates/main.html 
+  637  nohup   ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  638  cd my_repos/repo_store/
+  639  ls -l
+  640  ls -l | wc -l
+  641  cd my_repos/gitexplorer/
+  642  cd ~/my_repos/gitexplorer/
+  643  git status
+  644  git commit -m "saving work"
+  645  git push
+  646  cd ..
+  647  cd repo_store/
+  648  ls
+  649  ls | wc
+  650  cd\
+  651  vi /etc/nginx/
+  652  vi /etc/nginx/nginx.conf 
+  653  cd /etc/nginx/
+  654  tree
+  655  ls
+  656  tree
+  657  vi sites-available/
+  658  vi sites-enabled/
+  659  history | grep vi
+  660  cd\
+  661  history | grep vi
+  662  cd my_repos/repo_store/
+  663  ls
+  664  cd\
+  665  vi /etc/nginx/nginx.conf 
+  666  vi /etc/nginx/sites-available/
+  667  cd /etc/nginx
+  668  ls
+  669  vi conf.d/
+  670  vi sites-available/
+  671  vi uwsgi_params 
+  672  vi sites-enabled/
+  673  vi sites-enabled/mygitexplorer 
+  674  vi sites-available/mygitexplorer 
+  675  vi sites-enabled/mygitexplorer 
+  676  history | grep "grep"
+  677  curl http://https://3.19.180.125:8000
+  678  curl https://3.19.180.125:8000
+  679  curl https://3.19.180.125:443
+  680  curl http://3.19.180.125:80
+  681  history | grep "grep"
+  682  ps -ef | grep python
+  683  sudo kill -9 16163 16164 16165 16166 18965
+  684  ps -ef | grep python
+  685  sudo kill -9 15977 18973 18974 18975 18976
+  686  ps -ef | grep python
+  687  cd\
+  688  nohup   ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  689  cd my_repos/gitexplorer/
+  690  nohup   ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  691  ps -ef | grep python
+  692  cd my_repos/gitexplorer/
+  693  ls
+  694  cd ..
+  695  cd repo_store/
+  696  ls
+  697  tree
+  698  history | grep "mygitexplorer"
+  699  sudo vi /etc/nginx/sites-available/mygitexplorer
+  700  exit() "
+  701  exit
+  702  source ~/py_env/bin/activate
+  703  python flask_app.py 
+  704  cd my_repos/gitexplorer/
+  705  git pull
+  706  ps -ef | grep python
+  707  kill -9 19051 20429 20430 20431 20432
+  708  nohup   ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  709  ps -ef | grep python
+  710  ps -ef | grep flask
+  711  cd my_repos/repo_store/
+  712  ls 
+  713  ls | wc -l
+  714  tree
+  715  vi 0656219f-a409-4ae3-93bb-121a2d30906e/main_diff_path/file1.txt 
+  716  vi 26503ee8-0b83-4ae9-9f92-d82595c63532/jvector/
+  717  vi 26503ee8-0b83-4ae9-9f92-d82595c63532/diff/
+  718  pwd
+  719  vi /home/ubuntu/nohup.out
+  720  cd 951b2800-dae7-40ea-a368-4a65da32c0d
+  721  cd 951b2800-dae7-40ea-a368-4a65da32c0d5/
+  722  ls
+  723  cd diff/
+  724  ls
+  725  vi folder_diff.html 
+  726  lsa
+  727  vi folder_diff.html
+  728  cd\
+  729  vi my_repos/gitexplorer/
+  730  vi my_repos/gitexplorer/configuration/config.yaml 
+  731  cd my_repos/repo_store/951b2800-dae7-40ea-a368-4a65da32c0d5/
+  732  cd diff/
+  733  ls
+  734  cd ..
+  735  cd\
+  736  cd my_repos/gitexplorer/
+  737  source ~/py_env/bin/activate
+  738  python utilities/git_tree_cli.py ~/my_repos/repo_store/951b2800-dae7-40ea-a368-4a65da32c0d5/glmnet/ ff79c8 625f
+  739  python utilities/git_tree_cli.py ~/my_repos/repo_store/951b2800-dae7-40ea-a368-4a65da32c0d5/glmnet/ ff79c8 625f| ansifilter --encoding=UTF-8 --html
+  740  git log
+  741  git pull
+  742  rm -rf nohup.out 
+  743  git pull
+  744  source py_env/bin/activate
+  745  ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  746  cd my_repos/gitexplorer/
+  747  ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  748  pwd
+  749  ls -la
+  750  cd\
+  751  cd my_repos/gitexplorer/
+  752  git status
+  753  git add templates/base.html
+  754  git commit -m "added google adsense"
+  755  git push
+  756  git log
+  757  git push
+  758  cd my_repos/gitexplorer/
+  759  vi templates/main.html 
+  760  git status
+  761  git add templates/main.html 
+  762  git push
+  763  git commit -m "saving work"
+  764  git push
+  765  ps -ef | grep python
+  766  kill -9 30042 30043 30044 30045 30046 30216
+  767  ps -ef | grep python
+  768  nohup ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  769  cd my_repos/repo_store/
+  770  ls 
+  771  ls  | wc
+  772  exit
+  773  ls
+  774  top
+  775  ls
+  776  cd my_repos
+  777  source ~/py_env/bin/activate
+  778  ls
+  779  cd gitexplorer/
+  780  python utilities/git_tree_cli.py ~/my_repos/repo_store/8e3bfafb-b259-46db-a8bf-b04d344c3304/line_charts/  7f6ce098e4 c4b886e18903
+  781  nohup ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  782  history | grep flask
+  783  ps -ef | grep flask
+  784  kill -9 1131 1132 1133 1134
+  785  ps -ef | grep flask
+  786  kill -9 12749 12750 12751 12756
+  787  ps -ef | grep flask
+  788  kill -964
+  789  kill -9 964
+  790  ps -ef | grep flask
+  791  kill -9 12757 12759 12760 12761 12768
+  792  ps -ef | grep flask
+  793  nohup ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  794  source ~/py_env/bin/activate
+  795  nohup ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  796  ps -ef | grep flask
+  797  nohup ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  798  cd my_repos/gitexplorer/
+  799  nohup ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  800  cd my_repos/repo_store/
+  801  ls | wc
+  802  tree
+  803  cd my_repos/repo_store/
+  804  ls | wc
+  805  tree
+  806  cd my_repos/repo_store/
+  807  ls | wc
+  808  tree
+  809  tree -D
+  810  q
+  811  cd my_repos/repo_store/
+  812  ls | wc
+  813  tree
+  814  cd d400d962-5405-4185-97
+  815  cd d400d962-5405-4185-977e-287c383f34be/
+  816  ls
+  817  cd main_diff_path/
+  818  ls
+  819  cat file1.txt
+  820  cd my_repos/repo_store/
+  821  tree -D
+  822  ls | wc
+  823  cd my_repos/gitexplorer/
+  824  pwd
+  825  git branch
+  826  git log
+  827  history
+  828  cd\
+  829  history > history.txt
+  830  cat history.txt 
+  831  vi history.txt 
+  832  sudo apt-get install xclip
+  833  xclip -selection clipboard history.txt 
+  834  history | grep flask
+  835  history | grep delta
+  836  history | grep filter
+  837  history | grep ansi
+  838  ls -la
+  839  vi themes.gitconfig
+  840  vi .gitconfig 
+  841  vi themes.gitconfig
+  842  vi .gitconfig 
+  843  vi themes.gitconfig_original 
+  844  cd my_repos/repo_store/
+  845  ls | wc
+  846  tree -F
+  847  tree -D
+  848  cd my_repos/gitexplorer/
+  849  history
+  850  cd my_repos/email_store/
+  851  ls
+  852  cat 01_07_24_dd63913d31c44968a0ba2bce1462d836.txt 
+  853  exit()
+  854  cd my_repos/gitexplorer/
+  855  history
+  856  nohup ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  857  cd my_repos/repo_store/
+  858  ls
+  859  ls | wc
+  860  tree -D
+  861  cd ..
+  862  cd email_store/
+  863  ls
+  864  cat 01_07_24_dd63913d31c44968a0ba2bce1462d836.txt 
+  865  cd my_repos/repo_store/
+  866  ls | wc
+  867  tree
+  868  tree -D
+  869  cd my_repos/email_store/
+  870  ls
+  871  cd ..
+  872  cd repo_store/
+  873  ls
+  874  ls | wc
+  875  tree -D
+  876  cd my_repos/repo_store/
+  877  ls
+  878  ls | wc
+  879  tree
+  880  sudo certbot renew --dry-run
+  881  ps -ef | grep flask
+  882  kill -9 103645
+  883  sudo certbot renew --dry-run
+  884  sudo lsof -i :80
+  885  kill -9 603 605
+  886  sudo kill -9 603 605
+  887  sudo systemctl stop nginx
+  888  sudo certbot renew --dry-run
+  889  sudo certbot renew
+  890  sudo systemctl reload nginx
+  891  sudo systemctl start nginx
+  892  sudo systemctl status nginx
+  893  history
+  894  cd my_repos/gitexplorer/
+  895  nohup ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  896  cd my_repos/
+  897  ls
+  898  cd email_store/
+  899  ls
+  900  cd my_repos/repo_store/
+  901  ls
+  902  ls | wc
+  903  pwd
+  904  ls
+  905  cd my_repos/
+  906  ls
+  907  cd email_store/
+  908  ls
+  909  cat 01
+  910  cat 01_07_24_dd63913d31c44968a0ba2bce1462d836.txt 
+  911  cat 02_22_24_b0bdb1aceac3441f9ca22febd3482777.txt 
+  912  cat 02_12_24_fd7b91e7373d4d92935030c3b58bc748.txt 
+  913  cat 02_26_24_6f71bed4bc7746ccace9307c81b39913.txt 
+  914  cd ..
+  915  ls
+  916  cd gitexplorer/
+  917  ls
+  918  cd ..
+  919  cd repo_store/
+  920  ls
+  921  tree
+  922  cd my_repos/gitexplorer/
+  923  ls
+  924  tree
+  925  cd templates
+  926  ls
+  927  cat main.html 
+  928  cd ..
+  929  git status
+  930  git branch
+  931  git log
+  932  git pull
+  933  history
+  934  ps -ef | grep flask
+  935  sudo kill -9 1335 1802 1803 1804 1805
+  936  ps -ef | grep flask
+  937  sudo kill -9 603 60
+  938  nohup ~/py_env/bin/python3 -m gunicorn -w 4 -b 0.0.0.0:8000 flask_app:flask_app
+  939  cd my_repos/gitexplorer/
+  940  ls
+  941  cd ..
+  942  ls
+  943  cd email_store/
+  944  ls
+  945  cat 01_07_24_dd63913d31c44968a0ba2bce1462d836.txt 
+  946  cat 03_13_24_8b6777f2812347cfa2502e5eebe41b9c.txt
+  947  cat 03_22_24_d2766822fb91451e940ed15bfc4b1546.txt
+  948  cat *.txt
+  949  pwd
+  950  ls
+  951  cd my_repos/
+  952  ls
+  953  cd email_store/
+  954  ls
+  955  cat 04_13_24_7eb31a1b85e24e499233b1983bcd756a.txt
+  956  cd my_repos/repo_store/
+  957  ls
+  958  tree .
+  959  history
+  960  history | grep ssl
+  961  ls
+  962  history | grep ssl
+  963  listen 443 ssl http2;
+  964  openssl genrsa -out www_mygitexplorer_com.key 2048
+  965  openssl req -new -key www_mygitexplorer_com.key -out www_mygitexplorer_com.csr
+  966  history
+  967  history > history.txt
